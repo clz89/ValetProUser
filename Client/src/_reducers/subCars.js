@@ -1,3 +1,5 @@
+import {POST, GET, UPDATE, DELETE} from "../_actions/subCars"
+
 export default (subCars = [], action) => {
     switch (action.type) {
         case 'POST':

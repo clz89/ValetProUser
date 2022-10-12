@@ -67,7 +67,7 @@ const CarsM = ({setPullId, pullId, setModal, tableData}) => {
             }) */
             
          useEffect(() => {
-          if(formData.checkout !== post.checkout ){
+          if(formData.retrieve !== post.retrieve ){
             const _id = formData._id
             dispatch(updateCar(_id, formData))
             setModal(false)
@@ -77,7 +77,7 @@ const CarsM = ({setPullId, pullId, setModal, tableData}) => {
       
                
          useEffect(() => {
-          if(formData.returning !== post.returning ){
+          if(formData.pspot !== post.pspot ){
             const _id = formData._id
             dispatch(updateCar(_id, formData))
               dispatch(upReset(post))
@@ -127,11 +127,10 @@ const CarsM = ({setPullId, pullId, setModal, tableData}) => {
 
                    {formData.type==="on"&&(
                    <div>
-                <button type="button" name="checkout" value="checkout" onClick={handleChange}>Checking Out</button>
-                <button type="button" name="returning" value="return" onClick={handleChange}>Returning</button>
+                <button type="button" name="retrieve" value="checkout" onClick={handleChange}>Checking Out</button>
+                <button type="button" name="pspot" value="return" onClick={handleChange}>Returning</button>
                 <button type="button"  name="pulls" value="Pull" onClick={handlePull}>Pull</button>
                 </div>)}
-
                   {formData.type==="day"&&(
                 <div>
                  { <Pay {...{setModal, tableData, pullId}}/> } 

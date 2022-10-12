@@ -6,69 +6,69 @@ import { upForm } from "../../_actions/updateForm";
 import { Link } from "react-router-dom";
 import Button from "./Button";
 
-const TableBody = ({ pulls, cars, list, on, day, setTableData, tableData, columns, setPullId, pullId, setModal}) => {
+const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, setModal}) => {
    
     const [searchTerm, setSearchTerm] = useState("");
     const posts = useSelector( state => state.updateForm )
     
     const dispatch = useDispatch();
     
+    useEffect(()=>{
+      console.log(pull)
+      console.log(cars)
+    })
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (cars && data.checkout ) {
+        if (!data.complete && data.retrieve) {
+          data.checkout="Checking Out"
+          data.complete="Completed"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id)) 
         window.location.reload(false)
-        }
-        
+        }      
       })
     })
     useEffect(() => {
       tableData.filter((data) => {
-        if (cars && data.returning==="return") {
-       
+        if (!data.returning && data.pspot) {
+        data.returning="Returning"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
         window.location.reload(false)
-        
-        console.log(data.returning)
         }
       })
     })
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (cars && data.type.includes("day") && data.vcolor && data.price ) {       
+        if (!data.complete && data.vcolor && data.price  ) {  
+        data.complete="Completed"     
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
         window.location.reload(false)
         
         }
       })
-    })
+    })/*
     useEffect(() => {
       tableData.filter((data) => {
-        if (pulls && !data.complete && data.price && data.vcolor) {
-         data.complete="complete"
+        if (pull && !data.complete==="complete" && data.price && data.vcolor) {
+         data.complete="Completed"
         dispatch(updatePull(data._id, data))
-        console.log("success")
-        console.log(posts)    
       }
       })
 })
 useEffect(() => {
   tableData.filter((data) => {
-    if (pulls && !data.complete && data.checkout) {
-     data.checkout=""
-     data.complete="complete"
-    dispatch(updatePull(data._id, data))
-    console.log("success")
-    console.log(posts)    
+    if (pull && !data.complete==="complete" && data.checkout) {
+     data.checkout="Checking Out"
+     data.complete="Completed"
+    dispatch(updatePull(data._id, data))  
   }
     
   })
-})
+})*/
 
     const handleUpdate = (e) => {
       const evt = e.target.value

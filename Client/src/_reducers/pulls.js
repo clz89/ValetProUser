@@ -1,3 +1,6 @@
+import {POST, GET, UPDATE, DELETE} from "../_actions/pulls"
+
+
 export default (pulls = [], action) => {
     switch (action.type) {
         case 'POST':

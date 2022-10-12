@@ -7,10 +7,10 @@ const Pulls = ({setList, list}) => {
     const posts = useSelector( state => state.pulls )
     const x = getPulls()
     
-    const pulls = true
+    const pull = true
     console.log(list)
     return (
-    <List setList={setList} {...{ pulls, setList, list, posts, x}}/>
+    <List  {...{ pull, setList, list, posts, x}}/>
 
     )
 }

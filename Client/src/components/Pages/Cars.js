@@ -12,7 +12,7 @@ const Cars = ({list, setList}) => {
     console.log(list)
     return (
     
-    <List setList={setList} {...{cars, setList, list, CarsM, posts, x}}/>
+    <List {...{cars, setList, list, CarsM, posts, x}}/>
 
     )
 }
