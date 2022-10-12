@@ -37,7 +37,7 @@ const TabFooter = () => {
     
     return (
         <footer className="footer">
-            <Link to="/">
+            <Link to="/1">
      <button type="button"  onClick={handleClick2} className={formTrue ? 'btn-flash' : 'ftabs'}>
           Add Car
      </button>

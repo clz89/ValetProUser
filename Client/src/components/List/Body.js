@@ -23,9 +23,10 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
         if (!data.complete && data.retrieve) {
           data.checkout="Checking Out"
           data.complete="Completed"
+          window.location.reload(false)
         dispatch(createPull(data))
         dispatch(deleteCar(data._id)) 
-        window.location.reload(false)
+        
         }      
       })
     })
