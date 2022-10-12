@@ -1,0 +1,21 @@
+footer {
+ 
+  
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 7%; /* Set the fixed height of the footer here */
+}
+section {
+  
+  margin:auto;
+  width: 100%;
+  background-color:white;
+  height:93%;
+  position:fixed;
+  top: 0;
+  overflow:auto;
+ 
+ 
+  
+}
