@@ -8,15 +8,16 @@ import Completed from './components/Pages/Completed';
 import Outnr from './components/Pages/Outnr';
 import Pulls from './components/Pages/Pulls';
 import Request from './components/Pages/Request';
-import User from './components/User/User';
+import User from './_user/User';
 
-import Login from "./components/User/components/Login";
-import Register from "./components/User/components/Register";
-import Home from "./components/User/components/Home";
-import Profile from "./components/User/components/Profile";
-import BoardUser from "./components/User/components/BoardUser";
-import BoardModerator from "./components/User/components/BoardModerator";
-import BoardAdmin from "./components/User/components/BoardAdmin";
+import Login from "./_user/components/Login";
+import Register from "./_user/components/Register";
+import Home from "./_user/components/Home";
+import Profile from "./_user/components/Profile";
+import BoardUser from "./_user/components/BoardUser";
+import BoardModerator from "./_user/components/BoardModerator";
+import BoardAdmin from "./_user/components/BoardAdmin";
+import PrivateRoute from './_user/common/PrivateRoute';
 
 function App() {
   
@@ -25,14 +26,13 @@ function App() {
     <User/>
     <TabFooter/>
       <Routes>
-      
-         <Route path='/1' element={<SubCar />}/>
-         <Route path='/2' element={<Cars />}/>
-         <Route path='/3' element={<Request/>}/>     
-         <Route path='/4' element={<Pulls />}/>     
-         <Route path='/5' element={<Outnr/>}/>    
-         <Route path='/6' element={<Completed/>}/> 
-         <Route path="/home" element={<Home />} />
+          <Route path="/1" element={<PrivateRoute><SubCar/></PrivateRoute>}/>
+          <Route path="/2" element={<PrivateRoute><Cars/></PrivateRoute>}/>
+          <Route path="/3" element={<PrivateRoute><Request/></PrivateRoute>}/>
+          <Route path="/4" element={<PrivateRoute><Pulls/></PrivateRoute>}/>
+          <Route path="/5" element={<PrivateRoute><Outnr/></PrivateRoute>}/>
+          <Route path="/6" element={<PrivateRoute><Completed/></PrivateRoute>}/> 
+          <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
           <Route path="/profile" element={<Profile />} />

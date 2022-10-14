@@ -6,7 +6,7 @@ import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 
-import { login } from "../../../_actions/auth";
+import { login } from "../../_actions/auth";
 
 const required = (value) => {
   if (!value) {
@@ -28,8 +28,8 @@ const Login = (props) => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const  {isLoggedIn } = useSelector(state => (state.auth));
-  const  {message}  = useSelector(state => (state.message));
+  const  {isLoggedIn } = useSelector(state => state.auth);
+  const  {message} = useSelector(state => state.message);
   console.log(isLoggedIn)
 
   const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(username, password))
         .then(() => {
-          navigate("/profile");
+          navigate("/2");
           window.location.reload();
         })
         .catch(() => {
@@ -66,7 +66,7 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/2" />;
   }
 
   return (

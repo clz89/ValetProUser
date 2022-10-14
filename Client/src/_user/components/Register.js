@@ -6,7 +6,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
-import { register } from "../../../_actions/auth";
+import { register } from "../../_actions/auth";
 
 const required = (value) => {
   if (!value) {
@@ -57,7 +57,7 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [successful, setSuccessful] = useState(false);
 
-  const { message } = useSelector(state => ({message: state.message}));
+  const { message } = useSelector(state =>  state.message);
   const dispatch = useDispatch();
 
   const onChangeUsername = (e) => {

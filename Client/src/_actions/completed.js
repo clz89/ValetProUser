@@ -1,4 +1,4 @@
-import * as api from '../api/index';
+import * as api from '../_api/index';
 
 
 export const createComp = (comps) => async (dispatch) => {
