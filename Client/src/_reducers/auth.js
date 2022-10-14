@@ -1,10 +1,10 @@
-/*import {
+import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
   LOGOUT,
-} from ".../actions/types";
+} from "../_actions/types";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -47,4 +47,4 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-}*/
+}

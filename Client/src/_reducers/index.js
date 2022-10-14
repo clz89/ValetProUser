@@ -5,6 +5,9 @@ import updateForm from './updateForm'
 import pulls from './pulls'
 import outnr from "./outnr"
 import completed from './completed';
+import auth from './auth';
+import message from './message';
+
 export default combineReducers({
-    posts, subCars, updateForm, pulls, outnr, completed
+    posts, subCars, updateForm, pulls, outnr, completed, auth, message
 })
