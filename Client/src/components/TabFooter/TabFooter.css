@@ -15,4 +15,25 @@
   
   }
   
- 
+  .btn-flash {
+    background-color:black;
+    color:azure;
+    height:100%;
+    width: 10%;
+    font-size: 15px;
+    animation: glowing 1300ms infinite;
+}
+@keyframes glowing {
+  0% {
+    background-color: #f45f5d;
+    box-shadow: 0 0 5px #f45f5d;
+  }
+  50% {
+    background-color: #d40404;
+    box-shadow: 0 0 20px #d40404;
+  }
+  100% {
+    background-color: #f45f5d ;
+    box-shadow: 0 0 5px #f45f5d;
+  }
+}

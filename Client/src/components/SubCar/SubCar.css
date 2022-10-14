@@ -42,14 +42,7 @@ input, select {
     text-align: center;
     font-size: 12px;
 }
-.btn-flash {
-    background-color:black;
-    color:azure;
-    height:100%;
-    width: 10%;
-    font-size: 15px;
-    animation: glowing 1300ms infinite;
-}
+
 .btndiv {
     display:inline-flex;
     width: 100%;

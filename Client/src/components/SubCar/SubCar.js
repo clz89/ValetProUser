@@ -6,12 +6,15 @@ import { updatePull } from '../../_actions/pulls';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from '../../_actions/updateForm';
+
+import _ from 'lodash'
+
 const formReducer = (state, event) => {
 
    if(event.reset) {
-     return {
-     room: "880", type: "on"
-    }
+      
+  return{room: 880, type: "on"}
+    
  }
   return {
       ...state,
@@ -23,19 +26,16 @@ function SubCar() {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
-  
+
+  const [formT, setFormT] = useState(false)
 
   useEffect (() => {
     const jso = JSON.stringify(post);
       localStorage.setItem("upform", jso);
     })
- 
-  
-    
       const json = localStorage.getItem("formdata");
   const savedNotes = JSON.parse(json);
     
-  
   const dispatch = useDispatch() 
 
   const length = pos.length
@@ -44,6 +44,18 @@ function SubCar() {
   length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {room: 880, type: "on"});
     
   let navigate = useNavigate();
+
+  const form = {room: 880, type: "on"}
+  const formt = _.isEqual(savedNotes, form)
+
+  useEffect(() => {
+     if (formt) {
+      setFormT(false)
+      console.log(formT)
+    }
+    setFormT(true)
+    console.log(formt)  
+  }, [formt, formT])
 
     const resetForm = () => {
        setFormData({reset: true})
@@ -62,8 +74,7 @@ function SubCar() {
       }else{
       dispatch(createCar(formData))
       setFormData({reset: true})}
-      
-      }
+       }
     
       const handleChange = event => {
         setFormData({

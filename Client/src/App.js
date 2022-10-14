@@ -19,6 +19,8 @@ import BoardModerator from "./_user/components/BoardModerator";
 import BoardAdmin from "./_user/components/BoardAdmin";
 import PrivateRoute from './_user/common/PrivateRoute';
 
+
+
 function App() {
   
   return (
@@ -32,6 +34,7 @@ function App() {
           <Route path="/4" element={<PrivateRoute><Pulls/></PrivateRoute>}/>
           <Route path="/5" element={<PrivateRoute><Outnr/></PrivateRoute>}/>
           <Route path="/6" element={<PrivateRoute><Completed/></PrivateRoute>}/> 
+          <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
