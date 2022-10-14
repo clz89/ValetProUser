@@ -64,7 +64,7 @@ const [pullId, setPullId] = useState()
 
   return (
     <>
-    <section>
+    
       <table className="table_container">
         <caption>
           Valet Pro
@@ -74,7 +74,7 @@ const [pullId, setPullId] = useState()
         <TableHead {...{ on, day, setDay, setOn, columns, tableData, setTableData}} />
         <TableBody  {...{ pull, cars, setPullId, setModal, on, day, columns,tableData }} />
       </table>
-      </section>
+      
     </>
   );
 };

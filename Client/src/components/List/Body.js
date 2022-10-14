@@ -20,7 +20,7 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (!data.complete && data.retrieve) {
+        if (data.checkout==="checkout") {
           data.checkout="Checking Out"
           data.complete="Completed"
           window.location.reload(false)
@@ -32,8 +32,8 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
     })
     useEffect(() => {
       tableData.filter((data) => {
-        if (!data.returning && data.pspot) {
-        data.returning="Returning"
+        if (data.checkout==="return") {
+        data.checkout="Returning"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
         window.location.reload(false)
@@ -44,7 +44,8 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
     useEffect(() => {
       tableData.filter((data) => {
         if (!data.complete && data.vcolor && data.price  ) {  
-        data.complete="Completed"     
+        data.complete="Completed"
+        data.checkout="Paid"     
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
         window.location.reload(false)
@@ -127,7 +128,7 @@ useEffect(() => {
         
         <button type="button" value={data._id} onClick={handlePull}>Pull</button>
 
-              <Link to='/'>
+              <Link to='/1'>
              <button type="button" value={data._id} onClick={handleUpdate}>Edit</button>
              </Link>
              <button type="button" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id)) }>

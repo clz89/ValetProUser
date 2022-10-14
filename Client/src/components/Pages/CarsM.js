@@ -67,23 +67,13 @@ const CarsM = ({setPullId, pullId, setModal, tableData}) => {
             }) */
             
          useEffect(() => {
-          if(formData.retrieve !== post.retrieve ){
+          if(formData.checkout !== post.checkout ){
             const _id = formData._id
             dispatch(updateCar(_id, formData))
+            dispatch(upReset(post))
+              setFormData({reset: true}) 
             setModal(false)
             
-             }
-         })
-      
-               
-         useEffect(() => {
-          if(formData.pspot !== post.pspot ){
-            const _id = formData._id
-            dispatch(updateCar(_id, formData))
-              dispatch(upReset(post))
-              setFormData({reset: true}) 
-              setModal(false) 
-
              }
          })
 
@@ -127,8 +117,8 @@ const CarsM = ({setPullId, pullId, setModal, tableData}) => {
 
                    {formData.type==="on"&&(
                    <div>
-                <button type="button" name="retrieve" value="checkout" onClick={handleChange}>Checking Out</button>
-                <button type="button" name="pspot" value="return" onClick={handleChange}>Returning</button>
+                <button type="button" name="checkout" value="checkout" onClick={handleChange}>Checking Out</button>
+                <button type="button" name="checkout" value="return" onClick={handleChange}>Returning</button>
                 <button type="button"  name="pulls" value="Pull" onClick={handlePull}>Pull</button>
                 </div>)}
                   {formData.type==="day"&&(

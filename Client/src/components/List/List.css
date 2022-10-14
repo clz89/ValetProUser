@@ -3,11 +3,13 @@
   }
   
   body {
+    
     color: #383f4d;
     line-height: 1.5;
     font-size: 14px;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
       sans-serif;
+    
   }
   
   /* 
@@ -17,10 +19,12 @@
   */
   
   .table_container {
-    
-    /* max-height: 500px; */
-    margin: 0 auto;
-    
+      margin:auto;
+      width: 100%;
+      top:5vh;
+      height:88vh;
+      position:fixed;    
+      overflow-x:auto; /* <!-- this is for horizontal scroll--> */  
   }
   tbody {
    
@@ -28,6 +32,7 @@
   table {
    
     border-spacing: 0;
+    display: block;
    
   }
   
