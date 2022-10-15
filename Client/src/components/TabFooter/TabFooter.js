@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from "../../_actions/updateForm";
 
 
-const TabFooter = () => {
+const TabFooter = ({formT, setFormT}) => {
     const post = useSelector( state => state.updateForm )
     const dispatch = useDispatch()
     const [formTrue, setFormTrue] = useState();
@@ -65,7 +65,7 @@ const TabFooter = () => {
     return (
         <footer className="footer">
             <Link to="/1">
-     <button type="button"  className={formTrue ? 'btn-flash' : 'ftabs'}>
+     <button type="button"  className={formT ? 'btn-flash' : 'ftabs'}>
           Add Car
      </button>
  </Link>

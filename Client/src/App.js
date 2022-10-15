@@ -22,13 +22,14 @@ import PrivateRoute from './_user/common/PrivateRoute';
 
 
 function App() {
-  
+  const [formT, setFormT] = useState()
+
   return (
     <>
     <User/>
-    <TabFooter/>
+    <TabFooter {...{formT, setFormT}}/>
       <Routes>
-          <Route path="/1" element={<PrivateRoute><SubCar/></PrivateRoute>}/>
+          <Route path="/1" element={<PrivateRoute><SubCar {...{formT, setFormT}}/></PrivateRoute>}/>
           <Route path="/2" element={<PrivateRoute><Cars/></PrivateRoute>}/>
           <Route path="/3" element={<PrivateRoute><Request/></PrivateRoute>}/>
           <Route path="/4" element={<PrivateRoute><Pulls/></PrivateRoute>}/>

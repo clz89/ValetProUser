@@ -22,12 +22,11 @@ const formReducer = (state, event) => {
   }
   
 }
-function SubCar() {
+function SubCar({formT, setFormT}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
 
-  const [formT, setFormT] = useState(false)
 
   useEffect (() => {
     const jso = JSON.stringify(post);
@@ -47,15 +46,23 @@ function SubCar() {
 
   const form = {room: 880, type: "on"}
   const formt = _.isEqual(savedNotes, form)
+  let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
+const uptrue = _.isEqual(post, o)
 
   useEffect(() => {
-     if (formt) {
+     if (uptrue)  {  
+       dispatch(upReset(post))
+      const jsont = JSON.stringify(form);
+    localStorage.setItem("formdata", jsont);
+     setFormT(false);
+      console.log(formt)
+    }else if (formT){
       setFormT(false)
       console.log(formT)
-    }
+    }else{
     setFormT(true)
-    console.log(formt)  
-  }, [formt, formT])
+    console.log(formt)}
+  },[])
 
     const resetForm = () => {
        setFormData({reset: true})
