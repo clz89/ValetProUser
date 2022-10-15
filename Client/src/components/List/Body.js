@@ -3,7 +3,7 @@ import { batch, useDispatch, useSelector } from "react-redux";
 import { deleteCar } from "../../_actions/subCars";
 import { createPull, deletePull, updatePull } from "../../_actions/pulls";
 import { upForm } from "../../_actions/updateForm";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "./Button";
 
 const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, setModal}) => {
@@ -12,11 +12,8 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
     const posts = useSelector( state => state.updateForm )
     
     const dispatch = useDispatch();
-    
-    useEffect(()=>{
-      console.log(pull)
-      console.log(cars)
-    })
+    let navigate = useNavigate()
+
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -76,7 +73,8 @@ useEffect(() => {
       const evt = e.target.value
       tableData.filter((data) => {
         if (evt === data._id) {
-        dispatch(upForm(data))}
+        dispatch(upForm(data))
+      navigate("/1")}
       })}
 
       const handlePull = (e) => {
@@ -128,9 +126,9 @@ useEffect(() => {
         
         <button type="button" value={data._id} onClick={handlePull}>Pull</button>
 
-              <Link to='/1'>
+              
              <button type="button" value={data._id} onClick={handleUpdate}>Edit</button>
-             </Link>
+             
              <button type="button" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id)) }>
                Delete</button>
                </td>

@@ -9,7 +9,7 @@ import { useDispatch, batch } from 'react-redux';
 import { createPull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 
-const List = ({pull, cars, setList, list, CarsM, posts, x}) => {
+const List = ({y, setList, list, posts, x}) => {
 
   const dispatch = useDispatch();
  
@@ -70,9 +70,9 @@ const [pullId, setPullId] = useState()
           Valet Pro
         </caption>
         {modal===true&&(
-        <Modal setModal={setModal}  {...{setModal, tableData, setPullId, pullId, CarsM}}/>)}
+        <Modal setModal={setModal}  {...{setModal, tableData, setPullId, pullId, y}}/>)}
         <TableHead {...{ on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ pull, cars, setPullId, setModal, on, day, columns,tableData }} />
+        <TableBody  {...{ setPullId, setModal, on, day, columns,tableData }} />
       </table>
       
     </>

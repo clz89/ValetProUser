@@ -4,25 +4,60 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from "../../_actions/updateForm";
+import _ from 'lodash'
 
 
 const TabFooter = ({formT, setFormT}) => {
     const post = useSelector( state => state.updateForm )
     const dispatch = useDispatch()
     const [formTrue, setFormTrue] = useState();
-    
-   useEffect(() => {
+
+   
+        
+     
+
+  
+     const handleClick = () => {
+        
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
-    const form = {room:"880", type: "on"};
+        const form = {room: 880, type: "on"}
     let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
-    if(o===form){
-    setFormTrue()
-    console.log(o)
-    console.log(form)
-    console.log(formTrue)}
-   }, [formTrue]
-   )
+    const uptrue = _.isEqual(post, o)
+    const formt = _.isEqual(o, form)
+       if (uptrue)  {  
+        dispatch(upReset(post));   
+        const jsont = JSON.stringify(form);
+      localStorage.setItem("formdata", jsont);
+       setFormT(false);
+         console.log(formT)
+      }else if (formt){
+        setFormT(false);
+        console.log(formT)
+      }else{
+      setFormT(true);   
+      console.log(formT);};
+    }
+    useEffect(() => {
+        const json = localStorage.getItem("formdata");
+        const savedNotes = JSON.parse(json);
+            const form = {room: 880, type: "on"}
+        let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
+        const uptrue = _.isEqual(post, o)
+        const formt = _.isEqual(o, form)
+           if (uptrue)  {  
+            dispatch(upReset(post));          
+            const jsont = JSON.stringify(form);
+          localStorage.setItem("formdata", jsont);
+           setFormT(false);
+             console.log(formT)
+          }else if (formt){
+            setFormT(false);
+            console.log(formT)
+          }else{
+          setFormT(true);   
+          console.log(formT);};
+},[dispatch])
    /* const handleClick = () => {
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
@@ -58,7 +93,7 @@ const TabFooter = ({formT, setFormT}) => {
    }; */
 
    const handleClick2 = () => {
-      return setFormTrue(false)
+      return setFormT(false)
    };
   
     
@@ -70,47 +105,47 @@ const TabFooter = ({formT, setFormT}) => {
      </button>
  </Link>
  <Link to="/2">
-     <button className="ftabs" type="button"   >
+     <button className="ftabs" type="button" onClick={handleClick}   >
           Cars
      </button>
  </Link>
  <Link to="/3">
-     <button className="ftabs" type="button"  >
+     <button className="ftabs" type="button" onClick={handleClick} >
           Request
      </button>
  </Link>
  <Link to="/4">
-     <button className="ftabs" type="button"  >
+     <button className="ftabs" type="button" onClick={handleClick} >
           Pulls
      </button>
  </Link>
  <Link to="/5">
-     <button className="ftabs" type="button"   >
+     <button className="ftabs" type="button" onClick={handleClick}  >
           OutnReturning
      </button>
  </Link>
  <Link to="/6">
-     <button className="ftabs" type="button"   >
+     <button className="ftabs" type="button"  onClick={handleClick} >
           Completed
      </button>
  </Link>
  <Link to="/7">
-     <button className="ftabs" type="button"   >
+     <button className="ftabs" type="button"  onClick={handleClick}  >
           Report
      </button>
  </Link>
  <Link to="/8">
-     <button className="ftabs" type="button"   >
+     <button className="ftabs" type="button"  onClick={handleClick}  >
           Settings
      </button>
  </Link>
  <Link to="/9">
-     <button className="ftabs" type="button"   >
+     <button className="ftabs" type="button"  onClick={handleClick}  >
           Click Me!
      </button>
      </Link>
  <Link to="/10">
-     <button className="ftabs" type="button"   >
+     <button className="ftabs" type="button" onClick={handleClick}  >
           Click Me!
      </button>
     </Link>

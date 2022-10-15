@@ -44,10 +44,10 @@ function SubCar({formT, setFormT}) {
     
   let navigate = useNavigate();
 
-  const form = {room: 880, type: "on"}
-  const formt = _.isEqual(savedNotes, form)
-  let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
-const uptrue = _.isEqual(post, o)
+   /*const form = {room: 880, type: "on"}
+   let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
+   const uptrue = _.isEqual(post, o)
+   const formt = _.isEqual(savedNotes, form)
 
   useEffect(() => {
      if (uptrue)  {  
@@ -55,14 +55,16 @@ const uptrue = _.isEqual(post, o)
       const jsont = JSON.stringify(form);
     localStorage.setItem("formdata", jsont);
      setFormT(false);
-      console.log(formt)
-    }else if (formT){
+      console.log(formT)
+    }else if (formt){
       setFormT(false)
       console.log(formT)
     }else{
     setFormT(true)
-    console.log(formt)}
-  },[])
+    console.log(formT)
+    console.log(o)}
+
+  },[setFormT, formT])*/
 
     const resetForm = () => {
        setFormData({reset: true})
@@ -77,7 +79,7 @@ const uptrue = _.isEqual(post, o)
       dispatch(upReset(post))
       setFormData({reset: true})
       setTimeout(() => {
-      navigate(-1) }, 100)
+      navigate(-1) }, 500)
       }else{
       dispatch(createCar(formData))
       setFormData({reset: true})}

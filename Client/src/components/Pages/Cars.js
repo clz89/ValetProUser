@@ -7,12 +7,12 @@ import CarsM from "./CarsM";
 const Cars = ({list, setList}) => {
     const posts = useSelector( state => state.subCars )
     const x = getCars()
-    const cars = true
+    const y = <CarsM />
   
     console.log(list)
     return (
     
-    <List {...{cars, setList, list, CarsM, posts, x}}/>
+    <List {...{ setList, list, y, posts, x}}/>
 
     )
 }

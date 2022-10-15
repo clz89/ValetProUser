@@ -18,11 +18,13 @@ import BoardUser from "./_user/components/BoardUser";
 import BoardModerator from "./_user/components/BoardModerator";
 import BoardAdmin from "./_user/components/BoardAdmin";
 import PrivateRoute from './_user/common/PrivateRoute';
+import { upReset } from './_actions/updateForm';
 
 
 
 function App() {
   const [formT, setFormT] = useState()
+ 
 
   return (
     <>
