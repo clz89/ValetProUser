@@ -9,13 +9,17 @@ import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 
-const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, setModal}) => {
+const TableBody = ({ carlength, x, cars, pull, data, on, day, tableData, columns, setPullId, setModal}) => {
    
     const [searchTerm, setSearchTerm] = useState("");
     const posts = useSelector( state => state.updateForm )
     
     const dispatch = useDispatch();
     let navigate = useNavigate()
+
+    useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -42,13 +46,11 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
         if (data.checkout==="checkout") {
           data.checkout="Checking Out"
           data.complete="Completed"
-          window.location.reload(false)
-        dispatch(createPull(data))
+         dispatch(createPull(data))
         dispatch(deleteCar(data._id)) 
-        
         }      
       })
-    })
+    },[tableData] )
     useEffect(() => {
       tableData.filter((data) => {
         if (data.checkout==="return") {
@@ -56,7 +58,7 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
         data.complete="Completed"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        window.location.reload(false)
+        
         }
       })
     })
@@ -68,7 +70,7 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
         data.checkout="Paid"     
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        window.location.reload(false)
+       
         
         }
       })
@@ -107,11 +109,11 @@ useEffect(() => {
             if(evt===data._id && data.checkout==="Returning"){       
           dispatch(createOut(data))
           dispatch(deletePull(data._id))
-          window.location.reload(false)
+          dispatch(x);
           }else if(evt===data._id && data.checkout!=="Returning"){          
           dispatch(createComp(data))
           dispatch(deletePull(data._id))
-          window.location.reload(false)
+          dispatch(x);
           }
       })}
 
@@ -126,10 +128,11 @@ useEffect(() => {
          
     return (
       <tbody>
-           <td>
+           <td className="tdlength">
            <input type="text" placeholder="search..." onChange={(event)=>{
            setSearchTerm(event.target.value);}}
             />
+            &nbsp;&nbsp;&nbsp;{carlength}&nbsp;<p>cars</p>&nbsp;<p>total</p>           
          </td>
         {tableData.filter((data) => {
              if (!on && !day) 

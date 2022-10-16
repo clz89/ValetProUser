@@ -11,12 +11,21 @@
       sans-serif;
     
   }
-  
+  .title{
+    color:white;
+    text-align: center;
+    font-size: larger;
+  }
   /* 
   =================
   Table
   =====================
   */
+  .tdlength{
+  display: flex;
+   height:45px;
+   flex-direction: row;
+  }
   
   .table_container {
     background-color: #343536;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { useSelector } from 'react-redux';
 import {Routes, Route } from "react-router-dom";
 import './App.css';
@@ -20,6 +20,7 @@ import BoardModerator from "./_user/components/BoardModerator";
 import BoardAdmin from "./_user/components/BoardAdmin";
 import PrivateRoute from './_user/common/PrivateRoute';
 import { upReset } from './_actions/updateForm';
+import CarsLength from './components/CarsLength';
 
 
 
@@ -28,10 +29,12 @@ function App() {
   const { user: currentUser } = useSelector((state) => state.auth);
   const auth = currentUser && currentUser.roles 
 
+
+
   return (
     <>
     <User/>
-      {auth && (<TabFooter {...{formT, setFormT}}/>)}
+      {auth && (<TabFooter {...{ formT, setFormT}}/>)}
       <Routes>
           <Route path="/1" element={<PrivateRoute><SubCar {...{formT, setFormT}}/></PrivateRoute>}/>
           <Route path="/2" element={<PrivateRoute><Cars/></PrivateRoute>}/>

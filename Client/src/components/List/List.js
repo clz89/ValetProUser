@@ -9,7 +9,7 @@ import { useDispatch, batch } from 'react-redux';
 import { createPull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 
-const List = ({PullsM, CarsM, setList, list, posts, x}) => {
+const List = ({  pulllength, PullsM, CarsM, setList, list, posts, x}) => {
 
   const dispatch = useDispatch();
  
@@ -29,13 +29,13 @@ const [pullId, setPullId] = useState()
     const jsont = JSON.stringify(posts);
       localStorage.setItem("posts", jsont);
   })
-
+  
+  
   useEffect(()=> {
     setTableData(posts)
  }, [posts] )
 
-
-
+ 
   const columns = [ 
     { label: "Type:", accessor: "type", sortable: true },
     { label: "Ticket #:", accessor: "ticket", sortable: true },
@@ -60,19 +60,24 @@ const [pullId, setPullId] = useState()
     { label: "Id:", accessor: "_id", sortable: true }
   ];
 
-  
+  const carlength = posts.length
+
+    useEffect(()=> {
+    
+        if(carlength!==undefined){
+          const jsont = JSON.stringify(carlength);
+          localStorage.setItem("carlength", jsont);}
+      },[carlength])
+    
 
   return (
     <>
     
       <table className="table_container">
-        <caption>
-          Valet Pro
-        </caption>
         {modal===true&&(
         <Modal setModal={setModal}  {...{setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{ on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ setPullId, setModal, on, day, columns,tableData }} />
+        <TableBody  {...{carlength, x, setPullId, setModal, on, day, columns,tableData }} />
       </table>
       
     </>

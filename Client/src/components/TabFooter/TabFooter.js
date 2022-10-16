@@ -7,14 +7,17 @@ import { upReset } from "../../_actions/updateForm";
 import _ from 'lodash'
 
 
-const TabFooter = ({formT, setFormT}) => {
+const TabFooter = ({ formT, setFormT}) => {
     const post = useSelector( state => state.updateForm )
 
     const dispatch = useDispatch()
 
     const [formTrue, setFormTrue] = useState();
+ 
+
 
  const handleClick = (e) => {
+    
      setFormTrue(e.target.value)   
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
@@ -56,12 +59,12 @@ const TabFooter = ({formT, setFormT}) => {
           setFormT(true);   
           console.log(formT);};
     },[dispatch])
-    
+
    
-   const handleClick2 = (e) => {
+   const handleClick2 = () => {
       return setFormTrue("1")
    };
-
+  
       return (
         <footer className="footer">
             <Link to="/1">
@@ -71,27 +74,27 @@ const TabFooter = ({formT, setFormT}) => {
  </Link>
  <Link to="/2">
      <button className={formTrue==="2" ? 'btn-flash' : 'ftabs'} value="2" type="button" onClick={handleClick}   >
-          Cars
+      Cars
      </button>
  </Link>
  <Link to="/3">
      <button className={formTrue==="3" ? 'btn-flash' : 'ftabs'} value="3" type="button" onClick={handleClick} >
-          Request
+     Request
      </button>
  </Link>
  <Link to="/4">
      <button className={formTrue==="4" ? 'btn-flash' : 'ftabs'} value="4" type="button" onClick={handleClick} >
-          Pulls
+      Pulls
      </button>
  </Link>
  <Link to="/5">
      <button className={formTrue==="5" ? 'btn-flash' : 'ftabs'} value="5" type="button" onClick={handleClick}  >
-          OutnReturning
+      OutnReturning
      </button>
  </Link>
  <Link to="/6">
      <button className={formTrue==="6" ? 'btn-flash' : 'ftabs'} value="6" type="button"  onClick={handleClick} >
-          Completed
+     Completed
      </button>
  </Link>
  <Link to="/7">

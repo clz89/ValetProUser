@@ -7,7 +7,9 @@ import CarsM from "./CarsM";
 const Cars = ({list, setList}) => {
     const posts = useSelector( state => state.subCars )
     const x = getCars()
-    
+
+
+
     return (
     
     <List {...{ setList, list, CarsM, posts, x}}/>

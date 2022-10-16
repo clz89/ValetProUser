@@ -68,7 +68,7 @@ function SubCar({formT, setFormT}) {
 
     const resetForm = () => {
        setFormData({reset: true})
-       window.location.reload(false);
+       
     }
   const handleSubmit = (event ) => {
     event.preventDefault();

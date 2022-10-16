@@ -7,12 +7,14 @@ import PullsM from "./PullsM"
 const Pulls = ({setList, list}) => {
     const posts = useSelector( state => state.pulls )
     const x = getPulls()
-    
-    
-    
-    console.log(list)
+    const pulllength = Object.keys(posts).length;
+    useEffect(()=> {
+        if(pulllength!==undefined){
+          const jsont = JSON.stringify(pulllength);
+          localStorage.setItem("pulllength", jsont);}
+      },[pulllength])
     return (
-    <List  {...{ PullsM, setList, list, posts, x}}/>
+    <List  {...{ pulllength, PullsM, setList, list, posts, x}}/>
 
     )
 }

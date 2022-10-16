@@ -52,7 +52,7 @@ const User = () => {
     <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <Link to={"/"} className="navbar-brand">
-          bezKoder
+          Valet Pro
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -85,6 +85,7 @@ const User = () => {
             </li>
           )}
         </div>
+        <div></div>
 
         {currentUser ? (
           <div className="navbar-nav ml-auto">

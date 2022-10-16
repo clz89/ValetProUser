@@ -3,7 +3,7 @@ import { useState } from "react";
 const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData }) => {
 
   const [sortField, setSortField] = useState("");
-  const [order, setOrder] = useState("asc");
+  const [order, setOrder] = useState("desc");
  
   const handleSorting = (sortField, sortOrder) => {
     if (sortField) {
