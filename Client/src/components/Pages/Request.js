@@ -5,9 +5,11 @@ import { getCars } from "../../_actions/subCars";
 
 const Request = () => {
     const posts = useSelector( state => state.subCars )
-    const x = getCars()
+    const x = ""
     return (
-    <List {...{posts, x}}/>
+        <p>
+       hello world
+       </p>
 
     )
 }

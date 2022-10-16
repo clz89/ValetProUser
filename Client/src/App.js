@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useSelector } from 'react-redux';
 import {Routes, Route } from "react-router-dom";
 import './App.css';
 import TabFooter from './components/TabFooter/TabFooter';
@@ -24,12 +25,13 @@ import { upReset } from './_actions/updateForm';
 
 function App() {
   const [formT, setFormT] = useState()
- 
+  const { user: currentUser } = useSelector((state) => state.auth);
+  const auth = currentUser && currentUser.roles 
 
   return (
     <>
     <User/>
-    <TabFooter {...{formT, setFormT}}/>
+      {auth && (<TabFooter {...{formT, setFormT}}/>)}
       <Routes>
           <Route path="/1" element={<PrivateRoute><SubCar {...{formT, setFormT}}/></PrivateRoute>}/>
           <Route path="/2" element={<PrivateRoute><Cars/></PrivateRoute>}/>

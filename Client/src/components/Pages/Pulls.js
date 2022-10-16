@@ -7,12 +7,12 @@ import PullsM from "./PullsM"
 const Pulls = ({setList, list}) => {
     const posts = useSelector( state => state.pulls )
     const x = getPulls()
-    const y = <PullsM />
+    
     
     
     console.log(list)
     return (
-    <List  {...{ y, setList, list, posts, x}}/>
+    <List  {...{ PullsM, setList, list, posts, x}}/>
 
     )
 }

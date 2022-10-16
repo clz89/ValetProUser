@@ -17,8 +17,8 @@ const TabFooter = ({formT, setFormT}) => {
      
 
   
-     const handleClick = () => {
-        
+     const handleClick = (e) => {
+     setFormTrue(e.target.value)   
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
         const form = {room: 880, type: "on"}
@@ -92,60 +92,58 @@ const TabFooter = ({formT, setFormT}) => {
        setFormTrue(true)}
    }; */
 
-   const handleClick2 = () => {
-      return setFormT(false)
+   const handleClick2 = (e) => {
+      return setFormTrue("1")
    };
-  
-    
-    return (
+      return (
         <footer className="footer">
             <Link to="/1">
-     <button type="button"  className={formT ? 'btn-flash' : 'ftabs'}>
+     <button type="button"  value="1" className={formT || formTrue==="1" ? 'btn-flash' : 'ftabs'} onClick={handleClick2}>
           Add Car
      </button>
  </Link>
  <Link to="/2">
-     <button className="ftabs" type="button" onClick={handleClick}   >
+     <button className={formTrue==="2" ? 'btn-flash' : 'ftabs'} value="2" type="button" onClick={handleClick}   >
           Cars
      </button>
  </Link>
  <Link to="/3">
-     <button className="ftabs" type="button" onClick={handleClick} >
+     <button className={formTrue==="3" ? 'btn-flash' : 'ftabs'} value="3" type="button" onClick={handleClick} >
           Request
      </button>
  </Link>
  <Link to="/4">
-     <button className="ftabs" type="button" onClick={handleClick} >
+     <button className={formTrue==="4" ? 'btn-flash' : 'ftabs'} value="4" type="button" onClick={handleClick} >
           Pulls
      </button>
  </Link>
  <Link to="/5">
-     <button className="ftabs" type="button" onClick={handleClick}  >
+     <button className={formTrue==="5" ? 'btn-flash' : 'ftabs'} value="5" type="button" onClick={handleClick}  >
           OutnReturning
      </button>
  </Link>
  <Link to="/6">
-     <button className="ftabs" type="button"  onClick={handleClick} >
+     <button className={formTrue==="6" ? 'btn-flash' : 'ftabs'} value="6" type="button"  onClick={handleClick} >
           Completed
      </button>
  </Link>
  <Link to="/7">
-     <button className="ftabs" type="button"  onClick={handleClick}  >
+     <button className={formTrue==="7" ? 'btn-flash' : 'ftabs'} value="7" type="button"  onClick={handleClick}  >
           Report
      </button>
  </Link>
  <Link to="/8">
-     <button className="ftabs" type="button"  onClick={handleClick}  >
+     <button className={formTrue==="8" ? 'btn-flash' : 'ftabs'} value="8" type="button"  onClick={handleClick}  >
           Settings
      </button>
  </Link>
  <Link to="/9">
-     <button className="ftabs" type="button"  onClick={handleClick}  >
+     <button className={formTrue==="9" ? 'btn-flash' : 'ftabs'} value="9"type="button"  onClick={handleClick}  >
           Click Me!
      </button>
      </Link>
  <Link to="/10">
-     <button className="ftabs" type="button" onClick={handleClick}  >
+     <button className={formTrue==="10" ? 'btn-flash' : 'ftabs'} value="10" type="button" onClick={handleClick}  >
           Click Me!
      </button>
     </Link>

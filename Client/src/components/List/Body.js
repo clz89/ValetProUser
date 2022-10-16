@@ -5,6 +5,9 @@ import { createPull, deletePull, updatePull } from "../../_actions/pulls";
 import { upForm } from "../../_actions/updateForm";
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
+import { upReset } from "../../_actions/updateForm";
+import { createOut, deleteOut } from "../../_actions/outnr";
+import { createComp, deleteComp } from "../../_actions/completed";
 
 const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, setModal}) => {
    
@@ -14,7 +17,26 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
     const dispatch = useDispatch();
     let navigate = useNavigate()
 
+    useEffect(() => {
+      tableData.filter((data) => {
+        if (!data.complete && data.checkout==="Returning") {
+          data.complete="Completed"                 
+          dispatch(updatePull(data))
+          dispatch(upReset(posts))
+        }      
+      })
+    }) 
 
+    useEffect(() => {
+      tableData.filter((data) => {
+        if (!data.complete && data.checkout==="Checking Out") {
+          data.complete="Completed"                 
+          dispatch(updatePull(data))
+          dispatch(upReset(posts))
+        }      
+      })
+    })  
+    
     useEffect(() => {
       tableData.filter((data) => {
         if (data.checkout==="checkout") {
@@ -31,6 +53,7 @@ const TableBody = ({ cars, pull, data, on, day, tableData, columns, setPullId, s
       tableData.filter((data) => {
         if (data.checkout==="return") {
         data.checkout="Returning"
+        data.complete="Completed"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
         window.location.reload(false)
@@ -77,15 +100,20 @@ useEffect(() => {
       navigate("/1")}
       })}
 
-      const handlePull = (e) => {
+      const handleComp = (e) => {
         const evt = e.target.value
         tableData.filter((data) => {
-          if (evt === data._id) {
-          ;
-          dispatch(createPull(data))
-          dispatch(deleteCar(data._id))
+
+            if(evt===data._id && data.checkout==="Returning"){       
+          dispatch(createOut(data))
+          dispatch(deletePull(data._id))
+          window.location.reload(false)
+          }else if(evt===data._id && data.checkout!=="Returning"){          
+          dispatch(createComp(data))
+          dispatch(deletePull(data._id))
+          window.location.reload(false)
           }
-        })}
+      })}
 
         const handleModal = (e) => {
           setModal(true);
@@ -121,15 +149,20 @@ useEffect(() => {
             <tr key={data._id}>
               <td>
               {data._id}
-              <button value={data._id} className='btn btn-primary btn-md'
-        onClick={handleModal}>Open Modal</button>              
-        
-        <button type="button" value={data._id} onClick={handlePull}>Pull</button>
 
-              
+              { !data.complete && (
+              <button value={data._id} className='btn btn-primary btn-md'
+                onClick={handleModal}>Process</button> )} 
+
+              { data.complete && (
+                <button value={data._id} className='btn btn-primary btn-md'
+                onClick={handleComp}>Completed</button>
+              )}
+
              <button type="button" value={data._id} onClick={handleUpdate}>Edit</button>
              
-             <button type="button" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id)) }>
+             <button type="button" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id)) 
+              && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
                Delete</button>
                </td>
 
