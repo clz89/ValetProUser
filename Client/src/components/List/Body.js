@@ -143,25 +143,32 @@ useEffect(() => {
               return data;
             } else if(data.ticket?.toLowerCase().includes(searchTerm.toLowerCase()))
               {return data}
-             
-          }).map((data) => {
+              else if(data.name?.toLowerCase().includes(searchTerm.toLowerCase()))
+              {return data}
+              else if(data.room?.toLowerCase().includes(searchTerm.toLowerCase()))
+              {return data}
+              else if(data.vmake?.toLowerCase().includes(searchTerm.toLowerCase()))
+              {return data}
+              else if(data.vcolor?.toLowerCase().includes(searchTerm.toLowerCase()))
+              {return data}
+              else if(data.vmodel?.toLowerCase().includes(searchTerm.toLowerCase()))
+              {return data}
+             }).map((data) => {
           return (
             <tr key={data._id}>
               <td>
-              {data._id}
-
               { !data.complete && (
-              <button value={data._id} className='btn btn-primary btn-md'
+              <button value={data._id} 
                 onClick={handleModal}>Process</button> )} 
 
               { data.complete && (
-                <button value={data._id} className='btn btn-primary btn-md'
+                <button value={data._id} 
                 onClick={handleComp}>Completed</button>
               )}
 
-             <button type="button" value={data._id} onClick={handleUpdate}>Edit</button>
+             <button type="button" className="" value={data._id} onClick={handleUpdate}>Edit</button>
              
-             <button type="button" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id)) 
+             <button type="button" className="" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id)) 
               && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
                Delete</button>
                </td>

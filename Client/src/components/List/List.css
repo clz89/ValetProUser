@@ -19,15 +19,20 @@
   */
   
   .table_container {
+    background-color: #343536;
       margin:auto;
       width: 100%;
-      top:5vh;
-      height:88vh;
+      top:4vh;
+      height:89vh;
       position:fixed;    
       overflow-x:auto; /* <!-- this is for horizontal scroll--> */  
   }
   tbody {
    
+  }
+  label{
+    color:#fff;
+    background-color: #1a1a1a;
   }
   table {
    
@@ -43,11 +48,15 @@
   }
   
   table th {
-    background: rgb(24, 22, 22);
+    background: rgb(7, 7, 7);
     padding: 8px 10px;
     border-bottom: 1px solid #1a1a1a;
     font-weight: bold;
     text-align: left;
+    
+  }
+  thead{
+    color:white
   }
   
   .table th.up {
@@ -68,8 +77,10 @@
   }
   
   table td {
-    border-top: 1px solid #ddd;
+    
+    border-top: 1px solid rgb(43, 42, 42);
     padding: 8px 20px;
+    color:rgb(255, 255, 255)
   }
   
   table tbody tr:first-child td {
@@ -77,11 +88,11 @@
   }
   
   table tbody tr:nth-child(n) td {
-    background: #ffffff;
+    background: #4b4949;
   }
   
   table tbody tr:nth-child(2n) td {
-    background: rgb(233, 232, 232);
+    background: rgb(32, 32, 32);
   }
 
   /*modal-------------------------------------------------------*/
@@ -120,4 +131,9 @@
     position: absolute;
     top: -15px;
     right: -15px;
+}
+button {
+  border:2px solid black;
+  color:rgb(255, 255, 255);
+  background-color: #1a1a1a;
 }

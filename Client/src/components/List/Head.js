@@ -52,6 +52,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
       <tr>
       
       <p>Ticket Type:</p>
+      <div>
       Overnight!
             <input  
               name="Overnight"
@@ -59,6 +60,8 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
               type="checkbox"
               onChange={handleType}
           />
+          </div>
+          <div>
       Day use! 
            <input
              defaultChecked="true"
@@ -66,6 +69,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
               onChange={handleType2}
               type="checkbox"
             />
+            </div>
         {columns.map(({ label, accessor, sortable }) => {
           const cl = sortable
             ? sortField && sortField === accessor && order === "asc"
@@ -80,7 +84,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
              
               className={cl}
             > 
-             <button  onClick={sortable ? () => handleSortingChange(accessor) : null}>
+             <button className=""  onClick={sortable ? () => handleSortingChange(accessor) : null}>
                  {label}
                  </button> 
             </th>
