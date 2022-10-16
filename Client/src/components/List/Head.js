@@ -62,7 +62,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
           />
           </div>
           <div>
-      Day use! 
+          &nbsp;&nbsp;Day use!&nbsp;
            <input
              defaultChecked="true"
               name="Day"

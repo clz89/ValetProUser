@@ -78,9 +78,9 @@ const Login = (props) => {
           className="profile-img-card"
         />
 
-        <Form onSubmit={handleLogin} ref={form}>
+        <Form className="logform" onSubmit={handleLogin} ref={form}>
           <div className="form-group">
-            <label htmlFor="username">Username</label>
+            <label className="loglabel" htmlFor="username">Username</label>
             <Input
               type="text"
               className="form-control"
@@ -92,7 +92,7 @@ const Login = (props) => {
           </div>
 
           <div className="form-group">
-            <label htmlFor="password">Password</label>
+            <label className="loglabel" htmlFor="password">Password</label>
             <Input
               type="password"
               className="form-control"
