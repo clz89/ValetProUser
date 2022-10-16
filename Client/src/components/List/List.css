@@ -43,7 +43,7 @@
   }
   
   table th {
-    background: #fff;
+    background: rgb(24, 22, 22);
     padding: 8px 10px;
     border-bottom: 1px solid #1a1a1a;
     font-weight: bold;
@@ -77,11 +77,11 @@
   }
   
   table tbody tr:nth-child(n) td {
-    background: #eff0f0;
+    background: #ffffff;
   }
   
   table tbody tr:nth-child(2n) td {
-    background: #fff;
+    background: rgb(233, 232, 232);
   }
 
   /*modal-------------------------------------------------------*/

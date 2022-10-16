@@ -9,15 +9,12 @@ import _ from 'lodash'
 
 const TabFooter = ({formT, setFormT}) => {
     const post = useSelector( state => state.updateForm )
+
     const dispatch = useDispatch()
+
     const [formTrue, setFormTrue] = useState();
 
-   
-        
-     
-
-  
-     const handleClick = (e) => {
+ const handleClick = (e) => {
      setFormTrue(e.target.value)   
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
@@ -38,6 +35,7 @@ const TabFooter = ({formT, setFormT}) => {
       setFormT(true);   
       console.log(formT);};
     }
+
     useEffect(() => {
         const json = localStorage.getItem("formdata");
         const savedNotes = JSON.parse(json);
@@ -57,44 +55,13 @@ const TabFooter = ({formT, setFormT}) => {
           }else{
           setFormT(true);   
           console.log(formT);};
-},[dispatch])
-   /* const handleClick = () => {
-    const json = localStorage.getItem("formdata");
-    const savedNotes = JSON.parse(json);
-    const form = {room:"880", type: "on"}; 
-    console.log(savedNotes);
-    if(savedNotes===post){ 
-      const jsont = JSON.stringify(form);
-      localStorage.setItem("formdata", jsont);
-      dispatch(upReset(post)); 
-      setFormTrue(false);
-    }
-    else if(savedNotes===form){
-    setFormTrue(false)
-    }
-    else{
-        setFormTrue(true)
-    };};
-    const handleClick = () => {
-    const json = localStorage.getItem("formdata");
-    const savedNotes = JSON.parse(json);
-    const form = {room: 880, type: "on"};  
-    let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
-      console.log(o)
-      if (JSON.stringify(o) === JSON.stringify(post))
-    {   dispatch(upReset(post))
-        const jsont = JSON.stringify(form);
-      localStorage.setItem("formdata", jsont);
-       setFormTrue(false);
-    } else if (JSON.stringify(o) === JSON.stringify(form))
-    {   setFormTrue(false)
-    } else{  
-       setFormTrue(true)}
-   }; */
-
+    },[dispatch])
+    
+   
    const handleClick2 = (e) => {
       return setFormTrue("1")
    };
+
       return (
         <footer className="footer">
             <Link to="/1">
