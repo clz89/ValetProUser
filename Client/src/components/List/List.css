@@ -32,9 +32,13 @@
   color:white;
   
   }
-  .td_btn{
-    
+  .tdfilter{
+   display: flex;
+   flex-direction: column;
   }
+  .tdbtn{
+  
+   }
   
   .table_container {
     background-color: #343536;
@@ -71,7 +75,8 @@
     
   }
   thead{
-    color:white
+    color:white;
+   
   }
   
   .table th.up {

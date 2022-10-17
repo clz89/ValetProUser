@@ -61,7 +61,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
   return (
     <thead>
       <tr>
-        <td>
+        <td className="tdfilter">
         <p> Ticket Type: </p>
       
       Overnight!

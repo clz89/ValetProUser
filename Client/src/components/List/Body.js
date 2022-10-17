@@ -162,7 +162,7 @@ useEffect(() => {
               return (
                 <tr key={data._id}>
 
-                  <td className="td_btn">
+                  <td className="tdbtn">
                     {!data.complete && (
                       <button value={data._id}
                         onClick={handleModal}>Process</button>)}
