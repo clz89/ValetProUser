@@ -8,7 +8,13 @@ export const createComp = (comps) => async (dispatch) => {
 };
 export const getComps = () => async (dispatch) => {
   const { data } = await api.getComps();
-  dispatch({ type: 'GET', payload: data });
+  const sortedData = data.sort((a, b) => {
+    const dateAInMillis = (new Date(a.createdAt)).getTime();
+    const dateBInMillis = (new Date(b.createdAt)).getTime();
+    
+    return dateBInMillis - dateAInMillis;})
+  
+  dispatch({ type: 'GET', payload: sortedData });
 };
 
 export const updateComp = (id, comps) => async (dispatch) => {

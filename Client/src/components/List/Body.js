@@ -9,24 +9,22 @@ import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 
-const TableBody = ({ carlength, x, cars, pull, data, on, day, tableData, columns, setPullId, setModal}) => {
-   
+const TableBody = ({ carlength, on, day, tableData, columns, setPullId, setModal }) => {
+
+    const post = useSelector( state => state.updateForm )
     const [searchTerm, setSearchTerm] = useState("");
-    const posts = useSelector( state => state.updateForm )
-    
     const dispatch = useDispatch();
     let navigate = useNavigate()
 
-    useEffect(() => {
-      window.scrollTo(0, 0)
-    }, [])
+    
 
-    useEffect(() => {
+     useEffect(() => {
       tableData.filter((data) => {
         if (!data.complete && data.checkout==="Returning") {
-          data.complete="Completed"                 
+          data.complete="Completed"  
+                         
           dispatch(updatePull(data))
-          dispatch(upReset(posts))
+          dispatch(upReset(post))
         }      
       })
     }) 
@@ -36,7 +34,7 @@ const TableBody = ({ carlength, x, cars, pull, data, on, day, tableData, columns
         if (!data.complete && data.checkout==="Checking Out") {
           data.complete="Completed"                 
           dispatch(updatePull(data))
-          dispatch(upReset(posts))
+          dispatch(upReset(post))
         }      
       })
     })  
@@ -46,35 +44,38 @@ const TableBody = ({ carlength, x, cars, pull, data, on, day, tableData, columns
         if (data.checkout==="checkout") {
           data.checkout="Checking Out"
           data.complete="Completed"
-         dispatch(createPull(data))
-        dispatch(deleteCar(data._id)) 
-        }      
-      })
-    },[tableData] )
+          dispatch(createPull(data))
+          dispatch(deleteCar(data._id))
+          window.location.reload(false)      
+        }
+     })
+     })
+
     useEffect(() => {
       tableData.filter((data) => {
         if (data.checkout==="return") {
-        data.checkout="Returning"
         data.complete="Completed"
+        data.checkout="Returning"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        
+        window.location.reload(false)
         }
       })
+    
     })
 
     useEffect(() => {
       tableData.filter((data) => {
         if (!data.complete && data.vcolor && data.price  ) {  
         data.complete="Completed"
-        data.checkout="Paid"     
+        data.checkout="Paid"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-       
-        
+        window.location.reload(false)
         }
       })
-    })/*
+    })
+    /*
     useEffect(() => {
       tableData.filter((data) => {
         if (pull && !data.complete==="complete" && data.price && data.vcolor) {
@@ -106,14 +107,15 @@ useEffect(() => {
         const evt = e.target.value
         tableData.filter((data) => {
 
-            if(evt===data._id && data.checkout==="Returning"){       
+            if(evt===data._id && data.checkout==="Returning"){ 
+              dispatch(deletePull(data._id))      
           dispatch(createOut(data))
-          dispatch(deletePull(data._id))
-          dispatch(x);
-          }else if(evt===data._id && data.checkout!=="Returning"){          
+          window.location.reload(false)
+          }else if(evt===data._id && data.checkout!=="Returning"){  
+            dispatch(deletePull(data._id))        
           dispatch(createComp(data))
-          dispatch(deletePull(data._id))
-          dispatch(x);
+          window.location.reload(false)
+          
           }
       })}
 
@@ -125,65 +127,66 @@ useEffect(() => {
             if (evt === data._id) {
             dispatch(upForm(data))}
           })}
+
+         
+        
          
     return (
       <tbody>
-           <td className="tdlength">
-           <input type="text" placeholder="search..." onChange={(event)=>{
-           setSearchTerm(event.target.value);}}
-            />
-            &nbsp;&nbsp;&nbsp;{carlength}&nbsp;<p>cars</p>&nbsp;<p>total</p>           
+        <tr>
+          <td>
+          <input type="text" placeholder="search..." onChange={(event) => {
+         setSearchTerm(event.target.value);}}/>
          </td>
-        {tableData.filter((data) => {
-             if (!on && !day) 
-             {return data}
-               else if (!on) 
-               {return data.type?.includes("on")}
-               else if(!day) 
-               {return data.type?.includes("day")}})
-          .filter((data) => {
-          if (searchTerm === "") {
-              return data;
-            } else if(data.ticket?.toLowerCase().includes(searchTerm.toLowerCase()))
-              {return data}
-              else if(data.name?.toLowerCase().includes(searchTerm.toLowerCase()))
-              {return data}
-              else if(data.room?.toLowerCase().includes(searchTerm.toLowerCase()))
-              {return data}
-              else if(data.vmake?.toLowerCase().includes(searchTerm.toLowerCase()))
-              {return data}
-              else if(data.vcolor?.toLowerCase().includes(searchTerm.toLowerCase()))
-              {return data}
-              else if(data.vmodel?.toLowerCase().includes(searchTerm.toLowerCase()))
-              {return data}
-             }).map((data) => {
-          return (
-            <tr key={data._id}>
-              <td>
-              { !data.complete && (
-              <button value={data._id} 
-                onClick={handleModal}>Process</button> )} 
+         <td>
+              &nbsp;&nbsp;&nbsp;{carlength}&nbsp;cars&nbsp;total
+            </td>
+            </tr>
+       
+          {tableData.filter((data) => {
+            if (!on && !day) { return data; }
+            else if (!on) { return data.type?.includes("on"); }
+            else if (!day) { return data.type?.includes("day"); }
+          })
+            .filter((data) => {
+              if (searchTerm === "") {
+                return data;
+              } else if (data.ticket?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+              else if (data.name?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+              else if (data.room?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+              else if (data.vmake?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+              else if (data.vcolor?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+              else if (data.vmodel?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+            })
+            .map((data) => {
+              return (
+                <tr key={data._id}>
 
-              { data.complete && (
-                <button value={data._id} 
-                onClick={handleComp}>Completed</button>
-              )}
+                  <td className="td_btn">
+                    {!data.complete && (
+                      <button value={data._id}
+                        onClick={handleModal}>Process</button>)}
 
-             <button type="button" className="" value={data._id} onClick={handleUpdate}>Edit</button>
-             
-             <button type="button" className="" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id)) 
-              && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
-               Delete</button>
-               </td>
+                    {data.complete && (
+                      <button value={data._id}
+                        onClick={handleComp}>Completed</button>
+                    )}
 
-              {columns.map(({ accessor }) => {
-                const tData = data[accessor] ? data[accessor] : "";
-                return <td key={accessor}>{tData}</td>;
-                })}
-               </tr>
-                  );
-                })}
-      </tbody>       
+                    <button type="button" className="" value={data._id} onClick={handleUpdate}>Edit</button>
+
+                    <button type="button" className="" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
+                      && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
+                      Delete</button>
+                  </td>
+
+                  {columns.map(({ accessor }) => {
+                    const tData = data[accessor] ? data[accessor] : "";
+                    return <td key={accessor}>{tData}</td>;
+                  })}
+                </tr>
+              );
+            })}
+        </tbody>    
             );
   };
   

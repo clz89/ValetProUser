@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData }) => {
 
+  
+ 
+    
   const [sortField, setSortField] = useState("");
   const [order, setOrder] = useState("desc");
  
+
+
   const handleSorting = (sortField, sortOrder) => {
     if (sortField) {
       const sorted = [...tableData].sort((a, b) => {
@@ -17,9 +22,12 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
           }) * (sortOrder === "asc" ? 1 : -1)
         );
       });
-      setTableData(sorted);
+      setTableData(sorted); 
+      const jsont = JSON.stringify(sorted);
+      localStorage.setItem("sortstate", jsont);
     }
   };
+
     const handleType = (event) => {
       if (event.target.checked) {
         setOn(false)
@@ -45,14 +53,17 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
       accessor === sortField && order === "asc" ? "desc" : "asc";
     setSortField(accessor);
     setOrder(sortOrder);
-    handleSorting(accessor, sortOrder);
-  };
+    handleSorting(accessor, sortOrder);}
+
+      
+  
+    
   return (
     <thead>
       <tr>
+        <td>
+        <p> Ticket Type: </p>
       
-      <p>Ticket Type:</p>
-      <div>
       Overnight!
             <input  
               name="Overnight"
@@ -60,8 +71,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
               type="checkbox"
               onChange={handleType}
           />
-          </div>
-          <div>
+         
           &nbsp;&nbsp;Day use!&nbsp;
            <input
              defaultChecked="true"
@@ -69,7 +79,8 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
               onChange={handleType2}
               type="checkbox"
             />
-            </div>
+        </td>
+      
         {columns.map(({ label, accessor, sortable }) => {
           const cl = sortable
             ? sortField && sortField === accessor && order === "asc"

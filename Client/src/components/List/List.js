@@ -25,6 +25,7 @@ const [day, setDay] = useState(false) ;
 const [modal, setModal] = useState(false);
 const [pullId, setPullId] = useState()
 
+
   useEffect(()=> {
     const jsont = JSON.stringify(posts);
       localStorage.setItem("posts", jsont);
@@ -32,7 +33,17 @@ const [pullId, setPullId] = useState()
   
   
   useEffect(()=> {
-    setTableData(posts)
+    const json = localStorage.getItem("sortstate");
+    const sortstate = JSON.parse(json);
+    if(sortstate){
+     setTableData(sortstate)
+  
+    }else{
+      setTableData(posts)
+
+    }
+     
+
  }, [posts] )
 
  
@@ -68,16 +79,20 @@ const [pullId, setPullId] = useState()
           const jsont = JSON.stringify(carlength);
           localStorage.setItem("carlength", jsont);}
       },[carlength])
+
+       
     
 
   return (
     <>
     
       <table className="table_container">
+        
         {modal===true&&(
         <Modal setModal={setModal}  {...{setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
-        <TableHead {...{ on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{carlength, x, setPullId, setModal, on, day, columns,tableData }} />
+        <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
+        <TableBody  {...{ carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
+      
       </table>
       
     </>

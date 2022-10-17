@@ -7,17 +7,20 @@ import { upReset } from "../../_actions/updateForm";
 import _ from 'lodash'
 
 
-const TabFooter = ({ formT, setFormT}) => {
+const TabFooter = () => {
     const post = useSelector( state => state.updateForm )
 
     const dispatch = useDispatch()
-
-    const [formTrue, setFormTrue] = useState();
- 
-
-
- const handleClick = (e) => {
     
+    const json = localStorage.getItem("states");
+        const states = JSON.parse(json);
+
+    const [formTrue, setFormTrue] = useState(states.formTrue);
+    const [formT, setFormT] = useState(states.formT)
+
+    const handleClick = (e) => {
+        const jsont = JSON.stringify(false);
+        localStorage.setItem("sortstate", jsont);
      setFormTrue(e.target.value)   
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
@@ -64,11 +67,15 @@ const TabFooter = ({ formT, setFormT}) => {
    const handleClick2 = () => {
       return setFormTrue("1")
    };
+
+        const states2 = {formT, formTrue}
+        const jsont = JSON.stringify(states2);
+        localStorage.setItem("states", jsont);
   
       return (
         <footer className="footer">
             <Link to="/1">
-     <button type="button"  value="1" className={formT || formTrue==="1" ? 'btn-flash' : 'ftabs'} onClick={handleClick2}>
+     <button type="button"  value="1" className={formT ? 'btn-flash' : 'ftabs'} onClick={handleClick2}>
           Add Car
      </button>
  </Link>

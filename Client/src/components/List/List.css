@@ -14,7 +14,12 @@
   .title{
     color:white;
     text-align: center;
-    font-size: larger;
+    font-size: 40px;
+  }
+  .empty {
+    color:white;
+    text-align: center;
+    font-size: 40px;
   }
   /* 
   =================
@@ -22,9 +27,13 @@
   =====================
   */
   .tdlength{
-  display: flex;
+  display: inline-block;
    height:45px;
-   flex-direction: row;
+  color:white;
+  
+  }
+  .td_btn{
+    
   }
   
   .table_container {
@@ -37,7 +46,7 @@
       overflow-x:auto; /* <!-- this is for horizontal scroll--> */  
   }
   tbody {
-   
+ 
   }
  
   table {

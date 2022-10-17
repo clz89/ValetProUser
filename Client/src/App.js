@@ -25,7 +25,6 @@ import CarsLength from './components/CarsLength';
 
 
 function App() {
-  const [formT, setFormT] = useState()
   const { user: currentUser } = useSelector((state) => state.auth);
   const auth = currentUser && currentUser.roles 
 
@@ -34,9 +33,9 @@ function App() {
   return (
     <>
     <User/>
-      {auth && (<TabFooter {...{ formT, setFormT}}/>)}
+      {auth && (<TabFooter />)}
       <Routes>
-          <Route path="/1" element={<PrivateRoute><SubCar {...{formT, setFormT}}/></PrivateRoute>}/>
+          <Route path="/1" element={<PrivateRoute><SubCar /></PrivateRoute>}/>
           <Route path="/2" element={<PrivateRoute><Cars/></PrivateRoute>}/>
           <Route path="/3" element={<PrivateRoute><Request/></PrivateRoute>}/>
           <Route path="/4" element={<PrivateRoute><Pulls/></PrivateRoute>}/>
