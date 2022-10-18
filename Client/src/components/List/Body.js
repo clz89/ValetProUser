@@ -44,12 +44,10 @@ const TableBody = ({ cars, x, carlength, on, day, setTableData, tableData, colum
           data.checkout="Checking Out"
           data.complete="Completed"
          dispatch(createPull(data))
-          dispatch(deleteCar(data._id))
-         
-          
+          dispatch(deleteCar(data._id))    
         }
      })
-     }, [])
+     })
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -60,7 +58,7 @@ const TableBody = ({ cars, x, carlength, on, day, setTableData, tableData, colum
         dispatch(deleteCar(data._id))
         }
       })
-    }, [])
+    })
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -71,7 +69,7 @@ const TableBody = ({ cars, x, carlength, on, day, setTableData, tableData, colum
         dispatch(deleteCar(data._id))
         }
       })
-    },[])
+    })
   
     /*
     useEffect(() => {
@@ -105,11 +103,12 @@ useEffect(() => {
         const evt = e.target.value
         tableData.filter((data) => {
 
-            if(evt===data._id && data.checkout==="Returning"){ 
-              dispatch(deletePull(data._id))      
+        if(evt===data._id && data.checkout==="Returning"){ 
+          dispatch(deletePull(data._id))      
           dispatch(createOut(data))
+
           }else if(evt===data._id && data.checkout!=="Returning"){  
-            dispatch(deletePull(data._id))        
+          dispatch(deletePull(data._id))        
           dispatch(createComp(data))
           
           }
@@ -159,7 +158,7 @@ useEffect(() => {
                 <tr key={data._id}>
 
                   <td className="tdbtn">
-                    
+
                     {!data.complete && (
                       <button value={data._id}
                         onClick={handleModal}>Process</button>)}
