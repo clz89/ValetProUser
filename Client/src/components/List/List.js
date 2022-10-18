@@ -9,7 +9,7 @@ import { useDispatch, batch } from 'react-redux';
 import { createPull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 
-const List = ({  pulllength, PullsM, CarsM, setList, list, posts, x}) => {
+const List = ({  cars, pulllength, PullsM, CarsM, setList, list, posts, x}) => {
 
   const dispatch = useDispatch();
  
@@ -32,19 +32,9 @@ const [pullId, setPullId] = useState()
   })
   
   
-  useEffect(()=> {
-    const json = localStorage.getItem("sortstate");
-    const sortstate = JSON.parse(json);
-    if(sortstate){
-     setTableData(sortstate)
-  
-    }else{
+  useEffect(()=> { 
       setTableData(posts)
-
-    }
-     
-
- }, [posts] )
+ }, [posts])
 
  
   const columns = [ 
@@ -91,7 +81,7 @@ const [pullId, setPullId] = useState()
         {modal===true&&(
         <Modal setModal={setModal}  {...{setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
+        <TableBody  {...{ x, cars, carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
       
       </table>
       

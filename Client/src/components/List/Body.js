@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { batch, useDispatch, useSelector } from "react-redux";
-import { deleteCar } from "../../_actions/subCars";
+import { deleteCar, createCar } from "../../_actions/subCars";
 import { createPull, deletePull, updatePull } from "../../_actions/pulls";
 import { upForm } from "../../_actions/updateForm";
 import { useNavigate } from "react-router-dom";
@@ -9,13 +9,14 @@ import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 
-const TableBody = ({ carlength, on, day, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({ cars, x, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const post = useSelector( state => state.updateForm )
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate()
 
+    
     
 
      useEffect(() => {
@@ -24,7 +25,6 @@ const TableBody = ({ carlength, on, day, tableData, columns, setPullId, setModal
           data.complete="Completed"  
                          
           dispatch(updatePull(data))
-          dispatch(upReset(post))
         }      
       })
     }) 
@@ -34,7 +34,6 @@ const TableBody = ({ carlength, on, day, tableData, columns, setPullId, setModal
         if (!data.complete && data.checkout==="Checking Out") {
           data.complete="Completed"                 
           dispatch(updatePull(data))
-          dispatch(upReset(post))
         }      
       })
     })  
@@ -44,12 +43,13 @@ const TableBody = ({ carlength, on, day, tableData, columns, setPullId, setModal
         if (data.checkout==="checkout") {
           data.checkout="Checking Out"
           data.complete="Completed"
-          dispatch(createPull(data))
+         dispatch(createPull(data))
           dispatch(deleteCar(data._id))
-          window.location.reload(false)      
+         
+          
         }
      })
-     })
+     }, [])
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -58,11 +58,9 @@ const TableBody = ({ carlength, on, day, tableData, columns, setPullId, setModal
         data.checkout="Returning"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        window.location.reload(false)
         }
       })
-    
-    })
+    }, [])
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -71,10 +69,10 @@ const TableBody = ({ carlength, on, day, tableData, columns, setPullId, setModal
         data.checkout="Paid"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        window.location.reload(false)
         }
       })
-    })
+    },[])
+  
     /*
     useEffect(() => {
       tableData.filter((data) => {
@@ -110,11 +108,9 @@ useEffect(() => {
             if(evt===data._id && data.checkout==="Returning"){ 
               dispatch(deletePull(data._id))      
           dispatch(createOut(data))
-          window.location.reload(false)
           }else if(evt===data._id && data.checkout!=="Returning"){  
             dispatch(deletePull(data._id))        
           dispatch(createComp(data))
-          window.location.reload(false)
           
           }
       })}
@@ -139,7 +135,7 @@ useEffect(() => {
          setSearchTerm(event.target.value);}}/>
          </td>
          <td>
-              &nbsp;&nbsp;&nbsp;{carlength}&nbsp;cars&nbsp;total
+             {carlength}&nbsp;cars&nbsp;total
             </td>
             </tr>
        
@@ -163,6 +159,7 @@ useEffect(() => {
                 <tr key={data._id}>
 
                   <td className="tdbtn">
+                    
                     {!data.complete && (
                       <button value={data._id}
                         onClick={handleModal}>Process</button>)}

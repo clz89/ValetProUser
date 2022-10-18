@@ -15,7 +15,13 @@
   
   
   }
-  
+  .btn-red{
+    background-color:rgb(240, 9, 9);
+    color:rgb(255, 255, 255);
+    height:100%;
+    width: 10%;
+    font-size: 15px;
+  }
   .btn-flash {
     background-color:black;
     color:azure;

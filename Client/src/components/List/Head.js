@@ -62,16 +62,13 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
     <thead>
       <tr>
         <td className="tdfilter">
-        <p> Ticket Type: </p>
-      
       Overnight!
             <input  
               name="Overnight"
               defaultChecked="true"
               type="checkbox"
               onChange={handleType}
-          />
-         
+          />  
           &nbsp;&nbsp;Day use!&nbsp;
            <input
              defaultChecked="true"
@@ -80,7 +77,6 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
               type="checkbox"
             />
         </td>
-      
         {columns.map(({ label, accessor, sortable }) => {
           const cl = sortable
             ? sortField && sortField === accessor && order === "asc"

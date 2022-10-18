@@ -97,7 +97,7 @@ function SubCar({formT, setFormT}) {
    return (
 
     <div className="main">
-      <h1>How About Them Apples</h1>
+      <h1>Submit Car</h1>
       <form >
         <fieldset >
         <div className="btndiv">
