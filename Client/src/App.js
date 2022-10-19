@@ -28,6 +28,8 @@ function App() {
   const { user: currentUser } = useSelector((state) => state.auth);
   const auth = currentUser && currentUser.roles 
 
+  const[list, setList] = useState(false)
+
 
 
   return (
@@ -36,9 +38,9 @@ function App() {
       {auth && (<TabFooter />)}
       <Routes>
           <Route path="/1" element={<PrivateRoute><SubCar /></PrivateRoute>}/>
-          <Route path="/2" element={<PrivateRoute><Cars/></PrivateRoute>}/>
+          <Route path="/2" element={<PrivateRoute><Cars {...{list:"cars", setList}} /></PrivateRoute>}/>
           <Route path="/3" element={<PrivateRoute><Request/></PrivateRoute>}/>
-          <Route path="/4" element={<PrivateRoute><Pulls/></PrivateRoute>}/>
+          <Route path="/4" element={<PrivateRoute><Pulls {...{list:"pulls", setList}}/></PrivateRoute>}/>
           <Route path="/5" element={<PrivateRoute><Outnr/></PrivateRoute>}/>
           <Route path="/6" element={<PrivateRoute><Completed/></PrivateRoute>}/> 
           <Route path="/" element={<Home />} />

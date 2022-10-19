@@ -81,7 +81,7 @@ const PullsM = ({setPullId, pullId, setModal, tableData}) => {
     const handleChange = (event) => {
       setFormData({
         name: event.target.name,
-        value: event.target.type === 'checkbox' ? event.target.checked : event.target.value
+        value: event.target.type === 'checkbox' ? event.target.checked : event.target.value 
       });
     }
            

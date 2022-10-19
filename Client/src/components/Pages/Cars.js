@@ -8,10 +8,10 @@ const Cars = ({list, setList}) => {
     const posts = useSelector( state => state.subCars )
     const x = getCars()
     
-    const cars = true
+   
     return (
     
-    <List {...{ cars, setList, list, CarsM, posts, x}}/>
+    <List {...{ setList, list, CarsM, posts, x}}/>
 
     )
 }

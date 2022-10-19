@@ -5,7 +5,7 @@ export default (subCars = [], action) => {
         case 'POST':
             return [...subCars, action.payload];
         case 'GET':
-            return action.payload;
+            return action.payload
         case 'UPDATE':
             return subCars.map(subCar => subCar._id === action.payload._id ? action.payload : subCar);
         case 'DELETE':

@@ -15,7 +15,7 @@ const List = ({  cars, pulllength, PullsM, CarsM, setList, list, posts, x}) => {
  
   useEffect(() => {
   dispatch(x);
-  }, [])
+  }, [dispatch])
   
 
 
@@ -34,7 +34,7 @@ const [pullId, setPullId] = useState()
   
   useEffect(()=> { 
       setTableData(posts)
- }, [posts])
+ }, [posts] )
 
  
   const columns = [ 
@@ -70,20 +70,6 @@ const [pullId, setPullId] = useState()
           localStorage.setItem("carlength", jsont);}
       },[carlength])
 
-      useEffect(() => {
-        tableData.filter((data) => {
-          if (data.checkout==="checkout") {
-            data.checkout="Checking Out"
-            data.complete="Completed"
-           dispatch(createPull(data))
-            dispatch(deleteCar(data._id))    
-          }
-       })
-       },[])
-
-       
-    
-
   return (
     <>
     
@@ -92,7 +78,7 @@ const [pullId, setPullId] = useState()
         {modal===true&&(
         <Modal setModal={setModal}  {...{setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ x, cars, carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
+        <TableBody  {...{ list, carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
       
       </table>
       

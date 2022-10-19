@@ -9,14 +9,22 @@ import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 
-const TableBody = ({ cars, x, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({ list, cars, x, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const post = useSelector( state => state.updateForm )
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate()
 
-    
+    const handleDelete = (Id) => {
+      const newList = [...tableData];
+      const index = tableData.filter((list) => list._id===Id);
+      console.log(Id)
+      console.log(index)
+      newList.splice(index, 1);
+
+      setTableData(newList)
+    }
     
 
      useEffect(() => {
@@ -44,7 +52,8 @@ const TableBody = ({ cars, x, carlength, on, day, setTableData, tableData, colum
           data.checkout="Checking Out"
           data.complete="Completed"
          dispatch(createPull(data))
-          dispatch(deleteCar(data._id))    
+          dispatch(deleteCar(data._id))  
+          handleDelete(data._id)  
         }
      })
      })
@@ -104,10 +113,12 @@ useEffect(() => {
         tableData.filter((data) => {
 
         if(evt===data._id && data.checkout==="Returning"){ 
+          
           dispatch(deletePull(data._id))      
           dispatch(createOut(data))
 
           }else if(evt===data._id && data.checkout!=="Returning"){  
+           
           dispatch(deletePull(data._id))        
           dispatch(createComp(data))
           
@@ -137,8 +148,17 @@ useEffect(() => {
              {carlength}&nbsp;cars&nbsp;total
             </td>
             </tr>
-       
-          {tableData.filter((data) => {
+            {/*{tableData.filter((data) => {
+              console.log(list)
+            if (list==="cars" && data.complete) 
+            { return !data.complete?.includes("Completed")}
+            else if (list==="pulls" && data.return) 
+          { return !data.return?.includes("p")}
+             else {
+            return data
+           }
+          })*/}
+        {tableData.filter((data) => {
             if (!on && !day) { return data; }
             else if (!on) { return data.type?.includes("on"); }
             else if (!day) { return data.type?.includes("day"); }

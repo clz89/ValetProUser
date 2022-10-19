@@ -6,7 +6,7 @@ export default (pulls = [], action) => {
         case 'POST':
             return [...pulls, action.payload];
         case 'GET':
-            return action.payload;
+            return action.payload
         case 'UPDATE':
             return pulls.map(pulls => pulls._id === action.payload._id ? action.payload : pulls);
         case 'DELETE':
