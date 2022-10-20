@@ -24,7 +24,7 @@ const [on, setOn] = useState(false) ;
 const [day, setDay] = useState(false) ;
 const [modal, setModal] = useState(false);
 const [pullId, setPullId] = useState()
-
+const carlength = posts.length
 
   useEffect(()=> {
     const jsont = JSON.stringify(posts);
@@ -34,6 +34,7 @@ const [pullId, setPullId] = useState()
   
   useEffect(()=> { 
       setTableData(posts)
+
  }, [posts] )
 
  
@@ -61,11 +62,10 @@ const [pullId, setPullId] = useState()
     { label: "Id:", accessor: "_id", sortable: true }
   ];
  
-  const carlength = posts.length
   
 
     useEffect(()=> {
-      const carlength = posts.length
+    
 
         if(carlength!==undefined){
           const jsont = JSON.stringify(carlength);
