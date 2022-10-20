@@ -47,6 +47,8 @@ function Pay({pullId, setModal}) {
           e.preventDefault();
         if (formData.price && formData.vcolor){
           const _id = formData._id
+          formData.checkout="Paid"
+          formData.complete="Complete"
           dispatch(updateCar(_id, formData))
           dispatch(updatePull(_id, formData))
           dispatch(upReset(post))

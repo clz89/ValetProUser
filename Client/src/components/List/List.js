@@ -61,11 +61,12 @@ const [pullId, setPullId] = useState()
     { label: "Id:", accessor: "_id", sortable: true }
   ];
  
-
   const carlength = posts.length
+  
 
     useEffect(()=> {
-    
+      const carlength = posts.length
+
         if(carlength!==undefined){
           const jsont = JSON.stringify(carlength);
           localStorage.setItem("carlength", jsont);}
@@ -77,7 +78,7 @@ const [pullId, setPullId] = useState()
       <table className="table_container">
         
         {modal===true&&(
-        <Modal setModal={setModal}  {...{setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
+        <Modal setModal={setModal}  {...{carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
         <TableBody  {...{ list, carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
       

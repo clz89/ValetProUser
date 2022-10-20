@@ -19,7 +19,7 @@ const formReducer = (state, event) => {
      [event.name]: event.value
    }}
 
-const CarsM = ({setPullId, pullId, setModal, tableData}) => {
+const CarsM = ({carlength, setPullId, pullId, setModal, tableData}) => {
 
     const post = useSelector( state => state.updateForm )
     const pos = Object.values(post)
@@ -91,13 +91,12 @@ const CarsM = ({setPullId, pullId, setModal, tableData}) => {
         const evt = pullId
         tableData.filter((data) => {
         if (evt === data._id) {
+        data.checkout="process"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
         setModal(false)
         }
       })}
-       
-
        
         const handleModal = () => {
             dispatch(upReset(post))

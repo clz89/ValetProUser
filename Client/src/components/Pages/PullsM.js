@@ -118,8 +118,8 @@ const PullsM = ({setPullId, pullId, setModal, tableData}) => {
 
                    {formData.type==="on"&&(
                    <div>
-                <button type="button" name="checkout" value="Checking Out" onClick={handleChange}>Checking Out</button>
-                <button type="button" name="checkout" value="Returning" onClick={handleChange}>Returning</button>
+                <button type="button" name="checkout" value="checkout" onClick={handleChange}>Checking Out</button>
+                <button type="button" name="checkout" value="return" onClick={handleChange}>Returning</button>
       
                 </div>)}
                   {formData.type==="day"&&(

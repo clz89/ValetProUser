@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import { batch, useDispatch, useSelector } from "react-redux";
-import { deleteCar, createCar } from "../../_actions/subCars";
+import { deleteCar, createCar, updateCar } from "../../_actions/subCars";
 import { createPull, deletePull, updatePull } from "../../_actions/pulls";
 import { upForm } from "../../_actions/updateForm";
 import { useNavigate } from "react-router-dom";
@@ -9,7 +9,7 @@ import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 
-const TableBody = ({ list, cars, x, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({ posts,list, cars, x, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const post = useSelector( state => state.updateForm )
     const [searchTerm, setSearchTerm] = useState("");
@@ -25,6 +25,8 @@ const TableBody = ({ list, cars, x, carlength, on, day, setTableData, tableData,
 
       setTableData(newList)
     }
+
+
    useEffect(() => {
       tableData.filter((data) => {
         if (!data.complete && data.checkout==="Returning") {
@@ -43,36 +45,34 @@ const TableBody = ({ list, cars, x, carlength, on, day, setTableData, tableData,
       })
     }) 
 
-   /* useEffect(() => {
-      tableData.filter((data) => {
-        if (list==="pulls" && !data.complete && data.vcolor && data.price  ) {  
-        data.complete="Complete"
-        data.checkout="Paid"
-        dispatch(updatePull(data._id, data))
-        }
-      })
-    })*/
-
-  
-    
     useEffect(() => {
       tableData.filter((data) => {
-        if (data.checkout==="checkout") {
+        if (list==="cars" && data.checkout==="checkout") {
           data.checkout="Checking Out"
           data.complete="Complete"
-         dispatch(createPull(data))
           dispatch(deleteCar(data._id))  
+         dispatch(createPull(data))
+        }else if(list==="pulls" && data.checkout==="checkout"){
+          data.checkout="Checking Out"
+          data.complete="Completed"
+         dispatch(createComp(data))
+        dispatch(deletePull(data._id)) 
         }
      })
      })
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (data.checkout==="return") {
+        if (list==="cars" && data.checkout==="return") {
         data.complete="Complete"
         data.checkout="Returning"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
+        }else if(list==="pulls" && data.checkout==="return"){
+          data.checkout="Returning"
+          data.complete="Completed"
+         dispatch(createOut(data))
+        dispatch(deletePull(data._id)) 
         }
       })
     })
@@ -143,7 +143,7 @@ useEffect(() => {
             
           })}
 
-         
+          
         
          
     return (
@@ -166,6 +166,13 @@ useEffect(() => {
              else {
             return data
            }
+          })
+          .filter((data) => {
+            if(list==="cars" && data.checkout==="process")
+            {return !data.checkout?.includes("process")}
+            else {
+              return data
+             }
           })
         .filter((data) => {
             if (!on && !day) { return data; }
