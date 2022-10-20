@@ -6,7 +6,7 @@ import  Button  from "./Button";
 import  Modal  from "./Modal";
 import "./List.css"
 import { useDispatch, batch } from 'react-redux';
-import { createPull } from "../../_actions/pulls";
+import { createPull, updatePull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 
 const List = ({  cars, pulllength, PullsM, CarsM, setList, list, posts, x}) => {
@@ -60,6 +60,7 @@ const [pullId, setPullId] = useState()
     { label: "Completed:", accessor: "complete", sortable: true },
     { label: "Id:", accessor: "_id", sortable: true }
   ];
+ 
 
   const carlength = posts.length
 
@@ -68,7 +69,7 @@ const [pullId, setPullId] = useState()
         if(carlength!==undefined){
           const jsont = JSON.stringify(carlength);
           localStorage.setItem("carlength", jsont);}
-      },[carlength])
+      })
 
   return (
     <>

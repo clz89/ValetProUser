@@ -18,42 +18,50 @@ const TableBody = ({ list, cars, x, carlength, on, day, setTableData, tableData,
 
     const handleDelete = (Id) => {
       const newList = [...tableData];
-      const index = tableData.filter((list) => list._id===Id);
+      const index = newList.findIndex((list) => list._id===Id);
       console.log(Id)
       console.log(index)
       newList.splice(index, 1);
 
       setTableData(newList)
     }
-    
-
-     useEffect(() => {
+   useEffect(() => {
       tableData.filter((data) => {
         if (!data.complete && data.checkout==="Returning") {
-          data.complete="Completed"  
-                         
-          dispatch(updatePull(data))
+          data.complete="Complete"
+          dispatch(updatePull(data._id, data))
+        }      
+      })
+    }) 
+  
+    useEffect(() => {
+      tableData.filter((data) => {
+        if (!data.complete && data.checkout==="Checking Out") {
+          data.complete="Complete"                 
+          dispatch(updatePull(data._id, data))
         }      
       })
     }) 
 
-    useEffect(() => {
+   /* useEffect(() => {
       tableData.filter((data) => {
-        if (!data.complete && data.checkout==="Checking Out") {
-          data.complete="Completed"                 
-          dispatch(updatePull(data))
-        }      
+        if (list==="pulls" && !data.complete && data.vcolor && data.price  ) {  
+        data.complete="Complete"
+        data.checkout="Paid"
+        dispatch(updatePull(data._id, data))
+        }
       })
-    })  
+    })*/
+
+  
     
     useEffect(() => {
       tableData.filter((data) => {
         if (data.checkout==="checkout") {
           data.checkout="Checking Out"
-          data.complete="Completed"
+          data.complete="Complete"
          dispatch(createPull(data))
           dispatch(deleteCar(data._id))  
-          handleDelete(data._id)  
         }
      })
      })
@@ -61,7 +69,7 @@ const TableBody = ({ list, cars, x, carlength, on, day, setTableData, tableData,
     useEffect(() => {
       tableData.filter((data) => {
         if (data.checkout==="return") {
-        data.complete="Completed"
+        data.complete="Complete"
         data.checkout="Returning"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
@@ -72,7 +80,7 @@ const TableBody = ({ list, cars, x, carlength, on, day, setTableData, tableData,
     useEffect(() => {
       tableData.filter((data) => {
         if (!data.complete && data.vcolor && data.price  ) {  
-        data.complete="Completed"
+        data.complete="Complete"
         data.checkout="Paid"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
@@ -108,19 +116,19 @@ useEffect(() => {
       navigate("/1")}
       })}
 
-      const handleComp = (e) => {
-        const evt = e.target.value
+    const handleComp = (e) => {
+      const evt = e.target.value
         tableData.filter((data) => {
 
         if(evt===data._id && data.checkout==="Returning"){ 
-          
+          data.complete="Completed"
           dispatch(deletePull(data._id))      
           dispatch(createOut(data))
 
           }else if(evt===data._id && data.checkout!=="Returning"){  
-           
+           data.complete="Completed"
           dispatch(deletePull(data._id))        
-          dispatch(createComp(data))
+          dispatch(createComp(data))  
           
           }
       })}
@@ -132,6 +140,7 @@ useEffect(() => {
           tableData.filter((data) => {
             if (evt === data._id) {
             dispatch(upForm(data))}
+            
           })}
 
          
@@ -148,17 +157,17 @@ useEffect(() => {
              {carlength}&nbsp;cars&nbsp;total
             </td>
             </tr>
-            {/*{tableData.filter((data) => {
+            {tableData.filter((data) => {
               console.log(list)
             if (list==="cars" && data.complete) 
-            { return !data.complete?.includes("Completed")}
-            else if (list==="pulls" && data.return) 
-          { return !data.return?.includes("p")}
+            { return !data.complete?.includes("Complete")}
+            else if (list==="pulls" && data.complete==="Completed") 
+          { return !data.complete?.includes("Completed")}
              else {
             return data
            }
-          })*/}
-        {tableData.filter((data) => {
+          })
+        .filter((data) => {
             if (!on && !day) { return data; }
             else if (!on) { return data.type?.includes("on"); }
             else if (!day) { return data.type?.includes("day"); }
@@ -166,7 +175,7 @@ useEffect(() => {
             .filter((data) => {
               if (searchTerm === "") {
                 return data;
-              } else if (data.ticket?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+            } else if (data.ticket?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.name?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.room?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.vmake?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }

@@ -82,7 +82,7 @@ const CarsM = ({setPullId, pullId, setModal, tableData}) => {
         name: event.target.name,
         value: event.target.type === 'checkbox' ? event.target.checked : event.target.value
       });
-      
+
     }
            
             

@@ -67,7 +67,7 @@ const PullsM = ({setPullId, pullId, setModal, tableData}) => {
             }) */
              
             
-         useEffect(() => {
+        useEffect(() => {
           if(formData.checkout !== post.checkout ){
             const _id = formData._id
             dispatch(updatePull(_id, formData))
@@ -120,12 +120,12 @@ const PullsM = ({setPullId, pullId, setModal, tableData}) => {
                    <div>
                 <button type="button" name="checkout" value="Checking Out" onClick={handleChange}>Checking Out</button>
                 <button type="button" name="checkout" value="Returning" onClick={handleChange}>Returning</button>
-                <button type="button"  name="pulls" value="pull" onClick={handlePull}>Pull</button>
+      
                 </div>)}
                   {formData.type==="day"&&(
                 <div>
                  { <Pay {...{setModal, tableData, pullId}}/> } 
-                 <button type="button"  name="pulls" value="Pull" onClick={handlePull}>Pull</button>
+                
                 </div>)}
                 </div>  
                 
