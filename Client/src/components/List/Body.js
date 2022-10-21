@@ -132,7 +132,20 @@ useEffect(() => {
           
           }
       })}
+      const handleRepark = (e) => {
+        const evt = e.target.value
+          tableData.filter((data) => {
+  
+          if(evt===data._id){ 
+            data.complete=""
+            data.checkout="repark"
+            dispatch(createCar(data))
+            dispatch(deletePull(data._id))   
+                 
+   
 
+            }
+        })}
         const handleModal = (e) => {
           setModal(true);
           setPullId(e.target.value)
@@ -143,7 +156,7 @@ useEffect(() => {
             
           })}
 
-          
+        
         
          
     return (
@@ -162,7 +175,7 @@ useEffect(() => {
             if (list==="cars" && data.complete) 
             { return !data.complete?.includes("Complete")}
             else if (list==="pulls" && data.complete==="Completed") 
-          { return !data.complete?.includes("Completed")}
+          {return !data.complete?.includes("Completed")}
              else {
             return data
            }
@@ -170,6 +183,8 @@ useEffect(() => {
           .filter((data) => {
             if(list==="cars" && data.checkout==="process")
             {return !data.checkout?.includes("process")}
+            else if(list==="pulls" && data.checkout==="repark")
+            {return !data.checkout?.includes("repark")}
             else {
               return data
              }
@@ -209,6 +224,11 @@ useEffect(() => {
                     <button type="button" className="" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
                       Delete</button>
+
+                      {data.complete && (
+                      <button value={data._id}
+                        onClick={handleRepark}>Repark</button>
+                    )}
                   </td>
 
                   {columns.map(({ accessor }) => {

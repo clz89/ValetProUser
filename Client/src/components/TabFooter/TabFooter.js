@@ -67,10 +67,10 @@ const TabFooter = () => {
    const handleClick2 = () => {
       return setFormTrue("1")
    };
-
+    useEffect(()=> {
         const states2 = {formT, formTrue}
         const jsont = JSON.stringify(states2);
-        localStorage.setItem("states", jsont);
+        localStorage.setItem("states", jsont);})
   
       return (
         <footer className="footer">
