@@ -2,7 +2,8 @@ import React, { useReducer, useState, useEffect } from 'react';
 import './SubCar.css';
 import { createCar, updateCar } from '../../_actions/subCars';
 import { updatePull } from '../../_actions/pulls';
-
+import { updateComp } from '../../_actions/completed';
+import { updateOut } from '../../_actions/outnr';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from '../../_actions/updateForm';
@@ -44,28 +45,6 @@ function SubCar({formT, setFormT}) {
     
   let navigate = useNavigate();
 
-   /*const form = {room: 880, type: "on"}
-   let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
-   const uptrue = _.isEqual(post, o)
-   const formt = _.isEqual(savedNotes, form)
-
-  useEffect(() => {
-     if (uptrue)  {  
-       dispatch(upReset(post))
-      const jsont = JSON.stringify(form);
-    localStorage.setItem("formdata", jsont);
-     setFormT(false);
-      console.log(formT)
-    }else if (formt){
-      setFormT(false)
-      console.log(formT)
-    }else{
-    setFormT(true)
-    console.log(formT)
-    console.log(o)}
-
-  },[setFormT, formT])*/
-
     const resetForm = () => {
        setFormData({reset: true})
        
@@ -76,6 +55,8 @@ function SubCar({formT, setFormT}) {
       const _id = formData._id
       dispatch(updateCar(_id, formData))
       dispatch(updatePull(_id, formData))
+      dispatch(updateComp(_id, formData))
+      dispatch(updateOut(_id, formData))
       dispatch(upReset(post))
       setFormData({reset: true})
       setTimeout(() => {
