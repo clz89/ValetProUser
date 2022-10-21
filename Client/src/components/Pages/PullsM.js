@@ -19,7 +19,7 @@ const formReducer = (state, event) => {
      [event.name]: event.value
    }}
 
-const PullsM = ({setPullId, pullId, setModal, tableData}) => {
+const PullsM = ({ pullId, setModal, tableData}) => {
 
     const post = useSelector( state => state.updateForm )
     const pos = Object.values(post)

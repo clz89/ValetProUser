@@ -9,7 +9,7 @@ import { useDispatch, batch } from 'react-redux';
 import { createPull, updatePull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 
-const List = ({  cars, pulllength, PullsM, CarsM, setList, list, posts, x}) => {
+const List = ({ PullsM, CarsM,  list, posts, x}) => {
 
   const dispatch = useDispatch();
  
@@ -78,7 +78,7 @@ const carlength = posts.length
       <table className="table_container">
         
         {modal===true&&(
-        <Modal setModal={setModal}  {...{carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
+        <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
         <TableBody  {...{ list, carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
       

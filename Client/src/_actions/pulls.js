@@ -9,8 +9,8 @@ export const createPull = (pulls) => async (dispatch) => {
 export const getPulls = () => async (dispatch) => {
   const { data } = await api.getPulls();
   const sortedData = data.sort((a, b) => {
-    const dateAInMillis = (new Date(a.createdAt)).getTime();
-    const dateBInMillis = (new Date(b.createdAt)).getTime();
+    const dateAInMillis = (new Date(b.updatedAt)).getTime();
+    const dateBInMillis = (new Date(a.updatedAt)).getTime();
     
     return dateBInMillis - dateAInMillis;})
   

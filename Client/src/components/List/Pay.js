@@ -16,7 +16,7 @@ const formReducer = (state, event) => {
   }
   
 }
-function Pay({pullId, setModal}) {
+function Pay({ pullId, setModal}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
@@ -45,31 +45,14 @@ function Pay({pullId, setModal}) {
 
       const handleSubmit = (e) => {
           e.preventDefault();
-        if (formData.price && formData.vcolor){
-          const _id = formData._id
-          formData.checkout="Paid"
-          formData.complete="Complete"
+        if (!formData.complete && formData.price && formData.vcolor){
+          const _id = formData._id    
           dispatch(updateCar(_id, formData))
           dispatch(updatePull(_id, formData))
           dispatch(upReset(post))
           setFormData({reset: true}) 
-          setModal(false)   
-          
-          } 
-      
-      }
-
-          /* useEffect(() => {
-              if (formData.price !== post.price && formData.vcolor){
-              const _id = formData._id
-              dispatch(updateCar(_id, formData))
-              dispatch(updatePull(_id, formData))
-              dispatch(upReset(post))
-              setFormData({reset: true}) 
-              setModal(false)   
-              }     
-
-            }) */
+          setModal(false)   } 
+        }
     
         const jsont = JSON.stringify(formData);
         localStorage.setItem("pay", jsont);
@@ -115,7 +98,7 @@ function Pay({pullId, setModal}) {
             </label>
         </div>
         <div>
-        <button  type="submit" name="complete" value="complete" onClick={handleSubmit} >Submit</button>
+        <button  type="submit"  onClick={handleSubmit} >Submit</button>
         </div>
         </form>
     </div>

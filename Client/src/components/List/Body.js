@@ -9,23 +9,12 @@ import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 
-const TableBody = ({ posts,list, cars, x, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, setModal }) => {
 
     const post = useSelector( state => state.updateForm )
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate()
-
-    const handleDelete = (Id) => {
-      const newList = [...tableData];
-      const index = newList.findIndex((list) => list._id===Id);
-      console.log(Id)
-      console.log(index)
-      newList.splice(index, 1);
-
-      setTableData(newList)
-    }
-
 
    useEffect(() => {
       tableData.filter((data) => {
@@ -79,34 +68,19 @@ const TableBody = ({ posts,list, cars, x, carlength, on, day, setTableData, tabl
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (!data.complete && data.vcolor && data.price  ) {  
+        if (list==="cars" && !data.complete && data.vcolor && data.price  ) {  
         data.complete="Complete"
         data.checkout="Paid"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        }
+        } else if (list==="pulls" && !data.complete && data.vcolor && data.price  ) {  
+          data.complete="Paid"
+          data.checkout="Paid"
+          const _id = data._id
+       dispatch(updatePull(_id, data))
+          }
       })
     })
-  
-    /*
-    useEffect(() => {
-      tableData.filter((data) => {
-        if (pull && !data.complete==="complete" && data.price && data.vcolor) {
-         data.complete="Completed"
-        dispatch(updatePull(data._id, data))
-      }
-      })
-})
-useEffect(() => {
-  tableData.filter((data) => {
-    if (pull && !data.complete==="complete" && data.checkout) {
-     data.checkout="Checking Out"
-     data.complete="Completed"
-    dispatch(updatePull(data._id, data))  
-  }
-    
-  })
-})*/
 
     const handleUpdate = (e) => {
       const evt = e.target.value
@@ -137,15 +111,16 @@ useEffect(() => {
           tableData.filter((data) => {
   
           if(evt===data._id){ 
+            data.vcolor=""
             data.complete=""
             data.checkout="repark"
             dispatch(createCar(data))
-            dispatch(deletePull(data._id))   
-                 
-   
-
+            dispatch(deletePull(data._id))
+            dispatch(deleteComp(data._id))  
+            dispatch(deleteOut(data._id))     
             }
         })}
+
         const handleModal = (e) => {
           setModal(true);
           setPullId(e.target.value)
@@ -156,9 +131,6 @@ useEffect(() => {
             
           })}
 
-        
-        
-         
     return (
       <tbody>
         <tr>
@@ -183,7 +155,7 @@ useEffect(() => {
           .filter((data) => {
             if(list==="cars" && data.checkout==="process")
             {return !data.checkout?.includes("process")}
-            else if(list==="pulls" && data.checkout==="repark")
+            else if(list!=="cars" && data.checkout==="repark")
             {return !data.checkout?.includes("repark")}
             else {
               return data
