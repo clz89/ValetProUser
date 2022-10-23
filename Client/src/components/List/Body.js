@@ -15,6 +15,21 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate()
+    useEffect(() => {
+      tableData.filter((data) => {
+        if (data.type==="ON" && !data.room && !data.hot) {
+          data.hot="Hot"
+          dispatch(updateCar(data._id, data))
+          dispatch(updatePull(data._id, data))
+        }      
+        else if(data.type==="ON" && data.room && data.hot) {
+          data.hot=""
+          dispatch(updateCar(data._id, data))
+          dispatch(updatePull(data._id, data))
+        } 
+      })
+    }) 
+
 
    useEffect(() => {
       tableData.filter((data) => {
@@ -198,18 +213,24 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
             })
             .map((data) => {
               return (
-                <tr key={data._id}>
+                <tr  key={data._id}>
 
-                  <td className="tdbtn">
+                  <td >
 
                     {!data.complete && (
                       <button value={data._id}
                         onClick={handleModal}>Process</button>)}
 
-                    {list==="pulls" && data.complete &&(
+                    {list==="pulls" && data.complete && !data.hot &&(
                       <button value={data._id}
                         onClick={handleComp}>Completed</button>
                     )}
+
+                    {list==="pulls" && data.complete && data.hot &&(
+                      <button value={data._id}
+                        onClick={handleModal}>+ Room</button>
+                    )}
+
                     {list==="outs" && (
                       <button value={data._id}
                         onClick={handleOuts} >Checkout</button>
@@ -225,12 +246,16 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
                       <button value={data._id}
                         onClick={handleRepark}>Repark</button>
                     )}
+                    {data.status==="process" && (
+                      <button value={data._id}
+                        onClick={handleRepark}>Repark</button>
+                    )}
                   </td>
 
                   {columns.map(({ accessor }) => {
-                    const tData = data[accessor] ? data[accessor] : "";
-                    return <td key={accessor}>{tData}</td>;
-                  })}
+                    const tData = data[accessor] ? data[accessor] : "";                 
+                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : "" }  key={accessor}>{tData}</td>;}  
+                  )}
                 </tr>
               );
             })}

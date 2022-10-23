@@ -26,6 +26,12 @@
   Table
   =====================
   */
+  .hotlist{
+    background:rgb(102, 12, 12);
+  }
+  .complist{
+    background:rgb(12, 102, 17);
+  }
   .tdlength{
   display: inline-block;
    height:45px;
@@ -98,22 +104,19 @@
   
   table td {
     
-    border-top: 1px solid rgb(43, 42, 42);
+    border-top: 1px solid rgb(8, 8, 8);
     padding: 4px 4px;
     color:rgb(255, 255, 255)
+    
+  }
+  td{
+    background:#1a1a1a;
   }
   
   table tbody tr:first-child td {
     border-top: none;
   }
   
-  table tbody tr:nth-child(n) td {
-    background: #4b4949;
-  }
-  
-  table tbody tr:nth-child(2n) td {
-    background: rgb(32, 32, 32);
-  }
 
   /*modal-------------------------------------------------------*/
 

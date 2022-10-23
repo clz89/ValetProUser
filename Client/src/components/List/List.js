@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 import TableBody from "./Body";
 import TableHead from "./Head";
-import  Button  from "./Button";
+
 import  Modal  from "./Modal";
 import "./List.css"
 import { useDispatch, batch } from 'react-redux';

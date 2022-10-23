@@ -20,7 +20,7 @@ const formReducer = (state, event) => {
      [event.name]: event.value
    }}
 
-const PullsM = ({ pullId, setModal, tableData}) => {
+const HotM = ({ pullId, setModal, tableData}) => {
 
     const post = useSelector( state => state.updateForm )
     const pos = Object.values(post)
@@ -38,34 +38,9 @@ const PullsM = ({ pullId, setModal, tableData}) => {
   const length = pos.length
 
   const [formData, setFormData] = useReducer(formReducer,  
-  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {room: 880, type: "on"});   
+  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : "");   
 
 
-      const handleSubmit = (e) => {
-          e.preventDefault();
-        if (formData.price && formData.payment){
-          const _id = formData._id
-          dispatch(updateCar(_id, formData)) 
-          dispatch(updatePull(_id, formData))
-          dispatch(upReset(post))
-          setFormData({reset: true}) 
-          setModal(false)  
-           
-          } 
-      
-      }
-
-          /* useEffect(() => {
-              if (formData.price !== post.price && formData.payment){
-              const _id = formData._id
-              dispatch(updateCar(_id, formData))
-              dispatch(updatePull(_id, formData))
-              dispatch(upReset(post))
-              setFormData({reset: true}) 
-              setModal(false)   
-              }     
-
-            }) */
              
             
         useEffect(() => {
@@ -93,20 +68,7 @@ const PullsM = ({ pullId, setModal, tableData}) => {
      dispatch(updatePull(data._id, formData))
       }
     })} 
-            
-
-    const handlePull = () => {
-        const evt = pullId
-        tableData.filter((data) => {
-        if (evt === data._id) {
-        dispatch(createPull(data))
-        dispatch(deleteCar(data._id))
-        setModal(false)
-        }
-      })}
-       
-
-       
+        
         const handleModal = () => {
             dispatch(upReset(post))
             setModal(false)
@@ -124,10 +86,9 @@ const PullsM = ({ pullId, setModal, tableData}) => {
 
                    {pullId}
 
-                   {formData.type==="ON"&&(
+                  
                    <div>
-                <button type="button" name="status" value="checkout" onClick={handleChange}>Checking Out</button>
-                <button type="button" name="status" value="return" onClick={handleChange}>Returning</button>
+              
                 {formData.hot &&(
                   <label> 
                     <p>Room:</p>
@@ -136,16 +97,12 @@ const PullsM = ({ pullId, setModal, tableData}) => {
                   </label>
                 )}
       
-                </div>)}
-                  {formData.type==="DAY"&&(
-                <div>
-                 { <Pay {...{setModal, tableData, pullId}}/> } 
+                </div>
                 
-                </div>)}
-                </div>  
                 
+        </div>
         </div>
     )
 }
 
-export default PullsM;
+export default HotM;

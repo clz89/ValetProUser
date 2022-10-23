@@ -97,6 +97,24 @@ const CarsM = ({ pullId, setModal, tableData}) => {
         setModal(false)
         }
       })}
+      const handleRoom = (e) => {
+        const evt = pullId
+        tableData.filter((data) => {
+        if (evt === data._id) {
+        data.room=e.target.value
+       dispatch(updateCar(data._id, formData))
+        }
+      })}
+      const handleTypeChange = () => {
+        const evt = pullId
+        tableData.filter((data) => {
+        if (evt === data._id && data.type==="ON") {
+        data.type="DAY"
+        dispatch(updateCar(data._id, data))
+        }else if(evt === data._id && data.type==="DAY") {
+          data.type="ON"
+          dispatch(updateCar(data._id, data))}
+      })}
        
         const handleModal = () => {
             dispatch(upReset(post))
@@ -120,11 +138,20 @@ const CarsM = ({ pullId, setModal, tableData}) => {
                 <button type="button" name="status" value="checkout" onClick={handleChange}>Checking Out</button>
                 <button type="button" name="status" value="return" onClick={handleChange}>Returning</button>
                 <button type="button"  name="pulls" value="Pull" onClick={handlePull}>Pull</button>
+                <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>
+                {formData.hot &&(
+                  <label> 
+                    <p>Room:</p>
+                  <input placeholder="Room #..."name="room" onChange={handleChange} value={formData.room || ''} />
+                  <button onClick={handleRoom} value={formData.room || ''} >Room</button>
+                  </label>
+                )}
                 </div>)}
                   {formData.type==="DAY"&&(
                 <div>
                  { <Pay {...{setModal, tableData, pullId}}/> } 
                  <button type="button"  name="pulls" value="Pull" onClick={handlePull}>Pull</button>
+                 <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to overnight</button>
                 </div>)}
                 </div>  
                 
