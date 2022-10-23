@@ -14,7 +14,7 @@ const formReducer = (state, event) => {
 
    if(event.reset) {
       
-  return{room: 880, type: "on"}
+  return{price: "$44", type: "ON"}
     
  }
   return {
@@ -41,7 +41,7 @@ function SubCar({formT, setFormT}) {
   const length = pos.length
 
   const [formData, setFormData] = useReducer(formReducer,  
-  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {room: 880, type: "on"});
+  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
     
   let navigate = useNavigate();
 
@@ -94,8 +94,8 @@ function SubCar({formT, setFormT}) {
             <p>Type:</p>
             <select name="type" onChange={handleChange} value={formData.type || ''}>
                 <option value="">--Please choose an option--</option>
-                <option value="on">Overnight</option>
-                <option value="day">Day use</option>
+                <option value="ON">Overnight</option>
+                <option value="DAY">Day use</option>
             </select>
           </label>
           <label>

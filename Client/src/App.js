@@ -39,10 +39,10 @@ function App() {
       <Routes>
           <Route path="/1" element={<PrivateRoute><SubCar /></PrivateRoute>}/>
           <Route path="/2" element={<PrivateRoute><Cars {...{list:"cars", setList}} /></PrivateRoute>}/>
-          <Route path="/3" element={<PrivateRoute><Request/></PrivateRoute>}/>
+          <Route path="/3" element={<PrivateRoute><Request {...{list:"reqs", setList}}/></PrivateRoute>}/>
           <Route path="/4" element={<PrivateRoute><Pulls {...{list:"pulls", setList}}/></PrivateRoute>}/>
-          <Route path="/5" element={<PrivateRoute><Outnr/></PrivateRoute>}/>
-          <Route path="/6" element={<PrivateRoute><Completed/></PrivateRoute>}/> 
+          <Route path="/5" element={<PrivateRoute><Outnr {...{list:"outs", setList}}/></PrivateRoute>}/>
+          <Route path="/6" element={<PrivateRoute><Completed {...{list:"comps", setList}}/></PrivateRoute>}/> 
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />

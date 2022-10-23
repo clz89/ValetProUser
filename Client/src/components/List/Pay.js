@@ -45,7 +45,7 @@ function Pay({ pullId, setModal}) {
 
       const handleSubmit = (e) => {
           e.preventDefault();
-        if (!formData.complete && formData.price && formData.vcolor){
+        if (!formData.complete && formData.price && formData.payment){
           const _id = formData._id    
           dispatch(updateCar(_id, formData))
           dispatch(updatePull(_id, formData))
@@ -82,19 +82,19 @@ function Pay({ pullId, setModal}) {
         {pullId}
         <div>
             <label>
-                <input type="button" name="vcolor" value={formData.vcolor || ''} />
+                <input type="button" name="payment" value={formData.payment || ''} />
             </label>
             <label>
-                <input type="button" name="vcolor" value="Cash" onClick={handleChange} />
+                <input type="button" name="payment" value="Cash" onClick={handleChange} />
             </label>
             <label>
-                <input type="button" name="vcolor" value="CreditCard" onClick={handleChange} />
+                <input type="button" name="payment" value="CreditCard" onClick={handleChange} />
             </label>
             <label>
-                <input type="button" name="vcolor" value="FrontDesk" onClick={handleChange} />
+                <input type="button" name="payment" value="FrontDesk" onClick={handleChange} />
             </label>
             <label>
-                <input type="button" name="vcolor" value="Bitcoin" onClick={handleChange} />
+                <input type="button" name="payment" value="Bitcoin" onClick={handleChange} />
             </label>
         </div>
         <div>

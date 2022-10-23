@@ -42,7 +42,7 @@ const PullsM = ({ pullId, setModal, tableData}) => {
 
       const handleSubmit = (e) => {
           e.preventDefault();
-        if (formData.price && formData.vcolor){
+        if (formData.price && formData.payment){
           const _id = formData._id
           dispatch(updateCar(_id, formData)) 
           dispatch(updatePull(_id, formData))
@@ -55,7 +55,7 @@ const PullsM = ({ pullId, setModal, tableData}) => {
       }
 
           /* useEffect(() => {
-              if (formData.price !== post.price && formData.vcolor){
+              if (formData.price !== post.price && formData.payment){
               const _id = formData._id
               dispatch(updateCar(_id, formData))
               dispatch(updatePull(_id, formData))
@@ -68,7 +68,7 @@ const PullsM = ({ pullId, setModal, tableData}) => {
              
             
         useEffect(() => {
-          if(formData.checkout !== post.checkout ){
+          if(formData.status !== post.status ){
             const _id = formData._id
             dispatch(updatePull(_id, formData))
             dispatch(upReset(post))
@@ -116,13 +116,13 @@ const PullsM = ({ pullId, setModal, tableData}) => {
 
                    {pullId}
 
-                   {formData.type==="on"&&(
+                   {formData.type==="ON"&&(
                    <div>
-                <button type="button" name="checkout" value="checkout" onClick={handleChange}>Checking Out</button>
-                <button type="button" name="checkout" value="return" onClick={handleChange}>Returning</button>
+                <button type="button" name="status" value="checkout" onClick={handleChange}>Checking Out</button>
+                <button type="button" name="status" value="return" onClick={handleChange}>Returning</button>
       
                 </div>)}
-                  {formData.type==="day"&&(
+                  {formData.type==="DAY"&&(
                 <div>
                  { <Pay {...{setModal, tableData, pullId}}/> } 
                 

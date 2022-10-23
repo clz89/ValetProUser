@@ -18,7 +18,7 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
 
    useEffect(() => {
       tableData.filter((data) => {
-        if (!data.complete && data.checkout==="Returning") {
+        if (!data.complete && data.status==="Returning") {
           data.complete="Complete"
           dispatch(updatePull(data._id, data))
         }      
@@ -27,7 +27,7 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
   
     useEffect(() => {
       tableData.filter((data) => {
-        if (!data.complete && data.checkout==="Checking Out") {
+        if (!data.complete && data.status==="Checking Out") {
           data.complete="Complete"                 
           dispatch(updatePull(data._id, data))
         }      
@@ -36,13 +36,13 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (list==="cars" && data.checkout==="checkout") {
-          data.checkout="Checking Out"
+        if (list==="cars" && data.status==="checkout") {
+          data.status="Checking Out"
           data.complete="Complete"
           dispatch(deleteCar(data._id))  
          dispatch(createPull(data))
-        }else if(list==="pulls" && data.checkout==="checkout"){
-          data.checkout="Checking Out"
+        }else if(list==="pulls" && data.status==="checkout"){
+          data.status="Checking Out"
           data.complete="Completed"
          dispatch(createComp(data))
         dispatch(deletePull(data._id)) 
@@ -52,13 +52,13 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (list==="cars" && data.checkout==="return") {
+        if (list==="cars" && data.status==="return") {
         data.complete="Complete"
-        data.checkout="Returning"
+        data.status="Returning"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        }else if(list==="pulls" && data.checkout==="return"){
-          data.checkout="Returning"
+        }else if(list==="pulls" && data.status==="return"){
+          data.status="Returning"
           data.complete="Completed"
          dispatch(createOut(data))
         dispatch(deletePull(data._id)) 
@@ -68,14 +68,14 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
 
     useEffect(() => {
       tableData.filter((data) => {
-        if (list==="cars" && !data.complete && data.vcolor && data.price  ) {  
+        if (list==="cars" && !data.complete && data.payment && data.price  ) {  
         data.complete="Complete"
-        data.checkout="Paid"
+        data.status="Paid"
         dispatch(createPull(data))
         dispatch(deleteCar(data._id))
-        } else if (list==="pulls" && !data.complete && data.vcolor && data.price  ) {  
+        } else if (list==="pulls" && !data.complete && data.payment && data.price  ) {  
           data.complete="Paid"
-          data.checkout="Paid"
+          data.status="Paid"
           const _id = data._id
        dispatch(updatePull(_id, data))
           }
@@ -94,12 +94,12 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
       const evt = e.target.value
         tableData.filter((data) => {
 
-        if(evt===data._id && data.checkout==="Returning"){ 
+        if(evt===data._id && data.status==="Returning"){ 
           data.complete="Completed"
           dispatch(deletePull(data._id))      
           dispatch(createOut(data))
 
-          }else if(evt===data._id && data.checkout!=="Returning"){  
+          }else if(evt===data._id && data.status!=="Returning"){  
            data.complete="Completed"
           dispatch(deletePull(data._id))        
           dispatch(createComp(data))  
@@ -111,9 +111,9 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
           tableData.filter((data) => {
   
           if(evt===data._id){ 
-            data.vcolor=""
+            data.payment=""
             data.complete=""
-            data.checkout="repark"
+            data.status="repark"
             dispatch(createCar(data))
             dispatch(deletePull(data._id))
             dispatch(deleteComp(data._id))  
@@ -130,6 +130,24 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
             dispatch(upForm(data))}
             
           })}
+
+          const handleOuts = (e) => {
+            const evt = e.target.value
+              tableData.filter((data) => {
+              if(evt===data._id){ 
+                data.status="Checking Out"
+                dispatch(deleteOut(data._id))      
+                dispatch(createComp(data))} 
+              })}
+
+        /* mass delete if needed  
+            useEffect(()=>{
+            tableData.map((data) => {
+            dispatch(deletePull(data._id))  
+            dispatch(deleteCar(data._id))
+            dispatch(deleteComp(data._id)) 
+            dispatch(deleteOut(data._id))
+          })})*/
 
     return (
       <tbody>
@@ -148,23 +166,25 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
             { return !data.complete?.includes("Complete")}
             else if (list==="pulls" && data.complete==="Completed") 
           {return !data.complete?.includes("Completed")}
+          else if (list==="outs" && data.status==="Checking Out") 
+          {return !data.status?.includes("Checking Out")}
              else {
             return data
            }
           })
           .filter((data) => {
-            if(list==="cars" && data.checkout==="process")
-            {return !data.checkout?.includes("process")}
-            else if(list!=="cars" && data.checkout==="repark")
-            {return !data.checkout?.includes("repark")}
+            if(list==="cars" && data.status==="process")
+            {return !data.status?.includes("process")}
+            else if(list!=="cars" && data.status==="repark")
+            {return !data.status?.includes("repark")}
             else {
               return data
              }
           })
         .filter((data) => {
             if (!on && !day) { return data; }
-            else if (!on) { return data.type?.includes("on"); }
-            else if (!day) { return data.type?.includes("day"); }
+            else if (!on) { return data.type?.includes("ON"); }
+            else if (!day) { return data.type?.includes("DAY"); }
           })
             .filter((data) => {
               if (searchTerm === "") {
@@ -186,9 +206,13 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
                       <button value={data._id}
                         onClick={handleModal}>Process</button>)}
 
-                    {data.complete && (
+                    {list==="pulls" && data.complete &&(
                       <button value={data._id}
                         onClick={handleComp}>Completed</button>
+                    )}
+                    {list==="outs" && (
+                      <button value={data._id}
+                        onClick={handleOuts} >Checkout</button>
                     )}
 
                     <button type="button" className="" value={data._id} onClick={handleUpdate}>Edit</button>

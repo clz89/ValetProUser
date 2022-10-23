@@ -16,9 +16,9 @@ const outSchema = new mongoose.Schema({
     pspot: String, 
     vmodel: String, 
     license: String,
-    returning: String,
+    payment: String,
     hot: String,
-    checkout: String,
+    status: String,
     complete: String
 }, { timestamps: true });
 
