@@ -5,7 +5,8 @@ import { createPull } from "../../_actions/pulls";
 import Pay from "../List/Pay";
 import { upReset } from "../../_actions/updateForm";
 import { updateCar } from "../../_actions/subCars";
-import { updatePull } from "../../_actions/pulls";
+import { updatePull, deletePull } from "../../_actions/pulls";
+import { createComp } from "../../_actions/completed";
 import { form } from "react-validation/build/form";
 
 const formReducer = (state, event) => {
@@ -95,15 +96,26 @@ const PullsM = ({ pullId, setModal, tableData}) => {
     })} 
             
 
-    const handlePull = () => {
-        const evt = pullId
+    const handleTypeChange = () => {
+      const evt = pullId
+      tableData.filter((data) => {
+      if (evt === data._id && data.type==="ON") {
+      data.type="DAY"
+      data.hot=""
+      dispatch(updatePull(data._id, data))
+      }else if(evt === data._id && data.type==="DAY") {
+        data.type="ON"
+        dispatch(updatePull(data._id, data))}
+    })}
+    const handleNotPaid = (e) => {
+      const evt = pullId
         tableData.filter((data) => {
-        if (evt === data._id) {
-        dispatch(createPull(data))
-        dispatch(deleteCar(data._id))
-        setModal(false)
-        }
-      })}
+         if(evt===data._id ){ 
+          data.complete="Completed"
+          dispatch(deletePull(data._id))      
+          dispatch(createComp(data)) 
+          setModal(false)
+        }})}
        
 
        
@@ -128,6 +140,7 @@ const PullsM = ({ pullId, setModal, tableData}) => {
                    <div>
                 <button type="button" name="status" value="checkout" onClick={handleChange}>Checking Out</button>
                 <button type="button" name="status" value="return" onClick={handleChange}>Returning</button>
+                <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>
                 {formData.hot &&(
                   <label> 
                     <p>Room:</p>
@@ -140,6 +153,10 @@ const PullsM = ({ pullId, setModal, tableData}) => {
                   {formData.type==="DAY"&&(
                 <div>
                  { <Pay {...{setModal, tableData, pullId}}/> } 
+
+                 <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to overnight</button>
+                 <button onClick={handleNotPaid} name="hot" value="Not paid" >Not paid</button>
+
                 
                 </div>)}
                 </div>  

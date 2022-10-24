@@ -60,7 +60,7 @@ function SubCar({formT, setFormT}) {
       dispatch(upReset(post))
       setFormData({reset: true})
       setTimeout(() => {
-      navigate(-1) }, 500)
+      navigate(-1) }, 200)
       }else{
       dispatch(createCar(formData))
       setFormData({reset: true})}

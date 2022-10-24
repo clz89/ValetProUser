@@ -26,8 +26,14 @@
   Table
   =====================
   */
+  .deflist {
+    background: rgb(17, 15, 163)
+  }
+  .daylist{
+    background:rgb(201, 160, 25)
+  }
   .hotlist{
-    background:rgb(102, 12, 12);
+    background:rgb(168, 32, 32);
   }
   .complist{
     background:rgb(12, 102, 17);

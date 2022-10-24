@@ -19,53 +19,61 @@ const TabFooter = () => {
     const [formT, setFormT] = useState(states.formT)
 
     const handleClick = (e) => {
-        const jsont = JSON.stringify(false);
-        localStorage.setItem("sortstate", jsont);
-     setFormTrue(e.target.value)   
+        
+     setFormTrue(e.target.value)
+     
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
-        const form = {price:"$44", type: "ON"}
-    let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
-    const uptrue = _.isEqual(post, o)
-    const formt = _.isEqual(o, form)
+        const form = {price:"$44", type: "ON"};
+   /* let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));  ?????????*/
+    const uptrue = _.isEqual(post, savedNotes);
+    const formt = _.isEqual(savedNotes, form);
        if (uptrue)  {  
-        dispatch(upReset(post));   
         const jsont = JSON.stringify(form);
-      localStorage.setItem("formdata", jsont);
-       setFormT(false);
-         console.log(formT)
+        localStorage.setItem("formdata", jsont);
+        setFormT(false);
+        dispatch(upReset(post));
+         console.log(formT);
       }else if (formt){
         setFormT(false);
-        console.log(formT)
+
+        console.log(formT);
       }else{
       setFormT(true);   
+
       console.log(formT);};
+      console.log(post);
+
+
     }
 
     useEffect(() => {
         const json = localStorage.getItem("formdata");
         const savedNotes = JSON.parse(json);
-            const form = {price:"$44", type: "ON"}
-        let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
-        const uptrue = _.isEqual(post, o)
-        const formt = _.isEqual(o, form)
+            const form = {price:"$44", type: "ON"};
+       /* let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));*/
+        const uptrue = _.isEqual(post, savedNotes);
+        const formt = _.isEqual(savedNotes, form); 
            if (uptrue)  {  
-            dispatch(upReset(post));          
-            const jsont = JSON.stringify(form);
+           const jsont = JSON.stringify(form);
           localStorage.setItem("formdata", jsont);
            setFormT(false);
+           dispatch(upReset(post));
              console.log(formT)
           }else if (formt){
             setFormT(false);
-            console.log(formT)
+
           }else{
           setFormT(true);   
-          console.log(formT);};
+
+          console.log(formT);
+          console.log(post);
+        };
     },[dispatch])
 
    
    const handleClick2 = () => {
-      return setFormTrue("1")
+      return setFormTrue("1");
    };
     useEffect(()=> {
         const states2 = {formT, formTrue}

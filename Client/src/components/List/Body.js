@@ -11,10 +11,10 @@ import { createComp, deleteComp } from "../../_actions/completed";
 
 const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, setModal }) => {
 
-    const post = useSelector( state => state.updateForm )
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate()
+    
     useEffect(() => {
       tableData.filter((data) => {
         if (data.type==="ON" && !data.room && !data.hot) {
@@ -254,7 +254,8 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
 
                   {columns.map(({ accessor }) => {
                     const tData = data[accessor] ? data[accessor] : "";                 
-                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : "" }  key={accessor}>{tData}</td>;}  
+                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
+                    key={accessor}>{tData}</td>;}  
                   )}
                 </tr>
               );

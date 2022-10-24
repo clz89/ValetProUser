@@ -5,7 +5,8 @@ import { createPull } from "../../_actions/pulls";
 import Pay from "../List/Pay";
 import { upReset } from "../../_actions/updateForm";
 import { updateCar } from "../../_actions/subCars";
-import { updatePull } from "../../_actions/pulls";
+import { updatePull, deletePull } from "../../_actions/pulls";
+import { createComp } from "../../_actions/completed";
 import { form } from "react-validation/build/form";
 
 const formReducer = (state, event) => {
@@ -40,20 +41,6 @@ const HotM = ({ pullId, setModal, tableData}) => {
   const [formData, setFormData] = useReducer(formReducer,  
   length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : "");   
 
-
-             
-            
-        useEffect(() => {
-          if(formData.status !== post.status ){
-            const _id = formData._id
-            dispatch(updatePull(_id, formData))
-            dispatch(upReset(post))
-              setFormData({reset: true}) 
-            setModal(false)
-            
-             }
-         })
-
     const handleChange = (event) => {
       setFormData({
         name: event.target.name,
@@ -66,9 +53,29 @@ const HotM = ({ pullId, setModal, tableData}) => {
       if (evt === data._id) {
       data.room=e.target.value
      dispatch(updatePull(data._id, formData))
+     setModal(false)
       }
-    })} 
-        
+    })}
+    const handleNotPaid = (e) => {
+      const evt = pullId
+        tableData.filter((data) => {
+         if(evt===data._id ){ 
+          data.complete="Completed"
+          dispatch(deletePull(data._id))      
+          dispatch(createComp(data)) 
+          setModal(false)
+        }})}
+
+        const handleTypeChange = () => {
+          const evt = pullId
+          tableData.filter((data) => {
+          if (evt === data._id && data.type==="ON") {
+          data.type="DAY"
+          data.hot=""
+          dispatch(updatePull(data._id, data))}
+          
+          })}
+
         const handleModal = () => {
             dispatch(upReset(post))
             setModal(false)
@@ -89,13 +96,17 @@ const HotM = ({ pullId, setModal, tableData}) => {
                   
                    <div>
               
-                {formData.hot &&(
+                
                   <label> 
                     <p>Room:</p>
                   <input placeholder="Room #..."name="room" onChange={handleChange} value={formData.room || ''} />
                   <button onClick={handleRoom} value={formData.room || ''} >Room</button>
+                  <button onClick={handleNotPaid} name="hot" value="Not paid" >Not paid</button>
+                  <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>
+
+
                   </label>
-                )}
+                
       
                 </div>
                 

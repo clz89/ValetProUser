@@ -110,6 +110,7 @@ const CarsM = ({ pullId, setModal, tableData}) => {
         tableData.filter((data) => {
         if (evt === data._id && data.type==="ON") {
         data.type="DAY"
+        data.hot=""
         dispatch(updateCar(data._id, data))
         }else if(evt === data._id && data.type==="DAY") {
           data.type="ON"
