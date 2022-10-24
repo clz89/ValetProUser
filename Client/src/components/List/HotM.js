@@ -8,6 +8,7 @@ import { updateCar } from "../../_actions/subCars";
 import { updatePull, deletePull } from "../../_actions/pulls";
 import { createComp } from "../../_actions/completed";
 import { form } from "react-validation/build/form";
+import { createOut } from "../../_actions/outnr";
 
 const formReducer = (state, event) => {
 
@@ -59,12 +60,17 @@ const HotM = ({ pullId, setModal, tableData}) => {
     const handleNotPaid = (e) => {
       const evt = pullId
         tableData.filter((data) => {
-         if(evt===data._id ){ 
+         if(evt===data._id && data.status==="Returning" ){ 
+          data.complete="Completed"
+          dispatch(deletePull(data._id))      
+          dispatch(createOut(data)) 
+          setModal(false)
+        }else if(evt===data._id && data.status!=="Returning"){
           data.complete="Completed"
           dispatch(deletePull(data._id))      
           dispatch(createComp(data)) 
           setModal(false)
-        }})}
+        } })}
 
         const handleTypeChange = () => {
           const evt = pullId

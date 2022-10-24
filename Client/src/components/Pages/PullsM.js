@@ -112,6 +112,8 @@ const PullsM = ({ pullId, setModal, tableData}) => {
         tableData.filter((data) => {
          if(evt===data._id ){ 
           data.complete="Completed"
+          data.hot="Hot"
+          data.status="Not Paid"
           dispatch(deletePull(data._id))      
           dispatch(createComp(data)) 
           setModal(false)

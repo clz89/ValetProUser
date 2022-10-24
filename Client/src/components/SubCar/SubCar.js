@@ -45,6 +45,17 @@ function SubCar({formT, setFormT}) {
     
   let navigate = useNavigate();
 
+  const handleTypePrice = () => {
+    if(formData.type==="ON" && formData.price!=="$44"){
+    formData.price="$44"
+    setFormData(formData)
+    }else if(formData.type==="DAY" && formData.price!=="$20"){
+      formData.price="$20"
+      setFormData(formData)
+
+    }
+ }
+
     const resetForm = () => {
        setFormData({reset: true})
        
@@ -92,11 +103,13 @@ function SubCar({formT, setFormT}) {
           </label>
           <label>
             <p>Type:</p>
+            <button type="button" onClick={handleTypePrice}>
             <select name="type" onChange={handleChange} value={formData.type || ''}>
                 <option value="">--Please choose an option--</option>
                 <option value="ON">Overnight</option>
                 <option value="DAY">Day use</option>
             </select>
+            </button>
           </label>
           <label>
             <p>Price:</p>
