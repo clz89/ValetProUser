@@ -7,6 +7,7 @@ import { updateOut } from '../../_actions/outnr';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from '../../_actions/updateForm';
+import Modal from './Modal';
 
 import _ from 'lodash'
 
@@ -27,7 +28,8 @@ function SubCar({formT, setFormT}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
-
+  const [modal, setModal] = useState(false);
+  const [modalid, setModalId] = useState("")
 
   useEffect (() => {
     const jso = JSON.stringify(post);
@@ -99,22 +101,28 @@ function SubCar({formT, setFormT}) {
           value: event.target.type === 'checkbox' ? event.target.checked : event.target.value
         });
         };
+
+        const handleModal = (e) => {
+          setModalId(e.target.name)
+          setModal(true);
+          }
+
         const jsont = JSON.stringify(formData);
         localStorage.setItem("formdata", jsont);
 
    return (
 
     <div className="main">
+      {modal===true&&(
+        <Modal setModal={setModal}  {...{modalid, formData, setFormData, setModal}}/>)}
       <h1>Submit Car</h1>
       <form >
         <fieldset >
         <div className="btndiv">
-         <button className='clearbtn' type="button" onClick={resetForm} >Clear</button>
-         <button className="clearbtn" type="submit" onClick={handleSubmit} >Submit</button>
-         <label>
-            <p>Type:</p>
-            </label>
+            <button className='clearbtn' type="button" onClick={resetForm} >Clear</button>
             <button className='clearbtn' type="button" onClick={handleType} >{formData.type || ''}</button>
+            <button className="clearbtn" type="submit" onClick={handleSubmit} >Submit</button>
+            
          </div>
          <div className='inprow'>
           <label>
@@ -123,12 +131,8 @@ function SubCar({formT, setFormT}) {
           </label>
           <label>
             <p>Price:</p>
-            <select name="price" onChange={handleChange} value={formData.price || ''}>
-                <option value="">--Please choose an option--</option>
-                <option value="$44">$44</option>
-                <option value="$20">$20</option>
-                <option value="$10">$10</option>
-            </select>
+            <button type="button" name="price" value={formData.price || ''} onClick={handleModal}>.........
+            {formData.price || 'Choose price'}.........</button>
           </label>
           </div>
           <div className='inprow'>
@@ -176,7 +180,8 @@ function SubCar({formT, setFormT}) {
           <div className='inprow'>
           <label>
              <p>Vehicle make:</p>
-             <input name="vmake" onChange={handleChange} value={formData.vmake || ''} />
+             <button type="button" name="vmake" value={formData.vmake || ''} onClick={handleModal}>
+            {formData.vmake || 'Choose make'}</button>
           </label>
           <label>
              <p>Notes:</p>
@@ -186,12 +191,8 @@ function SubCar({formT, setFormT}) {
           <div className='inprow'>
           <label>
             <p>Vehicle color:</p>
-            <select name="vcolor" onChange={handleChange} value={formData.vcolor || ''}>
-                <option value="">--Please choose an option--</option>
-                <option value="White">White</option>
-                <option value="Black">Black</option>
-                <option value="Gray">Gray</option>
-            </select>
+            <button type="button" name="vcolor" value={formData.vcolor || ''} onClick={handleModal}>
+            {formData.vcolor || 'Choose color'}</button>
             </label>
             <label>
             <p>Parking spot:</p>
@@ -211,6 +212,7 @@ function SubCar({formT, setFormT}) {
         </fieldset>
       </form>
     </div>
+    
   )
 }
 
