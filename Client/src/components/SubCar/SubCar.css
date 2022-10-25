@@ -4,7 +4,7 @@ body {
     margin: auto;
 }
 
-main {
+.main {
    
     margin:auto;
     width: 100%;
@@ -88,14 +88,14 @@ input, select {
     justify-content: center;
     align-items: center;
 }
-.backshadow2 .custom-modal2{
+.custom-modal2{
     top:-20.2vh;
     width: 50vh;
     height: 500px;
     background-color: rgb(7, 7, 7);
     position: relative;
     color:#0ef306;
-    left: -10vh;
+    left:-10vh;
 }
 
 .delete-icon2{

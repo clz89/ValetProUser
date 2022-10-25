@@ -1,9 +1,14 @@
 import React, {useEffect} from "react"
+import { useNavigate } from 'react-router';
+
 
 const Modal = ({modalid, setModal, setFormData, formData}) => {
 
+    let navigate = useNavigate();
+
     const handleModal = () => {
         setModal(false)
+        navigate(0) 
     }
 
     const handleChange = event => {
@@ -12,6 +17,7 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
         value: event.target.value
         })
         setModal(false)
+        
     }
      
     return (

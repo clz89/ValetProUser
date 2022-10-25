@@ -77,11 +77,11 @@ const carlength = posts.length
     <>
     
       <table className="table_container">
-        {subcar &&(<SubCar setSubCar={setSubCar} {...{setSubCar}}/>)}
+        {subcar &&(<SubCar setSubCar={setSubCar} {...{x, tableData, setTableData, posts, setSubCar}}/>)}
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
+        <TableBody  {...{ setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
       
       </table>
       

@@ -1,4 +1,5 @@
 import React, { useReducer, useState, useEffect } from 'react';
+import DatePicker from 'react-date-picker';
 import './SubCar.css';
 import { createCar, updateCar } from '../../_actions/subCars';
 import { updatePull } from '../../_actions/pulls';
@@ -24,7 +25,7 @@ const formReducer = (state, event) => {
   }
   
 }
-function SubCar({setSubCar, formT, setFormT}) {
+function SubCar({tableData, setTableData, posts, x, setSubCar, formT, setFormT}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
@@ -89,10 +90,13 @@ function SubCar({setSubCar, formT, setFormT}) {
       dispatch(upReset(post))
       setFormData({reset: true})
       setTimeout(() => {
-      navigate(-1) }, 200)
+      navigate(0) }, 200)
       }else{
       dispatch(createCar(formData))
-      setFormData({reset: true})}
+      setFormData({reset: true})
+      
+     
+    }
        }
     
       const handleChange = event => {
@@ -107,15 +111,17 @@ function SubCar({setSubCar, formT, setFormT}) {
           setModal(true);
           }
           const handleSubCar = () =>{
-            setSubCar(false)
+            setSubCar(false);
+            navigate(0)
           }
 
+          
         const jsont = JSON.stringify(formData);
         localStorage.setItem("formdata", jsont);
 
    return (
-    <div className='backshadow2'>
-            <div className='custom-modal2'>
+    <div className='backshadow2' onClick={handleSubCar}>
+            <div className='custom-modal2'onClick={(e) => e.stopPropagation()}>
                 <div className="delete-icon2"
                 onClick={handleSubCar}>x</div>
 
@@ -163,16 +169,6 @@ function SubCar({setSubCar, formT, setFormT}) {
              <input name="room" onChange={handleChange} value={formData.room || ''} />
           </label>
           <label>
-             <p>Retrieve at:</p>
-             <input name="retrieve" onChange={handleChange} value={formData.retrieve || ''} />
-          </label>
-          </div>
-          <div className='inprow'>
-        <label>
-             <p>Departure:</p>
-             <input name="depart" onChange={handleChange} value={formData.depart || ''} />
-          </label>
-          <label>
             <p>Out front:</p>
             <input
               checked={formData.outfront || ""}
@@ -182,6 +178,17 @@ function SubCar({setSubCar, formT, setFormT}) {
               value="outfront"
             />
           </label>
+          </div>
+          <div className='inprow'>
+        <label>
+             <p>Departure:</p>
+             <input type="date"  name="depart" onChange={handleChange} value={formData.depart || ''} />
+          </label>
+          <label>
+             <p>Retrieve at:</p>
+             <input  name="retrieve" onChange={handleChange} value={formData.retrieve || ''} />
+          </label>
+          
           </div>
           <div className='inprow'>
           <label>

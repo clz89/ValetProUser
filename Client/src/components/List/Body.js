@@ -8,8 +8,9 @@ import Button from "./Button";
 import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
+import SubCar from "../SubCar/SubCar";
 
-const TableBody = ({ list, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({ setSubCar, list, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
@@ -102,8 +103,9 @@ const TableBody = ({ list, carlength, on, day, setTableData, tableData, columns,
       const evt = e.target.value
       tableData.filter((data) => {
         if (evt === data._id) {
-        dispatch(upForm(data))
-      navigate("/1")}
+       dispatch(upForm(data));
+       setSubCar(true);
+      }
       })}
 
     const handleComp = (e) => {
