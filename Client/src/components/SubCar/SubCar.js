@@ -33,7 +33,8 @@ function SubCar({formT, setFormT}) {
     const jso = JSON.stringify(post);
       localStorage.setItem("upform", jso);
     })
-      const json = localStorage.getItem("formdata");
+
+   const json = localStorage.getItem("formdata");
   const savedNotes = JSON.parse(json);
     
   const dispatch = useDispatch() 
@@ -45,12 +46,27 @@ function SubCar({formT, setFormT}) {
     
   let navigate = useNavigate();
 
-  const handleTypePrice = () => {
-    if(formData.type==="ON" && formData.price!=="$44"){
-    formData.price="$44"
+  useEffect(()=>{
+    if(formData.vip){
+      formData.vip="VIP";
+    }else if(!formData.vip){
+      formData.vip=""; }
+  })
+  useEffect(()=>{
+    if(formData.outfront){
+      formData.outfront="outfront";
+    }else if(!formData.outfront){
+      formData.outfront=""; }
+  })
+
+  const handleType = () => {
+    if(formData.type==="ON"){
+    formData.price="$20"
+    formData.type="DAY"
     setFormData(formData)
-    }else if(formData.type==="DAY" && formData.price!=="$20"){
-      formData.price="$20"
+    }else if(formData.type==="DAY"){
+      formData.price="$44"
+      formData.type="ON"
       setFormData(formData)
 
     }
@@ -95,6 +111,10 @@ function SubCar({formT, setFormT}) {
         <div className="btndiv">
          <button className='clearbtn' type="button" onClick={resetForm} >Clear</button>
          <button className="clearbtn" type="submit" onClick={handleSubmit} >Submit</button>
+         <label>
+            <p>Type:</p>
+            </label>
+            <button className='clearbtn' type="button" onClick={handleType} >{formData.type || ''}</button>
          </div>
          <div className='inprow'>
           <label>
@@ -102,22 +122,12 @@ function SubCar({formT, setFormT}) {
             <input name="ticket" onChange={handleChange} value={formData.ticket || ''} />
           </label>
           <label>
-            <p>Type:</p>
-            <button type="button" onClick={handleTypePrice}>
-            <select name="type" onChange={handleChange} value={formData.type || ''}>
-                <option value="">--Please choose an option--</option>
-                <option value="ON">Overnight</option>
-                <option value="DAY">Day use</option>
-            </select>
-            </button>
-          </label>
-          <label>
             <p>Price:</p>
             <select name="price" onChange={handleChange} value={formData.price || ''}>
                 <option value="">--Please choose an option--</option>
-                <option value="fuji">Fuji</option>
-                <option value="jonathan">Jonathan</option>
-                <option value="honey-crisp">Honey Crisp</option>
+                <option value="$44">$44</option>
+                <option value="$20">$20</option>
+                <option value="$10">$10</option>
             </select>
           </label>
           </div>
@@ -129,10 +139,11 @@ function SubCar({formT, setFormT}) {
           <label>
             <p>VIP:</p>
             <input
-              checked={formData['vip'] || false}
+              checked={formData.vip || ""}
               name="vip"
               onChange={handleChange}
               type="checkbox"
+              value="VIP"
             />
           </label>
           </div>
@@ -154,10 +165,11 @@ function SubCar({formT, setFormT}) {
           <label>
             <p>Out front:</p>
             <input
-              checked={formData['outfront'] || false}
+              checked={formData.outfront || ""}
               name="outfront"
               onChange={handleChange}
               type="checkbox"
+              value="outfront"
             />
           </label>
           </div>
@@ -176,9 +188,9 @@ function SubCar({formT, setFormT}) {
             <p>Vehicle color:</p>
             <select name="vcolor" onChange={handleChange} value={formData.vcolor || ''}>
                 <option value="">--Please choose an option--</option>
-                <option value="fuji">Fuji</option>
-                <option value="jonathan">Jonathan</option>
-                <option value="honey-crisp">Honey Crisp</option>
+                <option value="White">White</option>
+                <option value="Black">Black</option>
+                <option value="Gray">Gray</option>
             </select>
             </label>
             <label>

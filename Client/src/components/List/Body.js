@@ -9,12 +9,12 @@ import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 
-const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({ list, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate()
-    
+
     useEffect(() => {
       tableData.filter((data) => {
         if (data.type==="ON" && !data.room && !data.hot) {
@@ -61,6 +61,7 @@ const TableBody = ({ list, carlength, on, day, tableData, columns, setPullId, se
           data.complete="Completed"
          dispatch(createComp(data))
         dispatch(deletePull(data._id)) 
+
         }
      })
      })

@@ -81,7 +81,7 @@ const carlength = posts.length
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ list, carlength, x, setPullId, setModal, on, day, columns,setTableData, tableData, posts }} />
+        <TableBody  {...{ list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
       
       </table>
       
