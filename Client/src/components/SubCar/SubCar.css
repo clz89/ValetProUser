@@ -4,7 +4,7 @@ body {
     margin: auto;
 }
 
-.main {
+main {
    
     margin:auto;
     width: 100%;
@@ -17,6 +17,9 @@ body {
     color:#0ef306;
      
 }
+h1{
+    text-align: center;
+}
 .inprow {
    display: flex;
    justify-content: space-evenly;
@@ -24,13 +27,14 @@ body {
 form {
     display:flex;
     justify-content: center;
+    
 }
 
  fieldset {
     
-     background-color: black;
-    width: 25%;
-    height: 45vh;
+    background-color: black;
+    width: 50vh;
+    height: 60vh;
     
     margin:0 auto;
   
@@ -73,3 +77,40 @@ input, select {
       box-shadow: 0 0 5px #f45f5d;
     }
   }
+  .backshadow2{
+    width:100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.backshadow2 .custom-modal2{
+    top:-20.2vh;
+    width: 50vh;
+    height: 500px;
+    background-color: rgb(7, 7, 7);
+    position: relative;
+    color:#0ef306;
+    left: -10vh;
+}
+
+.delete-icon2{
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: red;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    position: absolute;
+    top: -15px;
+    right: -15px;
+}

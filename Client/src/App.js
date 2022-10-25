@@ -29,20 +29,20 @@ function App() {
   const auth = currentUser && currentUser.roles 
 
   const[list, setList] = useState(false)
+  const[subcar, setSubCar] = useState(false)
 
 
 
   return (
     <>
     <User/>
-      {auth && (<TabFooter />)}
+      {auth && (<TabFooter {...{setSubCar}} />)}
       <Routes>
-          <Route path="/1" element={<PrivateRoute><SubCar /></PrivateRoute>}/>
-          <Route path="/2" element={<PrivateRoute><Cars {...{list:"cars", setList}} /></PrivateRoute>}/>
-          <Route path="/3" element={<PrivateRoute><Request {...{list:"reqs", setList}}/></PrivateRoute>}/>
-          <Route path="/4" element={<PrivateRoute><Pulls {...{list:"pulls", setList}}/></PrivateRoute>}/>
-          <Route path="/5" element={<PrivateRoute><Outnr {...{list:"outs", setList}}/></PrivateRoute>}/>
-          <Route path="/6" element={<PrivateRoute><Completed {...{list:"comps", setList}}/></PrivateRoute>}/> 
+          <Route path="/2" element={<PrivateRoute><Cars {...{setSubCar, subcar, list:"cars", setList}} /></PrivateRoute>}/>
+          <Route path="/3" element={<PrivateRoute><Request {...{setSubCar, subcar, list:"reqs", setList}}/></PrivateRoute>}/>
+          <Route path="/4" element={<PrivateRoute><Pulls {...{setSubCar, subcar, list:"pulls", setList}}/></PrivateRoute>}/>
+          <Route path="/5" element={<PrivateRoute><Outnr {...{setSubCar, subcar, list:"outs", setList}}/></PrivateRoute>}/>
+          <Route path="/6" element={<PrivateRoute><Completed {...{setSubCar, subcar, list:"comps", setList}}/></PrivateRoute>}/> 
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />

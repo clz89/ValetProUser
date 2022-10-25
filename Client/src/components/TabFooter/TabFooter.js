@@ -7,7 +7,7 @@ import { upReset } from "../../_actions/updateForm";
 import _ from 'lodash'
 
 
-const TabFooter = () => {
+const TabFooter = ({setSubCar}) => {
     const post = useSelector( state => state.updateForm )
 
     const dispatch = useDispatch()
@@ -73,8 +73,10 @@ const TabFooter = () => {
 
    
    const handleClick2 = () => {
-      return setFormTrue("1");
-   };
+      setFormTrue("1")
+      setSubCar(true)
+        };
+
     useEffect(()=> {
         const states2 = {formT, formTrue}
         const jsont = JSON.stringify(states2);
@@ -82,11 +84,11 @@ const TabFooter = () => {
   
       return (
         <footer className="footer">
-            <Link to="/1">
+            
      <button type="button"  value="1" className={formT ? 'btn-flash' : 'ftabs'} onClick={handleClick2}>
           Add Car
      </button>
- </Link>
+ 
  <Link to="/2">
      <button className={formTrue==="2" ? 'btn-red' : 'ftabs'} value="2" type="button" onClick={handleClick}   >
       Cars

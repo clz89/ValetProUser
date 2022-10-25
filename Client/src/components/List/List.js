@@ -2,14 +2,14 @@ import { useState, useEffect } from "react";
 
 import TableBody from "./Body";
 import TableHead from "./Head";
-
+import SubCar from "../SubCar/SubCar";
 import  Modal  from "./Modal";
 import "./List.css"
 import { useDispatch, batch } from 'react-redux';
 import { createPull, updatePull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 
-const List = ({ PullsM, CarsM,  list, posts, x}) => {
+const List = ({ setSubCar, subcar, PullsM, CarsM,  list, posts, x}) => {
 
   const dispatch = useDispatch();
  
@@ -77,7 +77,7 @@ const carlength = posts.length
     <>
     
       <table className="table_container">
-        
+        {subcar &&(<SubCar setSubCar={setSubCar} {...{setSubCar}}/>)}
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />

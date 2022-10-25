@@ -24,7 +24,7 @@ const formReducer = (state, event) => {
   }
   
 }
-function SubCar({formT, setFormT}) {
+function SubCar({setSubCar, formT, setFormT}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
@@ -106,13 +106,19 @@ function SubCar({formT, setFormT}) {
           setModalId(e.target.name)
           setModal(true);
           }
+          const handleSubCar = () =>{
+            setSubCar(false)
+          }
 
         const jsont = JSON.stringify(formData);
         localStorage.setItem("formdata", jsont);
 
    return (
+    <div className='backshadow2'>
+            <div className='custom-modal2'>
+                <div className="delete-icon2"
+                onClick={handleSubCar}>x</div>
 
-    <div className="main">
       {modal===true&&(
         <Modal setModal={setModal}  {...{modalid, formData, setFormData, setModal}}/>)}
       <h1>Submit Car</h1>
@@ -212,6 +218,8 @@ function SubCar({formT, setFormT}) {
         </fieldset>
       </form>
     </div>
+    </div>
+    
     
   )
 }
