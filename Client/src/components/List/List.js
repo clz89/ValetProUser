@@ -24,7 +24,10 @@ const [on, setOn] = useState(false) ;
 const [day, setDay] = useState(false) ;
 const [modal, setModal] = useState(false);
 const [pullId, setPullId] = useState()
-const carlength = posts.length
+const [carlength, setCarLength] = useState(tableData.length)
+useEffect(()=>{
+  setCarLength(tableData.length)
+}, [tableData])
 
   useEffect(()=> {
     const jsont = JSON.stringify(posts);

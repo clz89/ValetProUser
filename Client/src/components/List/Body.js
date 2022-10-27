@@ -10,7 +10,7 @@ import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 import SubCar from "../SubCar/SubCar";
 
-const TableBody = ({ setSubCar, list, carlength, on, day, setTableData, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
@@ -55,6 +55,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, setTableData, tableDat
         if (list==="cars" && data.status==="checkout") {
           data.status="Checking Out"
           data.complete="Complete"
+          setTableData(posts)
           dispatch(deleteCar(data._id))  
          dispatch(createPull(data))
         }else if(list==="pulls" && data.status==="checkout"){
