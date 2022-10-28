@@ -1,7 +1,7 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import DatePicker from 'react-date-picker';
 import './SubCar.css';
-import { createCar, updateCar } from '../../_actions/subCars';
+import {  createCar, updateCar } from '../../_actions/subCars';
 import { updatePull } from '../../_actions/pulls';
 import { updateComp } from '../../_actions/completed';
 import { updateOut } from '../../_actions/outnr';
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from '../../_actions/updateForm';
 import Modal from './Modal';
+import * as api from '../../_api';
 
 import _ from 'lodash'
 
@@ -100,13 +101,25 @@ function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, set
       setTimeout(() => {
       setSubCar(false) }, 100)
       }else{
-      dispatch(createCar(formData)  )
-      setFormData({reset: true})    
-      setTableData(posts)
+        if(list==="cars"){
+      dispatch(createCar(formData))
+      setFormData({reset: true}) 
       setTimeout(() => {
-        setSubCar(false) }, 100)
+        setSubCar(false)
+      }, 200);
     }
-       }
+      else{
+        api.createCar(formData)
+        setFormData({reset: true}) 
+        setTimeout(() => {
+          setSubCar(false)
+        }, 200);
+       
+        }  
+      }}
+    
+    
+  
     
       const handleChange = event => {
         setFormData({

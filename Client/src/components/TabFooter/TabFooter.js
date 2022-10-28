@@ -25,9 +25,9 @@ const TabFooter = ({setSubCar}) => {
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
         const form = {price:"$44", type: "ON"};
-   /* let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));  ?????????*/
-    const uptrue = _.isEqual(post, savedNotes);
-    const formt = _.isEqual(savedNotes, form);
+   let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
+    const uptrue = _.isEqual(post, o);
+    const formt = _.isEqual(o, form);
        if (uptrue)  {  
         const jsont = JSON.stringify(form);
         localStorage.setItem("formdata", jsont);
@@ -51,9 +51,9 @@ const TabFooter = ({setSubCar}) => {
         const json = localStorage.getItem("formdata");
         const savedNotes = JSON.parse(json);
             const form = {price:"$44", type: "ON"};
-       /* let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));*/
-        const uptrue = _.isEqual(post, savedNotes);
-        const formt = _.isEqual(savedNotes, form); 
+        let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
+        const uptrue = _.isEqual(post, o);
+        const formt = _.isEqual(o, form); 
            if (uptrue)  {  
            const jsont = JSON.stringify(form);
           localStorage.setItem("formdata", jsont);
@@ -89,12 +89,12 @@ const TabFooter = ({setSubCar}) => {
           Add Car
      </button>
  
- <Link to="/2">
+ <Link to="/2" >
      <button className={formTrue==="2" ? 'btn-red' : 'ftabs'} value="2" type="button" onClick={handleClick}   >
       Cars
      </button>
  </Link>
- <Link to="/3">
+ <Link to="/3" >
      <button className={formTrue==="3" ? 'btn-red' : 'ftabs'} value="3" type="button" onClick={handleClick} >
      Request
      </button>

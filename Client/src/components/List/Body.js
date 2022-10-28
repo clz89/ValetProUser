@@ -8,13 +8,15 @@ import Button from "./Button";
 import { upReset } from "../../_actions/updateForm";
 import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
-import SubCar from "../SubCar/SubCar";
+import * as api from '../../_api';
 
 const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate()
+
+   
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -56,11 +58,11 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
           data.status="Checking Out"
           data.complete="Complete"
           dispatch(deleteCar(data._id))  
-         dispatch(createPull(data))
+         api.createPull(data)
         }else if(list==="pulls" && data.status==="checkout"){
           data.status="Checking Out"
           data.complete="Completed"
-         dispatch(createComp(data))
+         api.createComp(data)
         dispatch(deletePull(data._id)) 
 
         }
@@ -72,12 +74,12 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
         if (list==="cars" && data.status==="return") {
         data.complete="Complete"
         data.status="Returning"
-        dispatch(createPull(data))
+        api.createPull(data)
         dispatch(deleteCar(data._id))
         }else if(list==="pulls" && data.status==="return"){
           data.status="Returning"
           data.complete="Completed"
-         dispatch(createOut(data))
+         api.createOut(data)
         dispatch(deletePull(data._id)) 
         }
       })
@@ -88,7 +90,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
         if (list==="cars" && !data.complete && data.payment && data.price  ) {  
         data.complete="Complete"
         data.status="Paid"
-        dispatch(createPull(data))
+        api.createPull(data)
         dispatch(deleteCar(data._id))
         } else if (list==="pulls" && !data.complete && data.payment && data.price  ) {  
           data.complete="Paid"
@@ -115,12 +117,12 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
         if(evt===data._id && data.status==="Returning"){ 
           data.complete="Completed"
           dispatch(deletePull(data._id))      
-          dispatch(createOut(data))
+          api.createOut(data)
 
           }else if(evt===data._id && data.status!=="Returning"){  
            data.complete="Completed"
           dispatch(deletePull(data._id))        
-          dispatch(createComp(data))  
+          api.createComp(data) 
           
           }
       })}
@@ -132,7 +134,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
             data.payment=""
             data.complete=""
             data.status="repark"
-            dispatch(createCar(data))
+            api.createCar(data)
             dispatch(deletePull(data._id))
             dispatch(deleteComp(data._id))  
             dispatch(deleteOut(data._id))     
@@ -154,8 +156,8 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
               tableData.filter((data) => {
               if(evt===data._id){ 
                 data.status="Checking Out"
-                dispatch(deleteOut(data._id))      
-                dispatch(createComp(data))} 
+                api.createComp(data)
+                dispatch(deleteOut(data._id)) }    
               })}
 
         /* mass delete if needed  
