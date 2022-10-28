@@ -179,29 +179,13 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
          <td>
              {carlength}&nbsp;cars&nbsp;total
             </td>
+            <td>
+              <button onClick={()=>setSubCar(true)} >Add new car</button>
+            </td>
             </tr>
             {tableData.filter((data) => {
-              console.log(list)
-            if (list==="cars" && data.complete) 
-            { return !data.complete?.includes("Complete")}
-            else if (list==="pulls" && data.complete==="Completed") 
-          {return !data.complete?.includes("Completed")}
-          else if (list==="outs" && data.status==="Checking Out") 
-          {return !data.status?.includes("Checking Out")}
-             else {
-            return data
-           }
-          })
-          .filter((data) => {
-            if(list==="cars" && data.status==="process")
-            {return !data.status?.includes("process")}
-            else if(list!=="cars" && data.status==="repark")
-            {return !data.status?.includes("repark")}
-            else {
-              return data
-             }
-          })
-        .filter((data) => {
+            
+          
             if (!on && !day) { return data; }
             else if (!on) { return data.type?.includes("ON"); }
             else if (!day) { return data.type?.includes("DAY"); }
