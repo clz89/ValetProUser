@@ -8,13 +8,9 @@ export const createOut = (outnr) => async (dispatch) => {
 };
 export const getOuts = () => async (dispatch) => {
   const { data } = await api.getOuts();
-  const sortedData = data.sort((a, b) => {
-    const dateAInMillis = (new Date(a.createdAt)).getTime();
-    const dateBInMillis = (new Date(b.createdAt)).getTime();
-    
-    return dateBInMillis - dateAInMillis;})
   
-  dispatch({ type: 'GET', payload: sortedData });
+  
+  dispatch({ type: 'GET', payload: data });
 
 };
 

@@ -8,13 +8,9 @@ export const createPull = (pulls) => async (dispatch) => {
 };
 export const getPulls = () => async (dispatch) => {
   const { data } = await api.getPulls();
-  const sortedData = data.sort((a, b) => {
-    const dateAInMillis = (new Date(b.updatedAt)).getTime();
-    const dateBInMillis = (new Date(a.updatedAt)).getTime();
-    
-    return dateBInMillis - dateAInMillis;})
+
   
-  dispatch({ type: 'GET', payload: sortedData });
+  dispatch({ type: 'GET', payload: data });
   
 };
 

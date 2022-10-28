@@ -9,13 +9,9 @@ export const createCar = (subCar) => async (dispatch) => {
 
 export const getCars = () => async (dispatch) => {
   const { data } = await api.getCars();
-  const sortedData = data.sort((a, b) => {
-    const dateAInMillis = (new Date(a.createdAt)).getTime();
-    const dateBInMillis = (new Date(b.createdAt)).getTime();
-    
-    return dateBInMillis - dateAInMillis;})
+
   
-  dispatch({ type: 'GET', payload: sortedData });
+  dispatch({ type: 'GET', payload: data });
 };
 
 export const updateCar = (id, subCar) => async (dispatch) => {

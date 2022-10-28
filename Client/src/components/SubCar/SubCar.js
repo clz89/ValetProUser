@@ -25,7 +25,7 @@ const formReducer = (state, event) => {
   }
   
 }
-function SubCar({tableData, setTableData, posts, x, setSubCar, formT, setFormT}) {
+function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, setFormT}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
@@ -48,6 +48,8 @@ function SubCar({tableData, setTableData, posts, x, setSubCar, formT, setFormT})
   length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
     
   let navigate = useNavigate();
+
+  
 
   useEffect(()=>{
     if(formData.vip){
@@ -79,6 +81,12 @@ function SubCar({tableData, setTableData, posts, x, setSubCar, formT, setFormT})
        setFormData({reset: true})
        
     }
+    const sortedData = tableData.sort((a, b) => {
+      const dateAInMillis = (new Date(a.createdAt)).getTime();
+      const dateBInMillis = (new Date(b.createdAt)).getTime();
+      
+      return dateBInMillis - dateAInMillis;})
+
   const handleSubmit = (event ) => {
     event.preventDefault();
       if (formData._id === post._id){
@@ -90,12 +98,13 @@ function SubCar({tableData, setTableData, posts, x, setSubCar, formT, setFormT})
       dispatch(upReset(post))
       setFormData({reset: true})
       setTimeout(() => {
-      navigate(0) }, 200)
+      setSubCar(false) }, 100)
       }else{
-      dispatch(createCar(formData))
-      setFormData({reset: true})
-      
-     
+      dispatch(createCar(formData)  )
+      setFormData({reset: true})    
+      setTableData(posts)
+      setTimeout(() => {
+        setSubCar(false) }, 100)
     }
        }
     
@@ -112,7 +121,7 @@ function SubCar({tableData, setTableData, posts, x, setSubCar, formT, setFormT})
           }
           const handleSubCar = () =>{
             setSubCar(false);
-            navigate(0)
+            
           }
 
           

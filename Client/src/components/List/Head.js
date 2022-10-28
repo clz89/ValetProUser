@@ -5,8 +5,8 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
   
  
     
-  const [sortField, setSortField] = useState("");
-  const [order, setOrder] = useState("desc");
+  const [sortField, setSortField] = useState("createdAt");
+  const [order, setOrder] = useState("asc");
  
 
 

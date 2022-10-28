@@ -17,9 +17,13 @@ const List = ({ setSubCar, subcar, PullsM, CarsM,  list, posts, x}) => {
   dispatch(x);
   }, [dispatch])
   
+  const sortedData = posts.sort((a, b) => {
+    const dateAInMillis = (new Date(a.createdAt)).getTime();
+    const dateBInMillis = (new Date(b.createdAt)).getTime();
+    
+    return dateBInMillis - dateAInMillis;})
 
-
-const [tableData, setTableData] = useState(posts);
+const [tableData, setTableData] = useState(sortedData);
 const [on, setOn] = useState(false) ;
 const [day, setDay] = useState(false) ;
 const [modal, setModal] = useState(false);
@@ -80,7 +84,7 @@ useEffect(()=>{
     <>
     
       <table className="table_container">
-        {subcar &&(<SubCar setSubCar={setSubCar} {...{x, tableData, setTableData, posts, setSubCar}}/>)}
+        {subcar &&(<SubCar setSubCar={setSubCar} {...{x, list, tableData, setTableData, posts, setSubCar}}/>)}
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />

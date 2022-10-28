@@ -55,7 +55,6 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
         if (list==="cars" && data.status==="checkout") {
           data.status="Checking Out"
           data.complete="Complete"
-          setTableData(posts)
           dispatch(deleteCar(data._id))  
          dispatch(createPull(data))
         }else if(list==="pulls" && data.status==="checkout"){
