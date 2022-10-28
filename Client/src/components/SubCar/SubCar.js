@@ -78,16 +78,35 @@ function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, set
     }
  }
 
+ const handleClick = () => {
+
+
+     const form = {price:"$44", type: "ON"};
+let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== ""));
+ const formt = _.isEqual(o, form);
+    if (formData._id===post._id)  {  
+     setFormData({reset: true})
+     setFormT(false);
+     dispatch(upReset(post));
+      console.log(formT);
+   }else if (formt){
+     setFormT(false);
+
+     console.log(formT);
+   }else{
+   setFormT(true);   
+
+   console.log(formT);};
+   console.log(post);
+
+
+ }
+
     const resetForm = () => {
        setFormData({reset: true})
        
     }
-    const sortedData = tableData.sort((a, b) => {
-      const dateAInMillis = (new Date(a.createdAt)).getTime();
-      const dateBInMillis = (new Date(b.createdAt)).getTime();
-      
-      return dateBInMillis - dateAInMillis;})
-
+  
   const handleSubmit = (event ) => {
     event.preventDefault();
       if (formData._id === post._id){
@@ -99,7 +118,8 @@ function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, set
       dispatch(upReset(post))
       setFormData({reset: true})
       setTimeout(() => {
-      setSubCar(false) }, 100)
+      setSubCar(false) 
+      }, 100)
       }else{
         if(list==="cars"){
       dispatch(createCar(formData))
@@ -118,9 +138,6 @@ function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, set
         }  
       }}
     
-    
-  
-    
       const handleChange = event => {
         setFormData({
           name: event.target.name,
@@ -133,7 +150,10 @@ function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, set
           setModal(true);
           }
           const handleSubCar = () =>{
-            setSubCar(false);
+            handleClick()
+            setTimeout(() => {
+              setSubCar(false)
+            }, 200);
             
           }
 

@@ -7,16 +7,12 @@ import { upReset } from "../../_actions/updateForm";
 import _ from 'lodash'
 
 
-const TabFooter = ({setSubCar}) => {
+const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
     const post = useSelector( state => state.updateForm )
 
     const dispatch = useDispatch()
     
-    const json = localStorage.getItem("states");
-        const states = JSON.parse(json);
 
-    const [formTrue, setFormTrue] = useState(states.formTrue);
-    const [formT, setFormT] = useState(states.formT)
 
     const handleClick = (e) => {
         

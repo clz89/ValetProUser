@@ -28,21 +28,31 @@ function App() {
   const { user: currentUser } = useSelector((state) => state.auth);
   const auth = currentUser && currentUser.roles 
 
+
+  const json = localStorage.getItem("states");
+        const states = JSON.parse(json);
+
+
   const[list, setList] = useState(false)
   const[subcar, setSubCar] = useState(false)
+  const [formT, setFormT] = useState(states.formT)
+  const [formTrue, setFormTrue] = useState(states.formTrue);
 
-
+useEffect(()=> {
+        const states2 = {formT, formTrue}
+        const jsont = JSON.stringify(states2);
+        localStorage.setItem("states", jsont);})
 
   return (
     <>
     <User/>
-      {auth && (<TabFooter {...{setSubCar}} />)}
+      {auth && (<TabFooter {...{formT, setFormT, formTrue, setFormTrue, setSubCar}} />)}
       <Routes>
-          <Route path="/2" element={<PrivateRoute><Cars {...{setSubCar, subcar, list:"cars", setList}} /></PrivateRoute>}/>
-          <Route path="/3" element={<PrivateRoute><Request {...{setSubCar, subcar, list:"reqs", setList}}/></PrivateRoute>}/>
-          <Route path="/4" element={<PrivateRoute><Pulls {...{setSubCar, subcar, list:"pulls", setList}}/></PrivateRoute>}/>
-          <Route path="/5" element={<PrivateRoute><Outnr {...{setSubCar, subcar, list:"outs", setList}}/></PrivateRoute>}/>
-          <Route path="/6" element={<PrivateRoute><Completed {...{setSubCar, subcar, list:"comps", setList}}/></PrivateRoute>}/> 
+          <Route path="/2" element={<PrivateRoute><Cars {...{setFormT, setSubCar, subcar, list:"cars", setList}} /></PrivateRoute>}/>
+          <Route path="/3" element={<PrivateRoute><Request {...{setFormT, setSubCar, subcar, list:"reqs", setList}}/></PrivateRoute>}/>
+          <Route path="/4" element={<PrivateRoute><Pulls {...{setFormT ,setSubCar, subcar, list:"pulls", setList}}/></PrivateRoute>}/>
+          <Route path="/5" element={<PrivateRoute><Outnr {...{setFormT, setSubCar, subcar, list:"outs", setList}}/></PrivateRoute>}/>
+          <Route path="/6" element={<PrivateRoute><Completed {...{setFormT, setSubCar, subcar, list:"comps", setList}}/></PrivateRoute>}/> 
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login" element={<Login />} />

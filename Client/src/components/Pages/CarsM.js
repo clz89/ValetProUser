@@ -41,31 +41,7 @@ const CarsM = ({ pullId, setModal, tableData}) => {
   length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {room: 880, type: "on"});   
 
 
-      const handleSubmit = (e) => {
-          e.preventDefault();
-        if (formData.price && formData.payment){
-          const _id = formData._id
-          dispatch(updateCar(_id, formData))
-          dispatch(updatePull(_id, formData))
-          dispatch(upReset(post))
-          setFormData({reset: true}) 
-          setModal(false)  
-           
-          } 
-      
-      }
-
-          /* useEffect(() => {
-              if (formData.price !== post.price && formData.payment){
-              const _id = formData._id
-              dispatch(updateCar(_id, formData))
-              dispatch(updatePull(_id, formData))
-              dispatch(upReset(post))
-              setFormData({reset: true}) 
-              setModal(false)   
-              }     
-
-            }) */
+     
             
          useEffect(() => {
           if(formData.status !== post.status ){
@@ -98,6 +74,7 @@ const CarsM = ({ pullId, setModal, tableData}) => {
         setModal(false)
         }
       })}
+      
       const handleRoom = (e) => {
         const evt = pullId
         tableData.filter((data) => {
