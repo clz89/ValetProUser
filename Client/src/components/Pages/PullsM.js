@@ -8,6 +8,7 @@ import { updateCar } from "../../_actions/subCars";
 import { updatePull, deletePull } from "../../_actions/pulls";
 import { createComp } from "../../_actions/completed";
 import { form } from "react-validation/build/form";
+import * as api from '../../_api';
 
 const formReducer = (state, event) => {
 
@@ -115,7 +116,7 @@ const PullsM = ({ pullId, setModal, tableData}) => {
           data.hot="Hot"
           data.status="Not Paid"
           dispatch(deletePull(data._id))      
-          dispatch(createComp(data)) 
+          api.createComp(data) 
           setModal(false)
         }})}
        

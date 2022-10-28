@@ -9,7 +9,7 @@ import { updatePull, deletePull } from "../../_actions/pulls";
 import { createComp } from "../../_actions/completed";
 import { form } from "react-validation/build/form";
 import { createOut } from "../../_actions/outnr";
-
+import * as api from '../../_api';
 const formReducer = (state, event) => {
 
     if(event.reset) {
@@ -63,12 +63,12 @@ const HotM = ({ pullId, setModal, tableData}) => {
          if(evt===data._id && data.status==="Returning" ){ 
           data.complete="Completed"
           dispatch(deletePull(data._id))      
-          dispatch(createOut(data)) 
+          api.createOut(data) 
           setModal(false)
         }else if(evt===data._id && data.status!=="Returning"){
           data.complete="Completed"
           dispatch(deletePull(data._id))      
-          dispatch(createComp(data)) 
+          api.createComp(data)
           setModal(false)
         } })}
 

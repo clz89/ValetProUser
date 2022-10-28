@@ -6,6 +6,7 @@ import Pay from "../List/Pay";
 import { upReset } from "../../_actions/updateForm";
 import { updateCar } from "../../_actions/subCars";
 import { updatePull } from "../../_actions/pulls";
+import * as api from '../../_api';
 
 const formReducer = (state, event) => {
 
@@ -92,7 +93,7 @@ const CarsM = ({ pullId, setModal, tableData}) => {
         tableData.filter((data) => {
         if (evt === data._id) {
         data.status="process"
-        dispatch(createPull(data))
+        api.createPull(data)
         dispatch(deleteCar(data._id))
         setModal(false)
         }

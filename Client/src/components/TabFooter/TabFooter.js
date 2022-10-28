@@ -73,7 +73,6 @@ const TabFooter = ({setSubCar}) => {
 
    
    const handleClick2 = () => {
-      setFormTrue("1")
       setSubCar(true)
         };
 
