@@ -8,6 +8,7 @@ import { updateCar } from "../../_actions/subCars";
 import { updatePull } from "../../_actions/pulls";
 import * as api from '../../_api';
 
+
 const formReducer = (state, event) => {
 
     if(event.reset) {
@@ -62,7 +63,17 @@ const CarsM = ({ pullId, setModal, tableData}) => {
 
     }
            
-            
+    const handleCheckOut = (e) => {
+      const evt = pullId
+      tableData.filter((data) => {
+      if (evt === data._id) {
+      data.status=e.target.value
+      data.complete="Complete"
+      api.createPull(data)
+      dispatch(deleteCar(data._id))
+      setModal(false)
+      }
+    })}    
 
     const handlePull = () => {
         const evt = pullId
@@ -114,7 +125,7 @@ const CarsM = ({ pullId, setModal, tableData}) => {
 
                    {formData.type==="ON"&&(
                    <div>
-                <button type="button" name="status" value="checkout" onClick={handleChange}>Checking Out</button>
+                <button type="button" name="status" value="Checking Out" onClick={handleCheckOut}>Checking Out</button>
                 <button type="button" name="status" value="return" onClick={handleChange}>Returning</button>
                 <button type="button"  name="pulls" value="Pull" onClick={handlePull}>Pull</button>
                 <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>

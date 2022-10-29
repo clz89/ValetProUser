@@ -52,7 +52,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
       })
     }) 
 
-    useEffect(() => {
+    /* useEffect(() => {
       tableData.filter((data) => {
         if (list==="cars" && data.status==="checkout") {
           data.status="Checking Out"
@@ -67,7 +67,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
 
         }
      })
-     })
+     })  */
 
     useEffect(() => {
       tableData.filter((data) => {
