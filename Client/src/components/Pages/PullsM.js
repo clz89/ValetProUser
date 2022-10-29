@@ -43,31 +43,25 @@ const PullsM = ({ pullId, setModal, tableData}) => {
   length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {room: 880, type: "on"});   
 
 
-      const handleSubmit = (e) => {
-          e.preventDefault();
-        if (formData.price && formData.payment){
-          const _id = formData._id
-          dispatch(updateCar(_id, formData)) 
-          dispatch(updatePull(_id, formData))
-          dispatch(upReset(post))
-          setFormData({reset: true}) 
-          setModal(false)  
-           
-          } 
-      
+  const handleCheckOut = (e) => {
+    const evt = pullId
+    tableData.filter((data) => {
+    if (evt === data._id) {
+    if(e.target.value==="Returning"){
+    data.status=e.target.value
+    data.complete="Completed"
+    dispatch(deletePull(data._id))
+    api.createOut(data)
+    setModal(false)
+      }else{
+    data.status=e.target.value
+    data.complete="Completed"
+    dispatch(deletePull(data._id))
+    api.createComp(data)
+    setModal(false)
       }
-
-          /* useEffect(() => {
-              if (formData.price !== post.price && formData.payment){
-              const _id = formData._id
-              dispatch(updateCar(_id, formData))
-              dispatch(updatePull(_id, formData))
-              dispatch(upReset(post))
-              setFormData({reset: true}) 
-              setModal(false)   
-              }     
-
-            }) */
+    }
+  })}  
              
             
         useEffect(() => {
@@ -132,36 +126,29 @@ const PullsM = ({ pullId, setModal, tableData}) => {
     
         
     return (
-        <div className='backshadow'>
-            <div className='custom-modal'>
-                <div className="delete-icon"
-                onClick={handleModal}>x</div>
+        <div className='backshadow' onClick={handleModal}>
+            <div className='custom-modal' onClick={(e) => e.stopPropagation()}>
+             
 
                    {pullId}
 
                    {formData.type==="ON"&&(
-                   <div>
-                <button type="button" name="status" value="checkout" onClick={handleChange}>Checking Out</button>
-                <button type="button" name="status" value="return" onClick={handleChange}>Returning</button>
-                <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>
-                {formData.hot &&(
-                  <label> 
-                    <p>Room:</p>
-                  <input placeholder="Room #..."name="room" onChange={handleChange} value={formData.room || ''} />
-                  <button onClick={handleRoom} value={formData.room || ''} >Room</button>
-                  </label>
-                )}
-      
+                   <div className="bdiv">
+                <button className="mbtn" type="button" name="status" value="Checked Out" onClick={handleCheckOut}>Checking Out</button>
+                <button className="mbtn" type="button" name="status" value="Returning" onClick={handleCheckOut}>Returning</button>
+                <button className="mbtn" type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>
                 </div>)}
+
                   {formData.type==="DAY"&&(
-                <div>
+                <div className="bdiv">
                  { <Pay {...{setModal, tableData, pullId}}/> } 
-
-                 <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to overnight</button>
-                 <button onClick={handleNotPaid} name="hot" value="Not paid" >Not paid</button>
-
+                 
+                 <button className="mbtn" type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to overnight</button>
+                 <button className="mbtn" onClick={handleNotPaid} name="hot" value="Not paid" >Not paid</button>
                 
-                </div>)}
+                </div>
+                )}
+
                 </div>  
                 
         </div>

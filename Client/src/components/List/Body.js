@@ -34,7 +34,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
     }) 
 
 
-   useEffect(() => {
+ /*  useEffect(() => {
       tableData.filter((data) => {
         if (!data.complete && data.status==="Returning") {
           data.complete="Complete"
@@ -50,7 +50,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
           dispatch(updatePull(data._id, data))
         }      
       })
-    }) 
+    }) */
 
     /* useEffect(() => {
       tableData.filter((data) => {
@@ -69,7 +69,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
      })
      })  */
 
-    useEffect(() => {
+   /* useEffect(() => {
       tableData.filter((data) => {
         if (list==="cars" && data.status==="return") {
         data.complete="Complete"
@@ -83,7 +83,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
         dispatch(deletePull(data._id)) 
         }
       })
-    })
+    })*/
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -180,7 +180,7 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
              {carlength}&nbsp;cars&nbsp;total
             </td>
             <td>
-              <button onClick={()=>setSubCar(true)} >Add new car</button>
+              <button className="but" onClick={()=>setSubCar(true)} >Add new car</button>
             </td>
             </tr>
             {tableData.filter((data) => {

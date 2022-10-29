@@ -23,7 +23,28 @@ const List = ({ setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) =>
     
     return dateBInMillis - dateAInMillis;})
 
-const [tableData, setTableData] = useState(sortedData);
+    const json = localStorage.getItem("states2");
+  const states = JSON.parse(json);
+
+    const [sortField, setSortField] = useState(states.accessor);
+    const [order, setOrder] = useState(states.sortOrder);
+
+    
+        const sorted = [...posts].sort((a, b,) => {
+          if (a[sortField] === null) return 1;
+          if (b[sortField] === null) return -1;
+          if (a[sortField] === null && b[sortField] === null) return 0;
+          return (
+            a[sortField]?.toString().localeCompare(b[sortField]?.toString(), "en", {
+              numeric: true,
+            }) * (order === "asc" ? 1 : -1)
+          );
+        });
+    
+      
+    
+
+const [tableData, setTableData] = useState(sorted);
 const [on, setOn] = useState(false) ;
 const [day, setDay] = useState(false) ;
 const [modal, setModal] = useState(false);
@@ -40,9 +61,10 @@ useEffect(()=>{
   
   
   useEffect(()=> { 
-      setTableData(posts)
+      setTableData(sorted)
 
  }, [posts] )
+
 
  
   const columns = [ 

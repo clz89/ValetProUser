@@ -136,13 +136,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
 .backshadow .custom-modal{
-    width: 500px;
-    height: 500px;
-    background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+    height: auto;
+    right: 40vh;
+    bottom:10vh;
+    background-color: rgb(0, 0, 0);
     position: relative;
+
 }
 
 .delete-icon{
@@ -162,7 +167,44 @@
     right: -15px;
 }
 button {
-  border:2px solid black;
-  color:rgb(255, 255, 255);
-  background-color: #1a1a1a;
+  border:2px solid rgb(43, 173, 26);
+  border-radius: 5px;
+  color:rgb(0, 0, 0);
+  background-color: #38a31e;
+  font-weight:700;
+
+}
+.but {
+  border:3px solid rgb(20, 189, 48);
+  border-radius: 5px;
+  color:rgb(0, 0, 0);
+  background-color: #27c718;
+  font-weight:700;
+}
+.pay{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  
+}
+.bdiv{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+
+}
+.mbtn{
+  height:3.5vh;
+  width:30vh;
+  border-radius: 5px;
+
+}
+.room{
+  width: 20vh;
+}
+.rinput{
+  height: 40px;
 }

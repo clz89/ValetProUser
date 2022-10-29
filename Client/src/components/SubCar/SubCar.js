@@ -164,8 +164,6 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
    return (
     <div className='backshadow2' onClick={handleSubCar}>
             <div className='custom-modal2'onClick={(e) => e.stopPropagation()}>
-                <div className="delete-icon2"
-                onClick={handleSubCar}>x</div>
 
       {modal===true&&(
         <Modal setModal={setModal}  {...{modalid, formData, setFormData, setModal}}/>)}
@@ -186,7 +184,7 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           <label>
             <p>Price:</p>
             <button type="button" name="price" value={formData.price || ''} onClick={handleModal}>.........
-            {formData.price || 'Choose price'}.........</button>
+            {formData.price || 'Choose price'}.........</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           </div>
           <div className='inprow'>
@@ -236,7 +234,7 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           <label>
              <p>Vehicle make:</p>
              <button type="button" name="vmake" value={formData.vmake || ''} onClick={handleModal}>
-            {formData.vmake || 'Choose make'}</button>
+            {formData.vmake || 'Choose make'}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           <label>
              <p>Notes:</p>
@@ -247,7 +245,7 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           <label>
             <p>Vehicle color:</p>
             <button type="button" name="vcolor" value={formData.vcolor || ''} onClick={handleModal}>
-            {formData.vcolor || 'Choose color'}</button>
+            {formData.vcolor || 'Choose color'}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             </label>
             <label>
             <p>Parking spot:</p>

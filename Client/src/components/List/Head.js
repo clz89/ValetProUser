@@ -5,9 +5,11 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
   
  
     
-  const [sortField, setSortField] = useState("createdAt");
+  const [sortField, setSortField] = useState("");
   const [order, setOrder] = useState("asc");
- 
+
+
+    
 
 
   const handleSorting = (sortField, sortOrder) => {
@@ -22,6 +24,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
           }) * (sortOrder === "asc" ? 1 : -1)
         );
       });
+
       setTableData(sorted); 
       const jsont = JSON.stringify(sorted);
       localStorage.setItem("sortstate", jsont);
@@ -53,7 +56,11 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
       accessor === sortField && order === "asc" ? "desc" : "asc";
     setSortField(accessor);
     setOrder(sortOrder);
-    handleSorting(accessor, sortOrder);}
+    handleSorting(accessor, sortOrder);
+    const states2 = {accessor, sortOrder}
+    const jso = JSON.stringify(states2);
+      localStorage.setItem("states2", jso);
+  }
 
       
   
@@ -91,7 +98,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
              
               className={cl}
             > 
-             <button className=""  onClick={sortable ? () => handleSortingChange(accessor) : null}>
+             <button className="but"  onClick={sortable ? () => handleSortingChange(accessor) : null}>
                  {label}
                  </button> 
             </th>

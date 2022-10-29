@@ -1,4 +1,4 @@
-import React, {useEffect, useReducer} from "react"
+import React, {useState, useEffect, useReducer} from "react"
 import { batch, useDispatch, useSelector } from "react-redux";
 import { deleteCar } from "../../_actions/subCars";
 import { createPull } from "../../_actions/pulls";
@@ -40,7 +40,8 @@ const HotM = ({ pullId, setModal, tableData}) => {
   const length = pos.length
 
   const [formData, setFormData] = useReducer(formReducer,  
-  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : "");   
+  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : "");  
+  const[status, setStatus] = useState(false)
 
     const handleChange = (event) => {
       setFormData({
@@ -48,6 +49,19 @@ const HotM = ({ pullId, setModal, tableData}) => {
         value: event.target.type === 'checkbox' ? event.target.checked : event.target.value 
       });
     }
+    const handleCheckout = (e) => {
+      const evt = pullId
+      tableData.filter((data) => {
+      if (evt === data._id) {
+       data.status=e.target.value
+        data.complete="Complete"
+        dispatch(updatePull(data._id, formData))
+        setStatus(true)
+        }
+    })}
+
+
+  
     const handleRoom = (e) => {
       const evt = pullId
       tableData.filter((data) => {
@@ -62,11 +76,13 @@ const HotM = ({ pullId, setModal, tableData}) => {
         tableData.filter((data) => {
          if(evt===data._id && data.status==="Returning" ){ 
           data.complete="Completed"
+          data.status="Not Paid"
           dispatch(deletePull(data._id))      
           api.createOut(data) 
           setModal(false)
         }else if(evt===data._id && data.status!=="Returning"){
           data.complete="Completed"
+          data.status="Not Paid"
           dispatch(deletePull(data._id))      
           api.createComp(data)
           setModal(false)
@@ -92,32 +108,25 @@ const HotM = ({ pullId, setModal, tableData}) => {
     
         
     return (
-        <div className='backshadow'>
-            <div className='custom-modal'>
-                <div className="delete-icon"
-                onClick={handleModal}>x</div>
-
-                   {pullId}
-
-                  
-                   <div>
-              
-                
-                  <label> 
+        <div className='backshadow' onClick={handleModal}>
+            <div className='custom-modal' onClick={(e) => e.stopPropagation()}>
+               {pullId}
+             <div>
+                  {!status &&(<div>
+                    <button  onClick={handleCheckout} name="status" value="Checking Out">CheckOut</button>
+                    <button onClick={handleCheckout} name="status" value="Returning">Returning</button>
+                  </div>)}
+               <label> 
                     <p>Room:</p>
-                  <input placeholder="Room #..."name="room" onChange={handleChange} value={formData.room || ''} />
-                  <button onClick={handleRoom} value={formData.room || ''} >Room</button>
-                  <button onClick={handleNotPaid} name="hot" value="Not paid" >Not paid</button>
-                  <button type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>
-
-
+                  <input className="rinput" placeholder="Room #..."name="room" onChange={handleChange} value={formData.room || ''} />
+                  <button className="mbtn room" onClick={handleRoom} value={formData.room || ''} >Submit</button>
                   </label>
-                
-      
+                  <div className="bdiv">
+                  <button className="mbtn" onClick={handleNotPaid} name="hot" value="Not paid" >Not paid</button>
+                  <button className="mbtn" type="button"  name="pulls" value="Pull" onClick={handleTypeChange}>Change to day use</button>
+                 </div>
                 </div>
-                
-                
-        </div>
+         </div>
         </div>
     )
 }

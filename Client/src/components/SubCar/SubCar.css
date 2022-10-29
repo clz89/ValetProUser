@@ -22,7 +22,7 @@ h1{
 }
 .inprow {
    display: flex;
-   justify-content: space-evenly;
+   justify-content:space-evenly;
 }
 form {
     display:flex;
@@ -45,13 +45,13 @@ form {
  }
 
 input, select {
-    width: 100px;
- 
+    width: 130px;
 }
+
 .clearbtn  {
-   
-    height: 25px;
-    width: 100px;
+   border-radius: 5px;
+    height: 30px;
+    width: 115px;
     background-color:#3cff01;
     text-align: center;
     font-size: 12px;
@@ -88,10 +88,13 @@ input, select {
     justify-content: center;
     align-items: center;
 }
-.custom-modal2{
-    top:-20.2vh;
+.backshadow2 .custom-modal2{
+    border-radius:10px;
+    border:2px solid rgb(43, 173, 26);
+    overflow: hidden;
+    bottom:5vh;
     width: 50vh;
-    height: 500px;
+    height: 60vh;
     background-color: rgb(7, 7, 7);
     position: relative;
     color:#0ef306;
@@ -113,4 +116,28 @@ input, select {
     position: absolute;
     top: -15px;
     right: -15px;
+}
+.make{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 30vh;
+    width: 18vh;
+   
+}
+.price{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 30vh;
+    width: 18vh;
+   
+}
+.vcolor{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: 30vh;
+    width: 18vh;
+   
 }

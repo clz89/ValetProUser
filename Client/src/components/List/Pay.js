@@ -59,7 +59,7 @@ function Pay({ pullId, setModal}) {
                          
     return (
    <div>
-    <form >
+    <form className="pay">
         <p>Pay Ticket</p>
         
         <div >
@@ -82,7 +82,7 @@ function Pay({ pullId, setModal}) {
         {pullId}
         <div>
             <label>
-                <input type="button" name="payment" value={formData.payment || ''} />
+                <input type="button" name="payment" value={formData.payment || 'payment'} />
             </label>
             <label>
                 <input type="button" name="payment" value="Cash" onClick={handleChange} />
@@ -97,8 +97,8 @@ function Pay({ pullId, setModal}) {
                 <input type="button" name="payment" value="Bitcoin" onClick={handleChange} />
             </label>
         </div>
-        <div>
-        <button  type="submit"  onClick={handleSubmit} >Submit</button>
+        <div className='bdiv'>
+        <button  className="mbtn"  type="submit"  onClick={handleSubmit} >Submit</button>
         </div>
         </form>
     </div>

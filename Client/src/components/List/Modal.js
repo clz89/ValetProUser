@@ -22,7 +22,7 @@ const Modal = ({ carlength, setPullId, pullId, setModal, tableData, CarsM, Pulls
          < CarsM {...{ carlength, setPullId, pullId, setModal, tableData}}/>
      )}
      else if(PullsM) {
-     if(pulldata.hot){
+     if(pulldata.hot ){
         return (< HotM {...{ setPullId, pullId, setModal, tableData}}/>)}
       else{
        return ( < PullsM  {...{ setPullId, pullId, setModal, tableData}}/>)}
