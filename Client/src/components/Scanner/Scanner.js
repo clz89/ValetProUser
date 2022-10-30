@@ -7,13 +7,6 @@ function Scanner({setScan}) {
   const [torchOn, setTorchOn] = React.useState(false);
   const [camErr, setCamErr] = React.useState(false);
 
-  useEffect (() => {
-    if(data!=="Scan..."){
-    const jso = JSON.stringify(data);
-      localStorage.setItem("scan", jso);}
-    }, [data])
-
-  
 
   useEffect (() => {
     if(data!=="Scan..."){
@@ -35,7 +28,6 @@ function Scanner({setScan}) {
         torch={torchOn}
         onUpdate={(err, result) => {
           if (result) setData(result.text);
-          else if(err) setData("Not Found");
           else setData("Scan...");}}
 
           onError={(error) => {

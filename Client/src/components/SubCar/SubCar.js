@@ -54,10 +54,7 @@ function SubCar({ scan, setScan, list, tableData, setTableData, posts, x, setSub
     
   let navigate = useNavigate();
 
-  useEffect(() => {
-    if(scan2.ticket)
-    setFormData(scan2)
-  }, [scan1])
+  
   
 
   useEffect(()=>{
@@ -147,6 +144,8 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
       }}
     
       const handleChange = event => {
+        const jsont = JSON.stringify(null);
+        localStorage.setItem("scan", jsont);
         setFormData({
           name: event.target.name,
           value: event.target.type === 'checkbox' ? event.target.checked : event.target.value
