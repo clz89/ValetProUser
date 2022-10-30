@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from '../../_actions/updateForm';
 import Modal from './Modal';
 import * as api from '../../_api';
+import Scanner from '../Scanner/Scanner';
 
 import _ from 'lodash'
 
@@ -26,7 +27,7 @@ const formReducer = (state, event) => {
   }
   
 }
-function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, setFormT}) {
+function SubCar({ scan, setScan, list, tableData, setTableData, posts, x, setSubCar, formT, setFormT}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
@@ -40,13 +41,17 @@ function SubCar({ list, tableData, setTableData, posts, x, setSubCar, formT, set
 
    const json = localStorage.getItem("formdata");
   const savedNotes = JSON.parse(json);
+
+  const json2 = localStorage.getItem("scan");
+  const scan1 = JSON.parse(json2);
+  const scan2 = {ticket:scan1};
     
   const dispatch = useDispatch() 
 
   const length = pos.length
 
   const [formData, setFormData] = useReducer(formReducer,  
-  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
+  scan2.ticket ? scan2 : length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
     
   let navigate = useNavigate();
 
@@ -156,6 +161,9 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
             }, 200);
             
           }
+          const handleScan = () => {
+            setScan(true)
+          }
 
           
         const jsont = JSON.stringify(formData);
@@ -167,7 +175,9 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
 
       {modal===true&&(
         <Modal setModal={setModal}  {...{modalid, formData, setFormData, setModal}}/>)}
-      <h1>Submit Car</h1>
+      <h1>Submit Car
+        <button className='clearbtn' onClick={handleScan}>Scanner</button>
+      </h1>
       <form >
         <fieldset >
         <div className="btndiv">

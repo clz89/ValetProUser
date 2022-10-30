@@ -3,14 +3,20 @@ import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import "./Scanner.css"
 
 function Scanner({setScan}) {
-  const [data, setData] = React.useState("Not Found");
+  const [data, setData] = React.useState("Scan...");
   const [torchOn, setTorchOn] = React.useState(false);
   const [camErr, setCamErr] = React.useState(false);
+
+  useEffect (() => {
+    if(data!=="Scan..."){
+    const jso = JSON.stringify(data);
+      localStorage.setItem("scan", jso);}
+    }, [data])
 
   
 
   useEffect (() => {
-    if(data!=="Not Found"){
+    if(data!=="Scan..."){
     const jso = JSON.stringify(data);
       localStorage.setItem("scan", jso);}
     }, [data])
@@ -29,9 +35,11 @@ function Scanner({setScan}) {
         torch={torchOn}
         onUpdate={(err, result) => {
           if (result) setData(result.text);
-          else setData("Not Found");}}
+          else if(err) setData("Not Found");
+          else setData("Scan...");}}
+
           onError={(error) => {
-            if (error.name === "NotAllowedError"){
+            if (error){
              setCamErr("ERROR")
             }
             }}

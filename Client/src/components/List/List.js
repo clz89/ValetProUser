@@ -119,7 +119,7 @@ useEffect(()=>{
     
       <table className="table_container">
       {scan &&(<Scanner setScan={setScan} {...{setFormT, x, list, tableData, setTableData, posts, scan, setScan, }}/>)}
-        {subcar &&(<SubCar setSubCar={setSubCar} {...{setFormT, x, list, tableData, setTableData, posts, setSubCar}}/>)}
+        {subcar &&(<SubCar setSubCar={setSubCar} {...{scan, setScan, setFormT, x, list, tableData, setTableData, posts, setSubCar}}/>)}
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{states, on, day, setDay, setOn, columns, tableData, setTableData}} />
