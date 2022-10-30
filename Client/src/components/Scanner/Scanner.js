@@ -7,9 +7,10 @@ function Scanner({setScan}) {
   const [torchOn, setTorchOn] = React.useState(false);
 
   useEffect (() => {
+    if(data!=="Not Found"){
     const jso = JSON.stringify(data);
-      localStorage.setItem("scan", jso);
-    })
+      localStorage.setItem("scan", jso);}
+    }, [data])
 
   const handleScan = () => {
     setScan(false)
