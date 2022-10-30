@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import { getPulls, deletePull } from "../../_actions/pulls";
 import PullsM from "./PullsM"
 
-const Pulls = ({setFormT, setSubCar, subcar, setList, list}) => {
+const Pulls = ({scan, setScan, setFormT, setSubCar, subcar, setList, list}) => {
     const posts = useSelector( state => state.pulls )
     const x = getPulls()
    
     
     return (
-    <List  {...{setFormT, setSubCar, subcar, PullsM, setList, list, posts, x}}/>
+    <List  {...{scan, setScan, setFormT, setSubCar, subcar, PullsM, setList, list, posts, x}}/>
 
     )
 }

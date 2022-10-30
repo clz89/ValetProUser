@@ -1754,6 +1754,15 @@
     "@types/scheduler" "*"
     "csstype" "^3.0.2"
 
+"@types/react@^16.9.35":
+  "integrity" "sha512-b99nWeGGReLh6aKBppghVqp93dFJtgtDOzc8NXM6hewD8PQ2zZG5kBLgbx+VJr7Q7WBMjHxaIl3dwpwwPIUgyA=="
+  "resolved" "https://registry.npmjs.org/@types/react/-/react-16.14.34.tgz"
+  "version" "16.14.34"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    "csstype" "^3.0.2"
+
 "@types/resolve@0.0.8":
   "integrity" "sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ=="
   "resolved" "https://registry.npmjs.org/@types/resolve/-/resolve-0.0.8.tgz"
@@ -2094,6 +2103,20 @@
   "integrity" "sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ=="
   "resolved" "https://registry.npmjs.org/@xtuc/long/-/long-4.2.2.tgz"
   "version" "4.2.2"
+
+"@zxing/library@^0.17.0":
+  "integrity" "sha512-RuiBZuteGaFXCle/b0X+g3peN8UpDc3pGe/J7hZBzKWaMZLbjensR7ja3vy47xWhXU4e8MICGqegPMxc2V2sow=="
+  "resolved" "https://registry.npmjs.org/@zxing/library/-/library-0.17.1.tgz"
+  "version" "0.17.1"
+  dependencies:
+    "ts-custom-error" "^3.0.0"
+  optionalDependencies:
+    "@zxing/text-encoding" "~0.9.0"
+
+"@zxing/text-encoding@~0.9.0":
+  "integrity" "sha512-U/4aVJ2mxI0aDNI8Uq0wEhMgY+u4CNtEb0om3+y3+niDAsoTCOB33UF0sxpzqzdqXLqmvc+vZyAt4O8pPdfkwA=="
+  "resolved" "https://registry.npmjs.org/@zxing/text-encoding/-/text-encoding-0.9.0.tgz"
+  "version" "0.9.0"
 
 "abab@^2.0.3":
   "integrity" "sha512-9IK9EadsbHo6jLWIpxpR6pL0sazTXV6+SQv25ZB+F7Bj9mJNaOc4nCRabwd5M/JwmUa8idz6Eci6eKfJryPs6Q=="
@@ -9178,6 +9201,15 @@
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.1.tgz"
   "version" "17.0.1"
 
+"react-qr-barcode-scanner@^1.0.6":
+  "integrity" "sha512-DdalO4oqHyxWPa4cIjiHeMS19HbIvKq+oo/PAglAsxmfhAUGC8sM1mJnzo0zPQM1yw9ZNpjrtqHz+rs86Mu7Ww=="
+  "resolved" "https://registry.npmjs.org/react-qr-barcode-scanner/-/react-qr-barcode-scanner-1.0.6.tgz"
+  "version" "1.0.6"
+  dependencies:
+    "@types/react" "^16.9.35"
+    "@zxing/library" "^0.17.0"
+    "react-webcam" "^5.0.1"
+
 "react-redux@^7.2.2":
   "integrity" "sha512-8+CQ1EvIVFkYL/vu6Olo7JFLWop1qRUeb46sGtIMDCSpgwPQq8fPLpirIB0iTqFe9XYEFPHssdX8/UwN6pAkEA=="
   "resolved" "https://registry.npmjs.org/react-redux/-/react-redux-7.2.2.tgz"
@@ -9285,6 +9317,11 @@
     "react" "^16.0.0"
     "shallow-equal" "^1.0.0"
     "uuid" "^3.1.0"
+
+"react-webcam@^5.0.1":
+  "integrity" "sha512-Qqj14t68Ke1eoEYjFde+N48HtuIJg0ePIQRpFww9eZt5oBcDpe/l60h+m3VRFJAR5/E3dOhSU5R8EJEcdCq/Eg=="
+  "resolved" "https://registry.npmjs.org/react-webcam/-/react-webcam-5.2.4.tgz"
+  "version" "5.2.4"
 
 "react@^16.0.0":
   "integrity" "sha512-0X2CImDkJGApiAlcf0ODKIneSwBPhqJawOa5wCtKbu7ZECrmS26NvtSILynQ66cgkT/RJ4LidJOc3bUESwmU8g=="
@@ -10978,6 +11015,11 @@
   "integrity" "sha512-c3zayb8/kWWpycWYg87P71E1S1ZL6b6IJxfb5fvsUgsf0S2MVGaDhDXXjDMpdCpfWXqptc+4mXwmiy1ypXqRAA=="
   "resolved" "https://registry.npmjs.org/tryer/-/tryer-1.0.1.tgz"
   "version" "1.0.1"
+
+"ts-custom-error@^3.0.0":
+  "integrity" "sha512-wdBacIvfF3z0iFL8uRvTKwr8iwBrKIQ5cUDSRismp5O9N35O7qla3KX+B0FLfD6L8Frey/vVmEdLoal0lULzSQ=="
+  "resolved" "https://registry.npmjs.org/ts-custom-error/-/ts-custom-error-3.3.0.tgz"
+  "version" "3.3.0"
 
 "ts-pnp@^1.1.6", "ts-pnp@1.2.0":
   "integrity" "sha512-csd+vJOb/gkzvcCHgTGSChYpy5f1/XKNsmvBGO4JXS+z1v2HobugDz4s1IeFXM3wZB44uczs+eazB5Q/ccdhQw=="

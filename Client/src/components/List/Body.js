@@ -10,7 +10,8 @@ import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 import * as api from '../../_api';
 
-const TableBody = ({sorted, setSubCar, list, carlength, on, day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
+   day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
@@ -183,6 +184,8 @@ const TableBody = ({sorted, setSubCar, list, carlength, on, day, posts, setTable
             </td>
             <td>
               <button className="but" onClick={()=>setSubCar(true)} >Add new car</button>
+              <button className="but" onClick={()=>setScan(true)} >Scanner</button>
+
             </td>
             </tr>
             {tableData.filter((data) => {
@@ -229,9 +232,9 @@ const TableBody = ({sorted, setSubCar, list, carlength, on, day, posts, setTable
 
                     <button className="but" type="button"  value={data._id} onClick={handleUpdate}>Edit</button>
 
-                   {/*} <button className="but" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
+                    <button className="but" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
-                   Delete</button>*/}
+                   Delete</button>
 
                       {data.complete && (
                       <button className="but" value={data._id}
