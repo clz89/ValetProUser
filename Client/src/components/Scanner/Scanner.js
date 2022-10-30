@@ -5,6 +5,9 @@ import "./Scanner.css"
 function Scanner({setScan}) {
   const [data, setData] = React.useState("Not Found");
   const [torchOn, setTorchOn] = React.useState(false);
+  const [camErr, setCamErr] = React.useState(false);
+
+  
 
   useEffect (() => {
     if(data!=="Not Found"){
@@ -19,14 +22,19 @@ function Scanner({setScan}) {
     <>
     <div className="backshadow3" onClick={handleScan}>
     <div className="custom-modal3" onClick={(e) => e.stopPropagation()} >
+    <p>{camErr}</p>
       <BarcodeScannerComponent
         width={500}
         height={500}
         torch={torchOn}
         onUpdate={(err, result) => {
           if (result) setData(result.text);
-          else setData("Not Found");
-        }}
+          else setData("Not Found");}}
+          onError={(error) => {
+            if (error.name === "NotAllowedError"){
+             setCamErr("ERROR")
+            }
+            }}
       />
       <p>{data}</p>
       <button onClick={() => setTorchOn(!torchOn)}>
