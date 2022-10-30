@@ -1,11 +1,16 @@
-import React from "react";
+import React, {useEffect} from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import "./Scanner.css"
 
 function Scanner({setScan}) {
   const [data, setData] = React.useState("Not Found");
   const [torchOn, setTorchOn] = React.useState(false);
-  
+
+  useEffect (() => {
+    const jso = JSON.stringify(data);
+      localStorage.setItem("scan", jso);
+    })
+
   const handleScan = () => {
     setScan(false)
   }
