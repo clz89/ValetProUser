@@ -27,7 +27,7 @@
   =====================
   */
   .deflist {
-    background: rgb(17, 15, 163)
+    background: rgb(17, 15, 163);
   }
   .daylist{
     background:rgb(201, 160, 25)
@@ -112,11 +112,12 @@
     
     border-top: 1px solid rgb(8, 8, 8);
     padding: 4px 4px;
-    color:rgb(255, 255, 255)
+    color:rgb(255, 255, 255);
     
   }
   td{
     background:#1a1a1a;
+    
   }
   
   table tbody tr:first-child td {
@@ -180,6 +181,7 @@ button {
   color:rgb(0, 0, 0);
   background-color: #27c718;
   font-weight:700;
+  margin: 3px;
 }
 .pay{
   display: flex;
@@ -207,4 +209,7 @@ button {
 }
 .rinput{
   height: 40px;
+}
+.listbtn{
+  max-width: 40vh;
 }

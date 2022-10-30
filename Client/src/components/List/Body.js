@@ -10,7 +10,7 @@ import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 import * as api from '../../_api';
 
-const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
+const TableBody = ({sorted, setSubCar, list, carlength, on, day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
@@ -135,6 +135,8 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
             data.complete=""
             data.status="repark"
             api.createCar(data)
+            setTableData([...sorted])
+
             dispatch(deletePull(data._id))
             dispatch(deleteComp(data._id))  
             dispatch(deleteOut(data._id))     
@@ -204,39 +206,39 @@ const TableBody = ({ setSubCar, list, carlength, on, day, posts, setTableData, t
               return (
                 <tr  key={data._id}>
 
-                  <td >
+                  <td className="listbtn">
 
                     {!data.complete && (
-                      <button value={data._id}
+                      <button className="but" value={data._id}
                         onClick={handleModal}>Process</button>)}
 
                     {list==="pulls" && data.complete && !data.hot &&(
-                      <button value={data._id}
+                      <button className="but" value={data._id}
                         onClick={handleComp}>Completed</button>
                     )}
 
                     {list==="pulls" && data.complete && data.hot &&(
-                      <button value={data._id}
+                      <button className="but" value={data._id}
                         onClick={handleModal}>+ Room</button>
                     )}
 
                     {list==="outs" && (
-                      <button value={data._id}
+                      <button className="but" value={data._id}
                         onClick={handleOuts} >Checkout</button>
                     )}
 
-                    <button type="button" className="" value={data._id} onClick={handleUpdate}>Edit</button>
+                    <button className="but" type="button"  value={data._id} onClick={handleUpdate}>Edit</button>
 
-                    <button type="button" className="" value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
+                   {/*} <button className="but" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
-                      Delete</button>
+                   Delete</button>*/}
 
                       {data.complete && (
-                      <button value={data._id}
+                      <button className="but" value={data._id}
                         onClick={handleRepark}>Repark</button>
                     )}
                     {data.status==="process" && (
-                      <button value={data._id}
+                      <button className="but" value={data._id}
                         onClick={handleRepark}>Repark</button>
                     )}
                   </td>

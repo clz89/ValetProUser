@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 
-const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData }) => {
+const TableHead = ({ states, on, day, setDay, setOn, columns, tableData, setTableData }) => {
 
   
  
     
-  const [sortField, setSortField] = useState("");
-  const [order, setOrder] = useState("asc");
+  const [sortField, setSortField] = useState(states.accessor);
+  const [order, setOrder] = useState(states.sortOrder);
 
 
     
@@ -26,8 +26,7 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
       });
 
       setTableData(sorted); 
-      const jsont = JSON.stringify(sorted);
-      localStorage.setItem("sortstate", jsont);
+     
     }
   };
 
@@ -57,14 +56,12 @@ const TableHead = ({ on, day, setDay, setOn, columns, tableData, setTableData })
     setSortField(accessor);
     setOrder(sortOrder);
     handleSorting(accessor, sortOrder);
+    
     const states2 = {accessor, sortOrder}
     const jso = JSON.stringify(states2);
       localStorage.setItem("states2", jso);
   }
-
-      
-  
-    
+ 
   return (
     <thead>
       <tr>

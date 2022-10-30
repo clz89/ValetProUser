@@ -76,7 +76,7 @@ const HotM = ({ pullId, setModal, tableData}) => {
         tableData.filter((data) => {
          if(evt===data._id && data.status==="Returning" ){ 
           data.complete="Completed"
-          data.status="Not Paid"
+          data.status="Returning"
           dispatch(deletePull(data._id))      
           api.createOut(data) 
           setModal(false)

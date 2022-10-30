@@ -15,7 +15,7 @@ const List = ({ setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) =>
  
   useEffect(() => {
   dispatch(x);
-  }, [dispatch])
+  }, [ dispatch])
   
   const sortedData = posts.sort((a, b) => {
     const dateAInMillis = (new Date(a.createdAt)).getTime();
@@ -26,11 +26,11 @@ const List = ({ setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) =>
     const json = localStorage.getItem("states2");
   const states = JSON.parse(json);
 
-    const [sortField, setSortField] = useState(states.accessor);
-    const [order, setOrder] = useState(states.sortOrder);
+    const [sortField, setSortField] = useState(states ? states.accessor : "createdAt");
+    const [order, setOrder] = useState(states ? states.sortOrder : "desc");
 
     
-        const sorted = [...posts].sort((a, b,) => {
+        const sorted = posts.sort((a, b,) => {
           if (a[sortField] === null) return 1;
           if (b[sortField] === null) return -1;
           if (a[sortField] === null && b[sortField] === null) return 0;
@@ -40,16 +40,17 @@ const List = ({ setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) =>
             }) * (order === "asc" ? 1 : -1)
           );
         });
-    
+        
       
     
 
-const [tableData, setTableData] = useState(sorted);
+const [tableData, setTableData] = useState(sorted ? sorted : posts);
 const [on, setOn] = useState(false) ;
 const [day, setDay] = useState(false) ;
 const [modal, setModal] = useState(false);
 const [pullId, setPullId] = useState()
 const [carlength, setCarLength] = useState(tableData.length)
+
 useEffect(()=>{
   setCarLength(tableData.length)
 }, [tableData])
@@ -61,6 +62,16 @@ useEffect(()=>{
   
   
   useEffect(()=> { 
+    const sorted = posts.sort((a, b,) => {
+      if (a[sortField] === null) return 1;
+      if (b[sortField] === null) return -1;
+      if (a[sortField] === null && b[sortField] === null) return 0;
+      return (
+        a[sortField]?.toString().localeCompare(b[sortField]?.toString(), "en", {
+          numeric: true,
+        }) * (order === "asc" ? 1 : -1)
+      );
+    });
       setTableData(sorted)
 
  }, [posts] )
@@ -109,8 +120,8 @@ useEffect(()=>{
         {subcar &&(<SubCar setSubCar={setSubCar} {...{setFormT, x, list, tableData, setTableData, posts, setSubCar}}/>)}
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
-        <TableHead {...{on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
+        <TableHead {...{states, on, day, setDay, setOn, columns, tableData, setTableData}} />
+        <TableBody  {...{ sorted, setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
       
       </table>
       
