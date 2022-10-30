@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { upReset } from '../../_actions/updateForm';
 import Modal from './Modal';
 import * as api from '../../_api';
-import Scanner from '../Scanner/Scanner';
 
 import _ from 'lodash'
 
@@ -51,10 +50,14 @@ function SubCar({ scan, setScan, list, tableData, setTableData, posts, x, setSub
   const length = pos.length
 
   const [formData, setFormData] = useReducer(formReducer,  
-  scan2.ticket ? scan2 : length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
+  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
     
   let navigate = useNavigate();
 
+  useEffect(() => {
+    if(scan2.ticket)
+    setFormData(scan2)
+  }, [scan1])
   
 
   useEffect(()=>{
