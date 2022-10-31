@@ -180,9 +180,12 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
 
       {modal===true&&(
         <Modal setModal={setModal}  {...{modalid, formData, setFormData, setModal}}/>)}
-      <h1>Submit Car
-        <button className='clearbtn' onClick={handleScan}>Scanner</button>
+         <div className='h1div'>
+         <h1>
+        Submit Car:
       </h1>
+        <button className='clearbtn' onClick={handleScan}>Scanner</button>
+      </div>
       <form >
         <fieldset >
         <div className="btndiv">
@@ -198,8 +201,8 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           </label>
           <label>
             <p>Price:</p>
-            <button type="button" name="price" value={formData.price || ''} onClick={handleModal}>.........
-            {formData.price || 'Choose price'}.........</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className='but' type="button" name="price" value={formData.price || ''} onClick={handleModal}>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;{formData.price || 'Choose price'}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
           </label>
           </div>
           <div className='inprow'>
@@ -248,8 +251,8 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           <div className='inprow'>
           <label>
              <p>Vehicle make:</p>
-             <button type="button" name="vmake" value={formData.vmake || ''} onClick={handleModal}>
-            {formData.vmake || 'Choose make'}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+             <button className='but' type="button" name="vmake" value={formData.vmake || ''} onClick={handleModal}>
+            {formData.vmake || 'Choose make'}</button>
           </label>
           <label>
              <p>Notes:</p>
@@ -259,8 +262,8 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           <div className='inprow'>
           <label>
             <p>Vehicle color:</p>
-            <button type="button" name="vcolor" value={formData.vcolor || ''} onClick={handleModal}>
-            {formData.vcolor || 'Choose color'}</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button className='but' type="button" name="vcolor" value={formData.vcolor || ''} onClick={handleModal}>
+            {formData.vcolor || 'Choose color'}</button>&nbsp;
             </label>
             <label>
             <p>Parking spot:</p>

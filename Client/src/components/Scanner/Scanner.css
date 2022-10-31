@@ -1,25 +1,40 @@
 .backshadow3{
     width:100%;
-    height: 100vh;
+    height: 89vh;
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 1;
     background-color: rgba(0,0,0,0.7);
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     color:white;
-
   
   }
   .backshadow3 .custom-modal3{
     border-radius: 10px;
     padding: 20px;
       height: auto;
-      right: 40vh;
-      bottom:10vh;
+      left:-10vh;
+      bottom:13vh;
       background-color: rgb(0, 0, 0);
       position: relative;
+      border:2px solid rgb(43, 173, 26)
+   
+     
   
   }
+  .scanbtn  {
+    border-radius: 5px;
+     height: 30px;
+     width: 10vh;
+     background-color:#3cff01;
+     text-align: center;
+     font-weight: 700;
+     color: black;
+     margin: -.4vh;
+ }
+.scanbdiv{
+    display: flex;
+    justify-content: space-between;
+}

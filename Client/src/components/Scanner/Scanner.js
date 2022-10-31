@@ -21,11 +21,21 @@ function Scanner({setSubCar, setScan}) {
   const handleScan = () => {
     setScan(false)
   }
+
+  const handleSwitch = () => {
+    setSubCar(true) 
+    setScan(false)
+  }
   return (
     <>
     <div className="backshadow3" onClick={handleScan}>
     <div className="custom-modal3" onClick={(e) => e.stopPropagation()} >
-    <p>{camErr}</p>
+    <div className="scanbdiv">
+    <button className="scanbtn" onClick={() => setTorchOn(!torchOn)}>
+        Switch Torch {torchOn ? "Off" : "On"}</button>
+      <p>{camErr}</p>
+      <button className="scanbtn" onClick={handleSwitch}>Switch to Form</button>
+      </div>
       <BarcodeScannerComponent
         width={500}
         height={500}
@@ -41,9 +51,7 @@ function Scanner({setSubCar, setScan}) {
             }}
       />
       <p>{data}</p>
-      <button onClick={() => setTorchOn(!torchOn)}>
-        Switch Torch {torchOn ? "Off" : "On"}
-      </button>
+     
       </div>
       </div>
     </>
