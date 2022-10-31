@@ -2,7 +2,7 @@ import React, {useEffect} from "react";
 import BarcodeScannerComponent from "react-qr-barcode-scanner";
 import "./Scanner.css"
 
-function Scanner({setScan}) {
+function Scanner({setSubCar, setScan}) {
   const [data, setData] = React.useState("Scan...");
   const [torchOn, setTorchOn] = React.useState(false);
   const [camErr, setCamErr] = React.useState(false);
@@ -10,8 +10,12 @@ function Scanner({setScan}) {
 
   useEffect (() => {
     if(data!=="Scan..."){
-    const jso = JSON.stringify(data);
-      localStorage.setItem("scan", jso);}
+      const scan2 = {ticket:data}
+    const jso = JSON.stringify(scan2);
+      localStorage.setItem("scan", jso);
+    setSubCar(true)
+    setScan(false)
+    }
     }, [data])
 
   const handleScan = () => {

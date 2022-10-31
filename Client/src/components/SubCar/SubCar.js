@@ -43,14 +43,14 @@ function SubCar({ scan, setScan, list, tableData, setTableData, posts, x, setSub
 
   const json2 = localStorage.getItem("scan");
   const scan1 = JSON.parse(json2);
-  const scan2 = {ticket:scan1};
+  
     
   const dispatch = useDispatch() 
 
   const length = pos.length
 
   const [formData, setFormData] = useReducer(formReducer,  
-  length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
+  scan1 ? scan1 : length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
     
   let navigate = useNavigate();
 
@@ -108,8 +108,10 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
  }
 
     const resetForm = () => {
+      const jsont = JSON.stringify(null);
+        localStorage.setItem("scan", jsont);
        setFormData({reset: true})
-       
+  
     }
   
   const handleSubmit = (event ) => {
@@ -165,6 +167,7 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           }
           const handleScan = () => {
             setScan(true)
+            setSubCar(false)
           }
 
           
