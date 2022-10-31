@@ -47,7 +47,7 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
         const json = localStorage.getItem("formdata");
         const savedNotes = JSON.parse(json);
             const form = {price:"$44", type: "ON"};
-        let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
+        let o = Object.fromEntries(Object.entries(savedNotes ? savedNotes : "").filter(([_, v]) => v !== ""));
         const uptrue = _.isEqual(post, o);
         const formt = _.isEqual(o, form); 
            if (uptrue)  {  
@@ -79,10 +79,6 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
   
       return (
         <footer className="footer">
-            
-     <button type="button"  value="1" className={formT ? 'btn-flash' : 'ftabs'} onClick={handleClick2}>
-          Add Car
-     </button>
  
  <Link to="/2" >
      <button className={formTrue==="2" ? 'btn-red' : 'ftabs'} value="2" type="button" onClick={handleClick}   >
@@ -129,6 +125,10 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
           Click Me!
      </button>
     </Link>
+
+    <button type="button"  value="1" className={formT ? 'btn-flash' : 'ftabs'} onClick={handleClick2}>
+          Add Car
+     </button>
    
      </footer>
     );

@@ -16,16 +16,18 @@ const Modal = ({ carlength, setPullId, pullId, setModal, tableData, CarsM, Pulls
             }
         })
     })
+    
 
    if(CarsM){
-   return(  
-         < CarsM {...{ carlength, setPullId, pullId, setModal, tableData}}/>
+    
+   return( 
+    < CarsM {...{pulldata, carlength, setPullId, pullId, setModal, tableData}}/>
      )}
      else if(PullsM) {
      if(pulldata.hot ){
-        return (< HotM {...{ setPullId, pullId, setModal, tableData}}/>)}
+        return (< HotM {...{ pulldata, setPullId, pullId, setModal, tableData}}/>)}
       else{
-       return ( < PullsM  {...{ setPullId, pullId, setModal, tableData}}/>)}
+       return ( < PullsM  {...{ pulldata, setPullId, pullId, setModal, tableData}}/>)}
       }
 }
 

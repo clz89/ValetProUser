@@ -10,14 +10,13 @@ import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 import * as api from '../../_api';
 
-const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
+const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, on,
    day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
-    let navigate = useNavigate()
 
-   
+    let navigate = useNavigate()
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -33,58 +32,6 @@ const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
         } 
       })
     }) 
-
-
- /*  useEffect(() => {
-      tableData.filter((data) => {
-        if (!data.complete && data.status==="Returning") {
-          data.complete="Complete"
-          dispatch(updatePull(data._id, data))
-        }      
-      })
-    }) 
-  
-    useEffect(() => {
-      tableData.filter((data) => {
-        if (!data.complete && data.status==="Checking Out") {
-          data.complete="Complete"                 
-          dispatch(updatePull(data._id, data))
-        }      
-      })
-    }) */
-
-    /* useEffect(() => {
-      tableData.filter((data) => {
-        if (list==="cars" && data.status==="checkout") {
-          data.status="Checking Out"
-          data.complete="Complete"
-          dispatch(deleteCar(data._id))  
-         api.createPull(data)
-        }else if(list==="pulls" && data.status==="checkout"){
-          data.status="Checking Out"
-          data.complete="Completed"
-         api.createComp(data)
-        dispatch(deletePull(data._id)) 
-
-        }
-     })
-     })  */
-
-   /* useEffect(() => {
-      tableData.filter((data) => {
-        if (list==="cars" && data.status==="return") {
-        data.complete="Complete"
-        data.status="Returning"
-        api.createPull(data)
-        dispatch(deleteCar(data._id))
-        }else if(list==="pulls" && data.status==="return"){
-          data.status="Returning"
-          data.complete="Completed"
-         api.createOut(data)
-        dispatch(deletePull(data._id)) 
-        }
-      })
-    })*/
 
     useEffect(() => {
       tableData.filter((data) => {
@@ -177,15 +124,15 @@ const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
         <tr>
           <td>
           <input type="text" placeholder="search..." onChange={(event) => {
-         setSearchTerm(event.target.value);}}/>
+         setSearchTerm(event.target.value);}} value={searchTerm} />
+         <button className="but searchbtn" onClick={()=>setSearchTerm("")}>X</button>
          </td>
          <td>
              {carlength}&nbsp;cars&nbsp;total
             </td>
             <td>
-              <button className="but" onClick={()=>setSubCar(true)} >Add new car</button>
               <button className="but" onClick={()=>setScan(true)} >Scanner</button>
-
+              <button className={formT ? "but btn-flash" : "but"} onClick={()=>setSubCar(true)} >Add new car</button>
             </td>
             </tr>
             {tableData.filter((data) => {
@@ -201,6 +148,8 @@ const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
             } else if (data.ticket?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.name?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.room?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+              else if (data.vmake?.toLowerCase().includes(searchTerm.toLowerCase()) ) 
+              { return data; }
               else if (data.vmake?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.vcolor?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.vmodel?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
@@ -212,8 +161,8 @@ const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
                   <td className="listbtn">
 
                     {!data.complete && (
-                      <button className="but" value={data._id}
-                        onClick={handleModal}>Process</button>)}
+                      <button className="but procbtn" value={data._id}
+                        onClick={handleModal}>Process...&nbsp;&nbsp;&nbsp;</button>)}
 
                     {list==="pulls" && data.complete && !data.hot &&(
                       <button className="but" value={data._id}
@@ -221,8 +170,8 @@ const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
                     )}
 
                     {list==="pulls" && data.complete && data.hot &&(
-                      <button className="but" value={data._id}
-                        onClick={handleModal}>+ Room</button>
+                      <button className="but roombtn" value={data._id}
+                        onClick={handleModal}>&nbsp;+ Room&nbsp;&nbsp;&nbsp;&nbsp;</button>
                     )}
 
                     {list==="outs" && (
@@ -230,20 +179,20 @@ const TableBody = ({scan, setScan, sorted, setSubCar, list, carlength, on,
                         onClick={handleOuts} >Checkout</button>
                     )}
 
-                    <button className="but" type="button"  value={data._id} onClick={handleUpdate}>Edit</button>
+                    <button className="but editbtn" type="button"  value={data._id} onClick={handleUpdate}>Edit</button>
+                      {data.complete && (
+                      <button className="but parkbtn" value={data._id}
+                        onClick={handleRepark}>Repark</button>
+                    )}
 
-                    <button className="but" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
+                    {data.status==="process" && (
+                      <button className="but parkbtn" value={data._id}
+                        onClick={handleRepark}>Repark</button>
+                    )}
+
+                    <button className="but parkbtn" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
                    Delete</button>
-
-                      {data.complete && (
-                      <button className="but" value={data._id}
-                        onClick={handleRepark}>Repark</button>
-                    )}
-                    {data.status==="process" && (
-                      <button className="but" value={data._id}
-                        onClick={handleRepark}>Repark</button>
-                    )}
                   </td>
 
                   {columns.map(({ accessor }) => {

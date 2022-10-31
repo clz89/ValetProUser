@@ -10,7 +10,7 @@ import { createPull, updatePull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 import Scanner from "../Scanner/Scanner";
 
-const List = ({ scan, setScan, setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) => {
+const List = ({ formT, scan, setScan, setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) => {
 
   const dispatch = useDispatch();
  
@@ -123,7 +123,7 @@ useEffect(()=>{
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
         <TableHead {...{states, on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ scan, setScan, sorted, setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
+        <TableBody  {...{ setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
       
       </table>
       

@@ -5,14 +5,14 @@ import { getCars } from "../../_actions/subCars";
 import CarsM from "./CarsM";
 import SubCar from "../SubCar/SubCar";
 
-const Cars = ({scan, setScan, setFormT, setSubCar, subcar, list, setList}) => {
+const Cars = ({formT, scan, setScan, setFormT, setSubCar, subcar, list, setList}) => {
     const posts = useSelector( state => state.subCars )
     const x = getCars()
         
    
     return (
         <><div className="main">
-        </div><List {...{ scan, setScan, setFormT, setSubCar, subcar, setList, list, CarsM, posts, x }} /></>
+        </div><List {...{ formT, scan, setScan, setFormT, setSubCar, subcar, setList, list, CarsM, posts, x }} /></>
 
     )
 }

@@ -89,19 +89,20 @@ const TableHead = ({ states, on, day, setDay, setOn, columns, tableData, setTabl
               ? "down"
               : "default"
               : "";
+           
           return (
             <th
               key={accessor}
              
               className={cl}
             > 
-             <button className="but"  onClick={sortable ? () => handleSortingChange(accessor) : null}>
+             <button className={label==="Id:" ? "buthead idbtn" : "buthead"}  onClick={sortable ? () => handleSortingChange(accessor) : null}>
                  {label}
                  </button> 
             </th>
           );
         })}
-      </tr>
+      </tr>  
     </thead>
   );
 };

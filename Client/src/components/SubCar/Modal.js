@@ -9,13 +9,24 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
     }
 
     const handleChange = event => {
+        if(event.target.name!=="vcolor"){
         setFormData({
         name: event.target.name,
         value: event.target.value
-        })
+        }) 
         setModal(false)
+        }else{
+        const name1 = event.target.name
+        const evt = event.target.value
         
-    }
+            setFormData({
+                name: event.target.name,
+                value: evt
+                })
+                setModal(false)
+
+        }
+       }
      
     return (
         <div className='backshadow' onClick={handleModal}>
@@ -41,7 +52,7 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
                 <div className="make">
                     <div >
                         A : &nbsp;
-                    <button name="vmake" value="Acura" onClick={handleChange}>Acura</button>
+                    <button name="vcolor" value="Acura" onClick={handleChange}>Acura</button>
                     <button name="vmake"  value="Alfa Romeo" onClick={handleChange} >Alfa Romeo</button>
                     <button name="vmake"  value="Audi" onClick={handleChange} >Audi</button>
                     </div>

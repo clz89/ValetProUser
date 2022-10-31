@@ -22,7 +22,7 @@ const formReducer = (state, event) => {
      [event.name]: event.value
    }}
 
-const CarsM = ({ pullId, setModal, tableData}) => {
+const CarsM = ({ pulldata, pullId, setModal, tableData}) => {
 
     const post = useSelector( state => state.updateForm )
     const pos = Object.values(post)
@@ -119,13 +119,26 @@ const CarsM = ({ pullId, setModal, tableData}) => {
     return (
         <div className='backshadow' onClick={handleModal}>
             <div className='custom-modal' onClick={(e) => e.stopPropagation()}>
-               
-
-                   {pullId}
-
+              <div className="tickinfomain">
+                <div className="tickinfo">
+                  <p>Ticket #:&nbsp; {pulldata.ticket}</p>
+                  <p>Name:&nbsp;{pulldata.name}</p>
+                  <p>Room:&nbsp;{pulldata.room}</p>
+                  <p>Stall #:&nbsp;{pulldata.pspot}</p>
+                  <p>LP#:&nbsp;{pulldata.license}</p>
+                  <p>Vehicle:&nbsp;{pulldata.vcolor}&nbsp;{pulldata.vmake}&nbsp;{pulldata.vmodel}</p> 
+                </div>
+                <div className="tickinfo">
+                  <p>Departure:&nbsp;{pulldata.depart}</p>
+                  <p>Type:&nbsp;{pulldata.type}</p>
+                  <p>Price:&nbsp;{pulldata.price}</p>  
+                  <p>{pulldata.vip}&nbsp;{pulldata.oufront}</p>
+                  <p>Notes:&nbsp;{pulldata.notes}</p>
+                </div>
+              </div>
                    {formData.type==="ON"&&(
                    <div className="bdiv">
-                    
+                 
                 <button className="mbtn" type="button" name="status" value="Checking Out" onClick={handleCheckOut}>Checking Out</button>
                 <button className="mbtn" type="button" name="status" value="Returning" onClick={handleCheckOut}>Returning</button>
                 <button className="mbtn" type="button"  name="pulls" value="Pull" onClick={handlePull}>Pull</button>
