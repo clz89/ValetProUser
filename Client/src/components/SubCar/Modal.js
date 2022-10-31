@@ -4,12 +4,14 @@ import { useNavigate } from 'react-router';
 
 const Modal = ({modalid, setModal, setFormData, formData}) => {
 
+    const [vehicle, setVehicle] = React.useState({vcolor:"", vmake:"", vmodel:""})
+
     const handleModal = () => {
         setModal(false)
     }
 
     const handleChange = event => {
-        if(event.target.name!=="vcolor"){
+        if(event.target.name!=="vcolor" && event.target.name!=="vmake"){
         setFormData({
         name: event.target.name,
         value: event.target.value
@@ -18,12 +20,23 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
         }else{
         const name1 = event.target.name
         const evt = event.target.value
-        
-            setFormData({
-                name: event.target.name,
-                value: evt
-                })
-                setModal(false)
+        if(name1==="vcolor"){
+        setVehicle([...vehicle, [vehicle.vcolor]= evt])
+        console.log(vehicle)
+        setFormData({
+            name: event.target.name,
+            value: event.target.value
+            })
+        setModal(false)  
+    }else if(name1==="vmake"){
+        setVehicle(vehicle.vmake=evt)
+        console.log(vehicle)
+        setFormData({
+            name: event.target.name,
+            value: event.target.value
+            })
+        setModal(false) 
+    }      
 
         }
        }
@@ -52,7 +65,7 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
                 <div className="make">
                     <div >
                         A : &nbsp;
-                    <button name="vcolor" value="Acura" onClick={handleChange}>Acura</button>
+                    <button name="vmake" value="Acura" onClick={handleChange}>Acura</button>
                     <button name="vmake"  value="Alfa Romeo" onClick={handleChange} >Alfa Romeo</button>
                     <button name="vmake"  value="Audi" onClick={handleChange} >Audi</button>
                     </div>
