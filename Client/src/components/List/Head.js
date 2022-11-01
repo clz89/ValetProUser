@@ -64,7 +64,7 @@ const TableHead = ({ states, on, day, setDay, setOn, columns, tableData, setTabl
  
   return (
     <thead>
-      <tr>
+      <tr >
         <td className="tdfilter">
       Overnight!
             <input  

@@ -21,7 +21,7 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
         const name1 = event.target.name
         const evt = event.target.value
         if(name1==="vcolor"){
-        setVehicle([...vehicle, [vehicle.vcolor]= evt])
+        setVehicle(vehicle.vcolor=evt)
         console.log(vehicle)
         setFormData({
             name: event.target.name,
@@ -35,7 +35,7 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
             name: event.target.name,
             value: event.target.value
             })
-        setModal(false) 
+            
     }      
 
         }

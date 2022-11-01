@@ -48,6 +48,8 @@
   .tdfilter{
    display:flex;
    flex-direction: column;
+   align-items: center;
+   font-weight: 700;
   }
   .tdbtn{
   
@@ -65,12 +67,16 @@
   tbody {
  
   }
- 
+ td{
+
+ }
   table {
 
     border-spacing: 0;
     display: block;
    
+  }
+  th{
   }
   
   caption {
@@ -82,27 +88,30 @@
   table th {
     background: rgb(7, 7, 7);
     padding: 8px 10px;
-    border-bottom: 1px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
     font-weight: bold;
-    text-align: left;
-    
+    text-align: center;    
   }
-  thead{
+    thead{
     color:white;
 
    
   }
-  
+  .theadrow{
+   
+  }
   .up {
-  background-color: #15b915;
+  background-color: #15a815;
     
   }
   .down {
     background-color: #d1930c;
 
   }
-  .table th.default {
-   
+  .default {
+    background-color: #000000;
+    align-items: center;
+
   }
   th.up,
   th.default,
@@ -117,9 +126,11 @@
     border-top: 1px solid rgb(0, 0, 0);
     padding: 4px 4px;
     color:rgb(255, 255, 255);
+    
   }
   td{
     background:#1a1a1a;
+
 
   }
   
@@ -197,8 +208,8 @@ button {
 }
 .buthead{
   border-radius: 5px;
-  color:black;
-  background-color: #7dfa09;
+  color:rgb(0, 0, 0);
+  background-color: #cecece;
   font-weight:700;
 }
 .but {

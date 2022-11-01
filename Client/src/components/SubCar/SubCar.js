@@ -15,11 +15,14 @@ import _ from 'lodash'
 
 const formReducer = (state, event) => {
 
-   if(event.reset) {
-      
+   if(event.reset) {     
   return{price: "$44", type: "ON"}
-    
- }
+    }else if(state.vcolor){
+      return{
+        ...state,
+        [event.name]: event.value
+      }
+    }
   return {
       ...state,
     [event.name]: event.value
