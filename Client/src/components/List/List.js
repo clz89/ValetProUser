@@ -29,6 +29,7 @@ const List = ({ formT, scan, setScan, setFormT, setSubCar, subcar, PullsM, CarsM
 
     const [sortField, setSortField] = useState(states ? states.accessor : "createdAt");
     const [order, setOrder] = useState(states ? states.sortOrder : "desc");
+    const [vehicle, setVehicle] = useState({vcolor:"", vmake:""})
 
     
         const sorted = posts.sort((a, b,) => {
@@ -119,11 +120,11 @@ useEffect(()=>{
     
       <table className="table_container">
       {scan &&(<Scanner setScan={setScan} {...{setSubCar, setScan, }}/>)}
-        {subcar &&(<SubCar setSubCar={setSubCar} {...{scan, setScan, setFormT, x, list, tableData, setTableData, posts, setSubCar}}/>)}
+        {subcar &&(<SubCar setSubCar={setSubCar} {...{vehicle, setVehicle, scan, setScan, setFormT, x, list, tableData, setTableData, posts, setSubCar}}/>)}
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
-        <TableHead {...{states, on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
+        <TableHead {...{ states, on, day, setDay, setOn, columns, tableData, setTableData}} />
+        <TableBody  {...{ vehicle, setVehicle, setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
       
       </table>
       

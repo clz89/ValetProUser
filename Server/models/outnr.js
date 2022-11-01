@@ -19,7 +19,8 @@ const outSchema = new mongoose.Schema({
     payment: String,
     hot: String,
     status: String,
-    complete: String
+    complete: String,
+    vehicle: String
 }, { timestamps: true });
 
 const out = mongoose.model('out', outSchema);

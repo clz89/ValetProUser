@@ -2,9 +2,17 @@ import React, {useEffect} from "react"
 import { useNavigate } from 'react-router';
 
 
-const Modal = ({modalid, setModal, setFormData, formData}) => {
+const Modal = ({vehicle, setVehicle, modalid, setModal, setFormData, formData}) => {
 
-    const [vehicle, setVehicle] = React.useState({vcolor:"", vmake:"", vmodel:""})
+    const [vstring,setVString] = React.useState("");
+
+    useEffect(() => {
+    const json = JSON.stringify(vehicle.vcolor+" "+vehicle.vmake)
+    const vstring1 = json.replaceAll("[/']","");
+    formData.vehicle=vstring1
+    console.log(vstring1)
+    },[formData, vehicle.vcolor, vehicle.vmake]) 
+    
 
     const handleModal = () => {
         setModal(false)
@@ -21,7 +29,9 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
         const name1 = event.target.name
         const evt = event.target.value
         if(name1==="vcolor"){
-        setVehicle(vehicle.vcolor=evt)
+        vehicle.vmake=formData.vmake ? formData.vmake : ""
+        vehicle.vcolor=evt
+        setVehicle(vehicle)
         console.log(vehicle)
         setFormData({
             name: event.target.name,
@@ -29,14 +39,16 @@ const Modal = ({modalid, setModal, setFormData, formData}) => {
             })
         setModal(false)  
     }else if(name1==="vmake"){
-        setVehicle(vehicle.vmake=evt)
+        vehicle.vcolor=formData.vcolor ?formData.vcolor : ""
+        vehicle.vmake=evt
+        setVehicle(vehicle)
         console.log(vehicle)
         setFormData({
             name: event.target.name,
             value: event.target.value
             })
-            
-    }      
+          setModal(false)  
+    }    
 
         }
        }

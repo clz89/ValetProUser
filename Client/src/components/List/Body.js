@@ -11,13 +11,13 @@ import { createComp, deleteComp } from "../../_actions/completed";
 import * as api from '../../_api';
 
 const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, on,
-   day, posts, setTableData, tableData, columns, setPullId, setModal }) => {
+   day, posts, setTableData, tableData, columns, setPullId, setModal, vehicle, setVehicle }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
 
-    let navigate = useNavigate()
-
+     
+  
     useEffect(() => {
       tableData.filter((data) => {
         if (data.type==="ON" && !data.room && !data.hot) {
@@ -148,11 +148,11 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
             } else if (data.ticket?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.name?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.room?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
-              else if (data.vmake?.toLowerCase().includes(searchTerm.toLowerCase()) ) 
-              { return data; }
+              else if (data.vmake?.toLowerCase().includes(searchTerm.toLowerCase()) )  { return data; }          
               else if (data.vmake?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.vcolor?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
               else if (data.vmodel?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
+              else if (data.vehicle?.toLowerCase().includes(searchTerm.toLowerCase())) { return data; }
             })
             .map((data) => {
               return (

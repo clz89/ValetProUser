@@ -29,7 +29,7 @@ const formReducer = (state, event) => {
   }
   
 }
-function SubCar({ scan, setScan, list, tableData, setTableData, posts, x, setSubCar, formT, setFormT}) {
+function SubCar({vehicle, setVehicle, scan, setScan, list, tableData, setTableData, posts, x, setSubCar, formT, setFormT}) {
 
   const post = useSelector( state => state.updateForm )
   const pos = Object.values(post)
@@ -57,7 +57,12 @@ function SubCar({ scan, setScan, list, tableData, setTableData, posts, x, setSub
     
   let navigate = useNavigate();
 
-  
+  useEffect(() => {
+    const json = JSON.stringify(vehicle.vcolor+" "+vehicle.vmake)
+    const vstring1 = json.replaceAll("[/']","");
+    formData.vehicle=vstring1
+    console.log(vstring1)
+    },[formData, vehicle.vcolor, vehicle.vmake]) 
   
 
   useEffect(()=>{
@@ -182,7 +187,7 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
             <div className='custom-modal2'onClick={(e) => e.stopPropagation()}>
 
       {modal===true&&(
-        <Modal setModal={setModal}  {...{modalid, formData, setFormData, setModal}}/>)}
+        <Modal setModal={setModal}  {...{vehicle, setVehicle, modalid, formData, setFormData, setModal}}/>)}
          <div className='h1div'>
          <h1>
         Submit Car:

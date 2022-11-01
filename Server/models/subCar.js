@@ -19,7 +19,8 @@ const subCarSchema = new mongoose.Schema({
     payment: String,
     hot: String,
     status: String,
-    complete: String
+    complete: String,
+    vehicle: String
 }, { timestamps: true });
 
 const subcar = mongoose.model('subcar', subCarSchema);

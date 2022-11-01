@@ -19,7 +19,8 @@ const compSchema = new mongoose.Schema({
     payment: String,
     hot: String,
     status: String,
-    complete: String
+    complete: String,
+    vehicle: String
 }, { timestamps: true });
 
 const comp = mongoose.model('comp', compSchema);
