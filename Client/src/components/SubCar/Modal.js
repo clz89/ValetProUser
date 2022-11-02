@@ -4,14 +4,8 @@ import { useNavigate } from 'react-router';
 
 const Modal = ({vehicle, setVehicle, modalid, setModal, setFormData, formData}) => {
 
-    const [vstring,setVString] = React.useState("");
 
-    useEffect(() => {
-    const json = JSON.stringify(vehicle.vcolor+" "+vehicle.vmake)
-    const vstring1 = json.replaceAll("[/']","");
-    formData.vehicle=vstring1
-    console.log(vstring1)
-    },[formData, vehicle.vcolor, vehicle.vmake]) 
+   
     
 
     const handleModal = () => {
@@ -36,7 +30,7 @@ const Modal = ({vehicle, setVehicle, modalid, setModal, setFormData, formData}) 
         setFormData({
             name: event.target.name,
             value: event.target.value
-            })
+            }) 
         setModal(false)  
     }else if(name1==="vmake"){
         vehicle.vcolor=formData.vcolor ?formData.vcolor : ""

@@ -16,7 +16,7 @@ import _ from 'lodash'
 const formReducer = (state, event) => {
 
    if(event.reset) {     
-  return{price: "$44", type: "ON"}
+  return{price: "$44", type: "ON", vehicle:""}
     }else if(state.vcolor){
       return{
         ...state,
@@ -53,15 +53,16 @@ function SubCar({vehicle, setVehicle, scan, setScan, list, tableData, setTableDa
   const length = pos.length
 
   const [formData, setFormData] = useReducer(formReducer,  
-  scan1 ? scan1 : length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON"});
+  scan1 ? scan1 : length!==0 && post._id!==1 ? post : savedNotes ? savedNotes : {price:"$44", type: "ON", vehicle:""});
     
   let navigate = useNavigate();
 
   useEffect(() => {
+    if(formData.vehicle!=="1"){
     const json = JSON.stringify(vehicle.vcolor+" "+vehicle.vmake)
     const vstring1 = json.replaceAll("[/']","");
     formData.vehicle=vstring1
-    console.log(vstring1)
+    console.log(vstring1)}
     },[formData, vehicle.vcolor, vehicle.vmake]) 
   
 
@@ -94,7 +95,7 @@ function SubCar({vehicle, setVehicle, scan, setScan, list, tableData, setTableDa
  const handleClick = () => {
 
 
-     const form = {price:"$44", type: "ON"};
+     const form = {price:"$44", type: "ON", vehicle:""};
 let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== ""));
  const formt = _.isEqual(o, form);
     if (formData._id===post._id)  {  
@@ -166,7 +167,9 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           setModalId(e.target.name)
           setModal(true);
           }
+
           const handleSubCar = () =>{
+            setVehicle("1")
             handleClick()
             setTimeout(() => {
               setSubCar(false)

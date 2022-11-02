@@ -20,7 +20,7 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
      
     const json = localStorage.getItem("formdata");
     const savedNotes = JSON.parse(json);
-        const form = {price:"$44", type: "ON"};
+        const form = {price:"$44", type: "ON", vehicle:"" };
    let o = Object.fromEntries(Object.entries(savedNotes).filter(([_, v]) => v !== ""));
     const uptrue = _.isEqual(post, o);
     const formt = _.isEqual(o, form);
@@ -46,7 +46,7 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
     useEffect(() => {
         const json = localStorage.getItem("formdata");
         const savedNotes = JSON.parse(json);
-            const form = {price:"$44", type: "ON"};
+            const form = {price:"$44", type: "ON", vehicle:""};
         let o = Object.fromEntries(Object.entries(savedNotes ? savedNotes : "").filter(([_, v]) => v !== ""));
         const uptrue = _.isEqual(post, o);
         const formt = _.isEqual(o, form); 
