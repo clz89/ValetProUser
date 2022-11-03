@@ -7,16 +7,16 @@ import { updateComp } from '../../_actions/completed';
 import { updateOut } from '../../_actions/outnr';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { upReset } from '../../_actions/updateForm';
+import { upForm, upReset } from '../../_actions/updateForm';
 import Modal from './Modal';
 import * as api from '../../_api';
 
-import _ from 'lodash'
+import _, { fromPairs } from 'lodash'
 
 const formReducer = (state, event) => {
 
    if(event.reset) {     
-  return{price: "$44", type: "ON", vehicle:""}
+  return{price: "$44", type: "ON"}
     }else if(state.vcolor){
       return{
         ...state,
@@ -57,13 +57,19 @@ function SubCar({vehicle, setVehicle, scan, setScan, list, tableData, setTableDa
     
   let navigate = useNavigate();
 
-  useEffect(() => {
-    if(formData.vehicle!=="1"){
+ /* useEffect(() => {
+ 
     const json = JSON.stringify(vehicle.vcolor+" "+vehicle.vmake)
     const vstring1 = json.replaceAll("[/']","");
     formData.vehicle=vstring1
-    console.log(vstring1)}
-    },[formData, vehicle.vcolor, vehicle.vmake]) 
+    console.log(vstring1)
+    },[formData]) */
+
+    useEffect(() => {
+      const form = {price:"$44", type: "ON", vehicle:""}
+      if(formData.vehicle===true && post._id==="1"){
+      setFormData(form);}
+      } ,[formData, post._id])
   
 
   useEffect(()=>{
@@ -93,9 +99,7 @@ function SubCar({vehicle, setVehicle, scan, setScan, list, tableData, setTableDa
  }
 
  const handleClick = () => {
-
-
-     const form = {price:"$44", type: "ON", vehicle:""};
+const form = {price:"$44", type: "ON"};
 let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== ""));
  const formt = _.isEqual(o, form);
     if (formData._id===post._id)  {  
@@ -117,14 +121,21 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
  }
 
     const resetForm = () => {
+      setFormT(false)
       const jsont = JSON.stringify(null);
         localStorage.setItem("scan", jsont);
+        setVehicle({vcolor:"", vmake:""})
        setFormData({reset: true})
   
     }
   
   const handleSubmit = (event ) => {
     event.preventDefault();
+    setFormT(false)
+    const json = JSON.stringify(vehicle.vcolor+" "+vehicle.vmake)
+    const vstring1 = json.replaceAll("[/']","");
+    formData.vehicle=vstring1
+    console.log(vstring1)
       if (formData._id === post._id){
       const _id = formData._id
       dispatch(updateCar(_id, formData))
@@ -169,7 +180,6 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
           }
 
           const handleSubCar = () =>{
-            setVehicle("1")
             handleClick()
             setTimeout(() => {
               setSubCar(false)

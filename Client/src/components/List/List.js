@@ -87,6 +87,7 @@ useEffect(()=>{
     { label: "Name:", accessor: "name", sortable: true },
     { label: "Room:", accessor: "room", sortable: true },
     { label: "Departure:", accessor: "depart", sortable: true },
+    { label: "Vehicle:", accessor: "vehicle", sortable: true },
     { label: "Vehicle color:", accessor: "vcolor", sortable: true },
     { label: "Vehicle make:", accessor: "vmake", sortable: true },
     { label: "Vehicle model:", accessor: "vmodel", sortable: true },
