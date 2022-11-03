@@ -126,12 +126,14 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
         localStorage.setItem("scan", jsont);
         setVehicle({vcolor:"", vmake:""})
        setFormData({reset: true})
+       dispatch(upReset(post))
   
     }
   
   const handleSubmit = (event ) => {
     event.preventDefault();
     setFormT(false)
+
     const json = JSON.stringify(vehicle.vcolor+" "+vehicle.vmake)
     const vstring1 = json.replaceAll("[/']","");
     formData.vehicle=vstring1
@@ -145,6 +147,8 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
       dispatch(upReset(post))
       setFormData({reset: true})
       setTimeout(() => {
+        setVehicle({vcolor:"", vmake:""})
+
       setSubCar(false) 
       }, 100)
       }else{
@@ -152,6 +156,8 @@ let o = Object.fromEntries(Object.entries(formData).filter(([_, v]) => v !== "")
       dispatch(createCar(formData))
       setFormData({reset: true}) 
       setTimeout(() => {
+        setVehicle({vcolor:"", vmake:""})
+
         setSubCar(false)
       }, 200);
     }
