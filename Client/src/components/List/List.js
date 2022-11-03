@@ -82,17 +82,13 @@ useEffect(()=>{
  
   const columns = [ 
     { label: "Type:", accessor: "type", sortable: true },
-    { label: "Id:", accessor: "_id", sortable: true },
     { label: "Ticket #:", accessor: "ticket", sortable: true },
     { label: "Name:", accessor: "name", sortable: true },
     { label: "Room:", accessor: "room", sortable: true },
     { label: "Departure:", accessor: "depart", sortable: true },
     { label: "Vehicle:", accessor: "vehicle", sortable: true },
-    { label: "Vehicle color:", accessor: "vcolor", sortable: true },
-    { label: "Vehicle make:", accessor: "vmake", sortable: true },
     { label: "Vehicle model:", accessor: "vmodel", sortable: true },
     { label: "VIP:", accessor: "vip", sortable: true },
-    { label: "Retrieve at:", accessor: "retrieve", sortable: true },
     { label: "OutFront:", accessor: "outfront", sortable: true },
     { label: "Notes:", accessor: "notes", sortable: true },
     { label: "Parking spot:", accessor: "pspot", sortable: true },
@@ -102,7 +98,8 @@ useEffect(()=>{
     { label: "Payment:", accessor: "payment", sortable: true },
     { label: "Status:", accessor: "status", sortable: true },
     { label: "Completed:", accessor: "complete", sortable: true },
-    { label: "Issued:", accessor: "createdAt", sortable: true }
+    { label: "Issued:", accessor: "createdAt", sortable: true },
+    { label: "Id:", accessor: "_id", sortable: true },
 
   ];
  
