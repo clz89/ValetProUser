@@ -131,8 +131,8 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
              {carlength}&nbsp;total
             </td>
             <td className="tablenav">
-              <button className="but" onClick={()=>setScan(true)} >Scan</button>
-              <button className={formT ? "but btn-flash" : "but"} onClick={()=>setSubCar(true)} >Add</button>
+              <button className="butscanadd" onClick={()=>setScan(true)} >Scan</button>
+              <button className={formT ? "but btn-flash" : "butscanadd"} onClick={()=>setSubCar(true)} >Add</button>
             </td>
             </tr>
             {tableData.filter((data) => {

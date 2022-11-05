@@ -216,6 +216,14 @@ button {
   color:rgb(0, 0, 0);
   background-color: #cecece;
   font-weight:700;
+  font-size: small;
+}
+.butscanadd{
+  border-radius: 5px;
+  color:rgb(0, 0, 0);
+  background-color: #27c718;
+  font-weight:700;
+  margin: 3px;
 }
 .but {
   border-radius: 5px;
@@ -223,6 +231,7 @@ button {
   background-color: #27c718;
   font-weight:700;
   margin: 3px;
+  height: 32px;
 }
 .searchbtn{
   background-color: #e73f29;
