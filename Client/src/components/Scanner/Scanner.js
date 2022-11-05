@@ -10,7 +10,7 @@ function Scanner({setSubCar, setScan}) {
 
   useEffect (() => {
     if(data!=="Scan..."){
-      const scan2 = {ticket:data}
+      const scan2 = {ticket:data, type:"ON", price:"$44"}
     const jso = JSON.stringify(scan2);
       localStorage.setItem("scan", jso);
     setSubCar(true)
