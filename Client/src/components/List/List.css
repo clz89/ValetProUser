@@ -61,9 +61,12 @@
       width: 100%;
       top:4vh;
       height:89vh;
-      position:fixed;    
-      overflow-x:auto; /* <!-- this is for horizontal scroll--> */  
-  }
+      position:fixed;   
+      overflow-y: auto; /* <!-- this is for horizontal scroll--> */ 
+ 
+   }
+   .datacontainer{
+   }
   tbody {
  
   }
@@ -130,10 +133,10 @@
   }
   td{
     background:#1a1a1a;
-
-
+ }
+  .tablenav{
+    display: flex;
   }
-  
   table tbody tr:first-child td {
     border-top: none;
   }

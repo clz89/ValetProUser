@@ -120,9 +120,9 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
           })})*/
 
     return (
-      <tbody>
+      <tbody className="datacontainer">
         <tr>
-          <td>
+          <td className="tablenav">
           <input type="text" placeholder="search..." onChange={(event) => {
          setSearchTerm(event.target.value);}} value={searchTerm} />
          <button className="but searchbtn" onClick={()=>setSearchTerm("")}>X</button>
@@ -156,7 +156,7 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
             })
             .map((data) => {
               return (
-                <tr  key={data._id}>
+                <tr  key={data._id} className="datacontainer">
 
                   <td className="listbtn">
 
