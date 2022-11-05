@@ -78,7 +78,7 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
         localStorage.setItem("states", jsont);})
   
       return (
-        <footer className="footer">
+        <footer >
  
  <Link to="/2" >
      <button className={formTrue==="2" ? 'btn-red' : 'ftabs'} value="2" type="button" onClick={handleClick}   >

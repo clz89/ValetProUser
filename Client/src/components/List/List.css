@@ -59,8 +59,8 @@
     background-color: #343536;
       margin:auto;
       width: 100%;
-      top:4vh;
-      height:89vh;
+      top:5vh;
+      height:85vh;
       position:fixed;   
       overflow-y: auto; /* <!-- this is for horizontal scroll--> */ 
  
@@ -136,6 +136,7 @@
  }
   .tablenav{
     display: flex;
+    height: 50px;
   }
   table tbody tr:first-child td {
     border-top: none;

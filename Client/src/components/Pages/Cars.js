@@ -11,8 +11,8 @@ const Cars = ({formT, scan, setScan, setFormT, setSubCar, subcar, list, setList}
         
    
     return (
-        <><div className="main">
-        </div><List {...{ formT, scan, setScan, setFormT, setSubCar, subcar, setList, list, CarsM, posts, x }} /></>
+        
+        <List {...{ formT, scan, setScan, setFormT, setSubCar, subcar, setList, list, CarsM, posts, x }} />
 
     )
 }

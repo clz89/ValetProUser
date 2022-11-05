@@ -130,9 +130,9 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
          <td>
              {carlength}&nbsp;cars&nbsp;total
             </td>
-            <td>
-              <button className="but" onClick={()=>setScan(true)} >Scanner</button>
-              <button className={formT ? "but btn-flash" : "but"} onClick={()=>setSubCar(true)} >Add new car</button>
+            <td className="tablenav">
+              <button className="but" onClick={()=>setScan(true)} >Scan</button>
+              <button className={formT ? "but btn-flash" : "but"} onClick={()=>setSubCar(true)} >Add</button>
             </td>
             </tr>
             {tableData.filter((data) => {
@@ -156,7 +156,7 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
             })
             .map((data) => {
               return (
-                <tr  key={data._id} className="datacontainer">
+                <tr  key={data._id} >
 
                   <td className="listbtn">
 
