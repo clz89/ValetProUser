@@ -128,7 +128,7 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
          <button className="but searchbtn" onClick={()=>setSearchTerm("")}>X</button>
          </td>
          <td>
-             {carlength}&nbsp;cars&nbsp;total
+             {carlength}&nbsp;total
             </td>
             <td className="tablenav">
               <button className="but" onClick={()=>setScan(true)} >Scan</button>
@@ -190,9 +190,9 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
                         onClick={handleRepark}>Repark</button>
                     )}
 
-                    <button className="but parkbtn" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
+                   {/* <button className="but parkbtn" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
-                   Delete</button>
+                   Delete</button>*/}
                   </td>
 
                   {columns.map(({ accessor }) => {
