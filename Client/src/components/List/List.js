@@ -10,7 +10,7 @@ import { createPull, updatePull } from "../../_actions/pulls";
 import { deleteCar } from "../../_actions/subCars";
 import Scanner from "../Scanner/Scanner";
 
-const List = ({ formT, scan, setScan, setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) => {
+const List = ({ windowSize, formT, scan, setScan, setFormT, setSubCar, subcar, PullsM, CarsM,  list, posts, x}) => {
 
   const dispatch = useDispatch();
  
@@ -102,8 +102,27 @@ useEffect(()=>{
     { label: "Id:", accessor: "_id", sortable: true },
 
   ];
- 
-  
+  const columnMobile = [ 
+    { label: "Type:", accessor: "type", sortable: true },
+    { label: "Ticket #:", accessor: "ticket", sortable: true },
+    { label: "Name:", accessor: "name", sortable: true },
+    { label: "Room:", accessor: "room", sortable: true },
+    { label: "Depart:", accessor: "depart", sortable: true },
+    { label: "Vehicle:", accessor: "vehicle", sortable: true },
+    { label: "Vehicle model:", accessor: "vmodel", sortable: true },
+    { label: "VIP:", accessor: "vip", sortable: true },
+    { label: "OutFront:", accessor: "outfront", sortable: true },
+    { label: "Notes:", accessor: "notes", sortable: true },
+    { label: "Stall:", accessor: "pspot", sortable: true },
+    { label: "LP#:", accessor: "license", sortable: true },
+    { label: "Hot:", accessor: "hot", sortable: true },
+    { label: "Price:", accessor: "price", sortable: true },
+    { label: "Payment:", accessor: "payment", sortable: true },
+    { label: "Status:", accessor: "status", sortable: true },
+    { label: "Complete:", accessor: "complete", sortable: true },
+    { label: "Issued:", accessor: "createdAt", sortable: true },
+
+  ];
 
     useEffect(()=> {
     
@@ -118,11 +137,17 @@ useEffect(()=>{
     
       <table className="table_container">
       {scan &&(<Scanner setScan={setScan} {...{setSubCar, setScan, }}/>)}
+
         {subcar &&(<SubCar setSubCar={setSubCar} {...{vehicle, setVehicle, scan, setScan, setFormT, x, list, tableData, setTableData, posts, setSubCar}}/>)}
         {modal===true&&(
         <Modal setModal={setModal}  {...{ carlength, setModal, tableData, setPullId, pullId, PullsM, CarsM}}/>)}
-        <TableHead {...{ states, on, day, setDay, setOn, columns, tableData, setTableData}} />
-        <TableBody  {...{ vehicle, setVehicle, setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, setTableData, tableData, posts }} />
+
+         {windowSize.innerWidth > "1000" &&(<TableHead {...{ states, on, day, setDay, setOn, columns, tableData, 
+         setTableData}} />)}
+        
+       <TableBody  {...{ windowSize, vehicle, setVehicle, setFormT, formT, scan, setScan, 
+        sorted, setSubCar, list, carlength, x, setPullId, setModal, on, day, columns, columnMobile, setTableData, tableData, 
+        posts }} />
       
       </table>
       

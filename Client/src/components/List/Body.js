@@ -10,8 +10,8 @@ import { createOut, deleteOut } from "../../_actions/outnr";
 import { createComp, deleteComp } from "../../_actions/completed";
 import * as api from '../../_api';
 
-const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, on,
-   day, posts, setTableData, tableData, columns, setPullId, setModal, vehicle, setVehicle }) => {
+const TableBody = ({windowSize, setFormT, formT, scan, setScan, sorted, setSubCar, list, carlength, on,
+   day, posts, setTableData, tableData, columns, columnMobile, setPullId, setModal, vehicle, setVehicle }) => {
 
     const [searchTerm, setSearchTerm] = useState("");
     const dispatch = useDispatch();
@@ -194,11 +194,20 @@ const TableBody = ({setFormT, formT, scan, setScan, sorted, setSubCar, list, car
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
                    Delete</button>*/}
                   </td>
-
-                  {columns.map(({ accessor }) => {
+                   
+                  {columnMobile.map(({ accessor }) => {
+                    if(windowSize.innerWidth < "1000"){
                     const tData = data[accessor] ? data[accessor] : "";                 
                     return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
-                    key={accessor}>{tData}</td>;}  
+                    key={accessor}>{tData}</td>;}}
+                    
+                  )}
+                  {columns.map(({ accessor }) => {
+                    if(windowSize.innerWidth > "1000"){
+                    const tData = data[accessor] ? data[accessor] : "";                 
+                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
+                    key={accessor}>{tData}</td>;}}
+                    
                   )}
                 </tr>
               );
