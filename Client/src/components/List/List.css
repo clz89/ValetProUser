@@ -141,7 +141,18 @@
   table tbody tr:first-child td {
     border-top: none;
   }
-  
+  .bodytr{
+    width: 600px;
+  }
+  .listmobile{
+    background-color: #ffffff;
+    color: #000000;
+    font-weight: 500 ;
+    width: 600px;
+    height:auto;
+    padding: 2px 6px;
+    
+ }
 
   /*modal-------------------------------------------------------*/
 
@@ -284,5 +295,5 @@ button {
   height: 40px;
 }
 .listbtn{
-  max-width: 40vh;
+ width: 200px;
 }

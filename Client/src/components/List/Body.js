@@ -156,8 +156,28 @@ const TableBody = ({windowSize, setFormT, formT, scan, setScan, sorted, setSubCa
             })
             .map((data) => {
               return (
-                <tr  key={data._id} >
+                <tr  className="bodytr" key={data._id} >
 
+                  
+                   
+                  {columns.map(({ accessor }) => {
+                    if(windowSize.innerWidth > "1000"){
+                    const tData = data[accessor] ? data[accessor] : "";                 
+                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
+                    key={accessor}>{tData}</td>;}}
+                    
+                  )}
+                    {windowSize.innerWidth < "1000" &&(
+                     <div className="listmobile" div key={data._id}>
+                      <div  className="listmobile2" >{data.type} {data.ticket} {data.depart} {data.price} {data.payment}</div>
+                      <div  className="listmobile2" >{data.name} {data.room} {data.vehicle} {data.vmodel} {data.status} {data.complete}</div>
+                      <div  className="listmobile2" >{data.notes} {data.hot} {data.vip} {data.outfront} {data.pspot} {data.license} {data.createdAt}</div>
+                      </div>
+                      
+
+                    
+                    
+                  )}
                   <td className="listbtn">
 
                     {!data.complete && (
@@ -194,21 +214,6 @@ const TableBody = ({windowSize, setFormT, formT, scan, setScan, sorted, setSubCa
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
                    Delete</button>*/}
                   </td>
-                   
-                  {columnMobile.map(({ accessor }) => {
-                    if(windowSize.innerWidth < "1000"){
-                    const tData = data[accessor] ? data[accessor] : "";                 
-                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
-                    key={accessor}>{tData}</td>;}}
-                    
-                  )}
-                  {columns.map(({ accessor }) => {
-                    if(windowSize.innerWidth > "1000"){
-                    const tData = data[accessor] ? data[accessor] : "";                 
-                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
-                    key={accessor}>{tData}</td>;}}
-                    
-                  )}
                 </tr>
               );
             })}
