@@ -73,9 +73,11 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
         };
 
     useEffect(()=> {
+        if(formT){
         const states2 = {formT, formTrue}
         const jsont = JSON.stringify(states2);
-        localStorage.setItem("states", jsont);})
+        localStorage.setItem("states", jsont);}
+    })
   
       return (
         <footer >

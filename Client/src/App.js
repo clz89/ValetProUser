@@ -27,7 +27,7 @@ import CarsLength from './components/CarsLength';
 function App() {
   const { user: currentUser } = useSelector((state) => state.auth);
   const auth = currentUser && currentUser.roles 
-
+  
 
   const json = localStorage.getItem("states");
         const states = JSON.parse(json);
@@ -36,8 +36,8 @@ function App() {
   const[list, setList] = useState(false)
   const[subcar, setSubCar] = useState(false)
   const[scan, setScan] = useState(false)
-  const [formT, setFormT] = useState(states.formT)
-  const [formTrue, setFormTrue] = useState(states.formTrue);  
+  const [formT, setFormT] = useState(states ? states.formT : false)
+  const [formTrue, setFormTrue] = useState(states ? states.formTrue : false);  
   const [windowSize, setWindowSize] = useState(getWindowSize());
   
   function getWindowSize() {
@@ -60,10 +60,12 @@ function App() {
   }, []);
 
 useEffect(()=> {
+  
         const states2 = {formT, formTrue}
         const jsont = JSON.stringify(states2);
-        localStorage.setItem("states", jsont);})
-
+        localStorage.setItem("states", jsont);
+      })
+  
   return (
     <>
     <User/>
