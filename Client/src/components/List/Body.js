@@ -121,7 +121,7 @@ const TableBody = ({windowSize, setFormT, formT, scan, setScan, sorted, setSubCa
 
     return (
       <tbody className="datacontainer">
-        <tr>
+        <tr className="searchtr">
           <td className="tablenav">
           <input type="text" placeholder="search..." onChange={(event) => {
          setSearchTerm(event.target.value);}} value={searchTerm} />
@@ -157,27 +157,7 @@ const TableBody = ({windowSize, setFormT, formT, scan, setScan, sorted, setSubCa
             .map((data) => {
               return (
                 <tr  className="bodytr" key={data._id} >
-
-                  
-                   
-                  {columns.map(({ accessor }) => {
-                    if(windowSize.innerWidth > "1000"){
-                    const tData = data[accessor] ? data[accessor] : "";                 
-                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
-                    key={accessor}>{tData}</td>;}}
-                    
-                  )}
-                    {windowSize.innerWidth < "1000" &&(
-                     <div className="listmobile" div key={data._id}>
-                      <div  className="listmobile2" >{data.type} {data.ticket} {data.depart} {data.price} {data.payment}</div>
-                      <div  className="listmobile2" >{data.name} {data.room} {data.vehicle} {data.vmodel} {data.status} {data.complete}</div>
-                      <div  className="listmobile2" >{data.notes} {data.hot} {data.vip} {data.outfront} {data.pspot} {data.license} {data.createdAt}</div>
-                      </div>
-                      
-
-                    
-                    
-                  )}
+                  {windowSize.innerWidth > "1000" &&(
                   <td className="listbtn">
 
                     {!data.complete && (
@@ -213,7 +193,66 @@ const TableBody = ({windowSize, setFormT, formT, scan, setScan, sorted, setSubCa
                    {/* <button className="but parkbtn" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
                       && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
                    Delete</button>*/}
-                  </td>
+                  </td>)}
+                  
+                   
+                  {columns.map(({ accessor }) => {
+                    if(windowSize.innerWidth > "1000"){
+                    const tData = data[accessor] ? data[accessor] : "";                 
+                    return <td className={data.hot ? "hotlist" : data.complete ? "complist" : data.type==="DAY" ? "daylist" : "deflist" }  
+                    key={accessor}>{tData}</td>;}}
+                    
+                  )}
+                    {windowSize.innerWidth < "1000" &&(
+                     <div className={data.hot ? "listmobile hotlist" : data.complete ? "listmobile complist" : 
+                     data.type==="DAY" ? "listmobile daylist" : "listmobile deflist" } key={data._id}>
+                      <div>{data.type} {data.ticket} {data.depart}-</div>
+                      <div>{data.name} {data.room} {data.vehicle} {data.vmodel}-</div>
+                      <div>{data.price} {data.payment} {data.status} {data.complete}-</div>
+                      <div>{data.notes} {data.hot} {data.vip} {data.outfront} {data.pspot} {data.license}-</div>
+                      </div>
+                      
+
+                    
+                    
+                  )}
+                  {windowSize.innerWidth < "1000" &&(
+                  <td className="listbtn">
+
+                    {!data.complete && (
+                      <button className="but procbtn" value={data._id}
+                        onClick={handleModal}>Process...&nbsp;&nbsp;&nbsp;</button>)}
+
+                    {list==="pulls" && data.complete && !data.hot &&(
+                      <button className="but" value={data._id}
+                        onClick={handleComp}>Completed</button>
+                    )}
+
+                    {list==="pulls" && data.complete && data.hot &&(
+                      <button className="but roombtn" value={data._id}
+                        onClick={handleModal}>&nbsp;+ Room&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                    )}
+
+                    {list==="outs" && (
+                      <button className="but" value={data._id}
+                        onClick={handleOuts} >Checkout</button>
+                    )}
+
+                    <button className="but editbtn" type="button"  value={data._id} onClick={handleUpdate}>Edit</button>
+                      {data.complete && (
+                      <button className="but parkbtn" value={data._id}
+                        onClick={handleRepark}>Repark</button>
+                    )}
+
+                    {data.status==="process" && (
+                      <button className="but parkbtn" value={data._id}
+                        onClick={handleRepark}>Repark</button>
+                    )}
+
+                   {/* <button className="but parkbtn" type="button"  value={data._id} onClick={() => dispatch(deletePull(data._id)) && dispatch(deleteCar(data._id))
+                      && dispatch(deleteComp(data._id)) && dispatch(deleteOut(data._id))}>
+                   Delete</button>*/}
+                  </td>)}
                 </tr>
               );
             })}

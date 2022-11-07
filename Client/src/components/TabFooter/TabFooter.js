@@ -81,53 +81,42 @@ const TabFooter = ({formTrue, setFormTrue, formT, setFormT, setSubCar}) => {
         <footer >
  
  <Link to="/2" >
-     <button className={formTrue==="2" ? 'btn-red' : 'ftabs'} value="2" type="button" onClick={handleClick}   >
+     <button className={formTrue==="2" ? 'ftabs btn-red' : 'ftabs'} value="2" type="button" onClick={handleClick}   >
       Cars
      </button>
  </Link>
  <Link to="/3" >
-     <button className={formTrue==="3" ? 'btn-red' : 'ftabs'} value="3" type="button" onClick={handleClick} >
+     <button className={formTrue==="3" ? 'ftabs btn-red' : 'ftabs'} value="3" type="button" onClick={handleClick} >
      Request
      </button>
  </Link>
  <Link to="/4">
-     <button className={formTrue==="4" ? 'btn-red' : 'ftabs'} value="4" type="button" onClick={handleClick} >
+     <button className={formTrue==="4" ? 'ftabs btn-red' : 'ftabs'} value="4" type="button" onClick={handleClick} >
       Pulls
      </button>
  </Link>
  <Link to="/5">
-     <button className={formTrue==="5" ? 'btn-red' : 'ftabs'} value="5" type="button" onClick={handleClick}  >
+     <button className={formTrue==="5" ? 'ftabs btn-red' : 'ftabs'} value="5" type="button" onClick={handleClick}  >
       OutnReturning
      </button>
  </Link>
  <Link to="/6">
-     <button className={formTrue==="6" ? 'btn-red' : 'ftabs'} value="6" type="button"  onClick={handleClick} >
+     <button className={formTrue==="6" ? 'ftabs btn-red' : 'ftabs'} value="6" type="button"  onClick={handleClick} >
      Completed
      </button>
  </Link>
  <Link to="/7">
-     <button className={formTrue==="7" ? 'btn-red' : 'ftabs'} value="7" type="button"  onClick={handleClick}  >
+     <button className={formTrue==="7" ? 'ftabs btn-red' : 'ftabs'} value="7" type="button"  onClick={handleClick}  >
           Report
      </button>
  </Link>
  <Link to="/8">
-     <button className={formTrue==="8" ? 'btn-red' : 'ftabs'} value="8" type="button"  onClick={handleClick}  >
+     <button className={formTrue==="8" ? 'ftabs btn-red' : 'ftabs'} value="8" type="button"  onClick={handleClick}  >
           Settings
      </button>
  </Link>
- <Link to="/9">
-     <button className={formTrue==="9" ? 'btn-red' : 'ftabs'} value="9"type="button"  onClick={handleClick}  >
-          Click Me!
-     </button>
-     </Link>
- <Link to="/10">
-     <button className={formTrue==="10" ? 'btn-red' : 'ftabs'} value="10" type="button" onClick={handleClick}  >
-          Click Me!
-     </button>
-    </Link>
-
-    <button type="button"  value="1" className={formT ? 'btn-flash' : 'ftabs'} onClick={handleClick2}>
-          Add Car
+    <button type="button"  value="1" className={formT ? 'ftabs btn-flash' : 'ftabs'} onClick={handleClick2}>
+          Add
      </button>
    
      </footer>
