@@ -37,8 +37,8 @@ function Scanner({setSubCar, setScan}) {
       <button className="scanbtn" onClick={handleSwitch}>Switch to Form</button>
       </div>
       <BarcodeScannerComponent
-        width={500}
-        height={500}
+        width={300}
+        height={300}
         torch={torchOn}
         onUpdate={(err, result) => {
           if (result) setData(result.text);

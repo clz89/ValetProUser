@@ -204,13 +204,13 @@ const TableBody = ({windowSize, setFormT, formT, scan, setScan, sorted, setSubCa
                     
                   )}
                     {windowSize.innerWidth < "1000" &&(
-                     <div className={data.hot ? "listmobile hotlist" : data.complete ? "listmobile complist" : 
+                     <td className={data.hot ? "listmobile hotlist" : data.complete ? "listmobile complist" : 
                      data.type==="DAY" ? "listmobile daylist" : "listmobile deflist" } key={data._id}>
-                      <div>{data.type} {data.ticket} {data.depart}-</div>
-                      <div>{data.name} {data.room} {data.vehicle} {data.vmodel}-</div>
-                      <div>{data.price} {data.payment} {data.status} {data.complete}-</div>
-                      <div>{data.notes} {data.hot} {data.vip} {data.outfront} {data.pspot} {data.license}-</div>
-                      </div>
+                      <td className="listmobile2" >{data.ticket}&nbsp;&nbsp; {data.type} &nbsp;&nbsp;{data.depart}&nbsp;</td>
+                      <td className="listmobile2">{data.name} &nbsp;&nbsp;{data.room} &nbsp;&nbsp;{data.vehicle} &nbsp;&nbsp;{data.vmodel}&nbsp;</td>
+                      <td className="listmobile2">{data.price} &nbsp;&nbsp;{data.payment} &nbsp;&nbsp;{data.status} &nbsp;&nbsp;{data.complete}&nbsp;</td>
+                      <td className="listmobile2">{data.notes} &nbsp;&nbsp;{data.hot} &nbsp;&nbsp;{data.vip} &nbsp;&nbsp;{data.outfront} &nbsp;&nbsp;{data.pspot} &nbsp;&nbsp;{data.license}&nbsp;</td>
+                      </td>
                       
 
                     
